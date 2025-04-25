@@ -58,7 +58,7 @@
             z-index: 1;
         }
         .section-title {
-             font-size: clamp(3rem, 8vw, 6rem); /* Responsive large title */
+             font-size: clamp(2.5rem, 8vw, 6rem); /* Adjusted min font size for smaller screens */
              font-weight: bold;
              margin-bottom: 2rem;
              position: relative;
@@ -78,11 +78,11 @@
          .vertical-text {
              display: flex;
              flex-direction: column;
-             font-size: clamp(3rem, 10vw, 8rem);
+             font-size: clamp(3rem, 12vw, 8rem); /* Adjusted min font size */
              font-weight: bold;
              line-height: 0.9;
              color: #fff;
-             margin-right: 2rem;
+             margin-right: 1rem; /* Slightly reduced margin for mobile */
          }
 
          /* Card styles */
@@ -100,8 +100,8 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 80px;
-            height: 80px;
+            width: 60px; /* Slightly smaller */
+            height: 60px; /* Slightly smaller */
             background: linear-gradient(to bottom left, var(--tesla-red), transparent);
             opacity: 0.1;
             transform: translate(40%, -40%) rotate(45deg);
@@ -109,10 +109,19 @@
         }
          .theme-card h3 {
              color: var(--tesla-red);
-             font-size: 1.5rem;
+             font-size: 1.3rem; /* Slightly smaller on mobile */
              font-weight: bold;
              margin-bottom: 0.5rem;
          }
+          @media (min-width: 768px) { /* Adjust size back on desktop */
+               .theme-card h3 {
+                   font-size: 1.5rem;
+               }
+               .theme-card::before {
+                   width: 80px;
+                   height: 80px;
+               }
+          }
           .theme-card p {
              color: rgba(243, 244, 246, 0.9); /* Slightly transparent text */
           }
@@ -124,18 +133,25 @@
              margin-bottom: 1rem;
          }
          .line-graphic .icon {
-             width: 30px;
-             height: 30px;
+             width: 24px; /* Smaller icon on mobile */
+             height: 24px; /* Smaller icon on mobile */
              border: 2px solid var(--tesla-red);
              border-radius: 50%;
              display: flex;
              align-items: center;
              justify-content: center;
              color: var(--tesla-red);
-             font-size: 1rem;
+             font-size: 0.9rem; /* Smaller icon size */
              flex-shrink: 0;
              background-color: rgba(0, 0, 0, 0.5);
          }
+          @media (min-width: 768px) { /* Adjust size back on desktop */
+              .line-graphic .icon {
+                  width: 30px;
+                  height: 30px;
+                  font-size: 1rem;
+              }
+          }
          .line-graphic .line {
              flex-grow: 1;
              height: 2px;
@@ -147,6 +163,12 @@
          .line-graphic div {
               flex-grow: 1;
               color: rgba(243, 244, 246, 0.9);
+              font-size: 0.9rem; /* Smaller text on mobile */
+          }
+          @media (min-width: 768px) {
+              .line-graphic div {
+                  font-size: 1rem;
+              }
           }
          .line-graphic h4 {
              color: #fff;
@@ -171,18 +193,28 @@
 
          /* Logo style */
          .logo {
-             height: 50px; /* Adjust size as needed */
+             height: 40px; /* Adjust size for mobile */
              width: auto;
              margin-right: 1rem;
              flex-shrink: 0;
          }
+         @media (min-width: 768px) { /* Adjust size back on desktop */
+             .logo {
+                 height: 50px;
+             }
+         }
 
          /* Tri-element world logo style */
          .tri-logo {
-             height: 80px; /* Larger size */
+             height: 60px; /* Adjust size for mobile */
              width: auto;
              opacity: 0.8;
          }
+          @media (min-width: 768px) { /* Adjust size back on desktop */
+              .tri-logo {
+                  height: 80px;
+              }
+          }
 
         /* Style for the p5 canvas container */
         #canvas-container {
@@ -197,18 +229,20 @@
         }
         canvas {
             display: block;
+            width: 100%; /* Ensure canvas stretches within container */
+            height: 100%; /* Ensure canvas stretches within container */
         }
 
         /* Specific styles for the summary section (Slide 29) */
         .summary-grid {
-             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted min width for mobile */
         }
         .summary-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-center;
-            padding: 1.5rem;
+            padding: 1rem; /* Reduced padding */
             background-color: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(227, 25, 55, 0.5);
             border-radius: 8px;
@@ -217,24 +251,42 @@
             color: #fff;
         }
         .summary-item .number {
-            font-size: 3rem;
+            font-size: 2.5rem; /* Smaller font size on mobile */
             font-weight: bold;
             color: var(--tesla-red);
             line-height: 1;
             margin-bottom: 0.5rem;
         }
+         @media (min-width: 768px) {
+             .summary-item .number {
+                 font-size: 3rem;
+             }
+             .summary-item {
+                 padding: 1.5rem;
+             }
+         }
         .summary-item .large-icon {
-             font-size: 3rem;
+             font-size: 2.5rem; /* Smaller icon size on mobile */
              color: var(--tesla-red);
              margin-bottom: 0.5rem;
         }
+         @media (min-width: 768px) {
+             .summary-item .large-icon {
+                 font-size: 3rem;
+             }
+         }
          .summary-item .text-label {
-             font-size: 1.2rem;
+             font-size: 1.1rem; /* Slightly smaller on mobile */
              font-weight: bold;
              margin-top: 0.5rem;
          }
+          @media (min-width: 768px) {
+             .summary-item .text-label {
+                 font-size: 1.2rem;
+             }
+         }
          .summary-item .material-list {
-             font-size: 1rem;
+             font-size: 0.9rem; /* Smaller text on mobile */
              color: rgba(243, 244, 246, 0.8);
              list-style: none;
              padding: 0;
@@ -242,6 +294,11 @@
          }
          .summary-item .material-list li {
              margin-bottom: 0.2rem;
+         }
+          @media (min-width: 768px) {
+             .summary-item .material-list {
+                 font-size: 1rem;
+             }
          }
 
     </style>
@@ -254,12 +311,12 @@
     <!-- Section 1: Title / Intro -->
     <section class="relative min-h-screen flex items-center justify-center text-center px-4" data-aos="fade-in" data-aos-duration="1500">
          <!-- Logo Top Left -->
-         <div class="absolute top-8 left-8 z-20" data-aos="fade-right" data-aos-delay="300">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo h-16 w-auto">
+         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8" data-aos="fade-right" data-aos-delay="300">
+             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
           <!-- Tri Logo Top Right -->
-         <div class="absolute top-8 right-8 z-20" data-aos="fade-left" data-aos-delay="300">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo h-20 w-auto opacity-90">
+         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8" data-aos="fade-left" data-aos-delay="300">
+             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
 
         <div class="relative z-10 flex flex-col md:flex-row items-center justify-center max-w-screen-xl mx-auto">
@@ -268,10 +325,10 @@
                 <span>25</span>
             </div>
             <div class="text-left" data-aos="fade-up" data-aos-delay="700">
-                <h1 class="text-white font-bold text-6xl md:text-8xl leading-tight mb-4">
+                <h1 class="text-white font-bold text-5xl md:text-8xl leading-tight mb-4"> <!-- Adjusted h1 size for mobile -->
                     好教育 好产品 好服务
                 </h1>
-                <p class="text-white text-2xl md:text-3xl font-bold">
+                <p class="text-white text-xl md:text-3xl font-bold"> <!-- Adjusted text size for mobile -->
                     暨「匠心创造 万能有品」发布会
                 </p>
             </div>
@@ -280,10 +337,10 @@
 
     <!-- Section 2: What Kind of People -->
     <section class="bento-section relative px-4" data-aos="fade-up">
-         <div class="absolute top-8 left-8 z-20">
+         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
         <div class="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-8 relative z-10 items-center">
@@ -291,7 +348,7 @@
                 <h2 class="section-title text-white">培养怎样的人</h2>
                 <div class="theme-card mt-8 p-6">
                      <h3 class="text-white font-bold text-xl mb-4">《中国学前教育法》第四条:</h3>
-                     <p class="text-gray-300">
+                     <p class="text-gray-300 text-sm md:text-base"> <!-- Adjusted text size -->
                          培育社会主义核心价值观,继承 和弘扬中华优秀传统文化、革命 文化、社会主义先进文化,培育 中华民族共同体意识,为培养德 智体美劳全面发展的社会主义建 设者和接班人奠定基础。
                      </p>
                 </div>
@@ -301,8 +358,8 @@
                  <img src="https://via.placeholder.com/800x500?text=Classroom+Scene" alt="Classroom Scene">
              </div>
         </div>
-         <div class="max-w-screen-xl mx-auto mt-8 text-center relative z-10">
-             <p class="text-white font-bold text-3xl md:text-4xl" data-aos="fade-up" data-aos-delay="600">
+         <div class="max-w-screen-xl mx-auto mt-8 text-center relative z-10 px-4"> <!-- Added px-4 -->
+             <p class="text-white font-bold text-xl md:text-4xl" data-aos="fade-up" data-aos-delay="600"> <!-- Adjusted text size -->
                 立德树人,培根铸魂,育人为本,支持儿童
             </p>
          </div>
@@ -311,15 +368,15 @@
     <!-- Section 3: What is a Good Product Question -->
      <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
          <!-- Logo Top Left -->
-         <div class="absolute top-8 left-8 z-20">
+         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
           <!-- Tri Logo Top Right -->
-         <div class="absolute top-8 right-8 z-20">
+         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="relative z-10 max-w-screen-xl mx-auto">
-             <h2 class="text-white font-bold text-5xl md:text-7xl leading-tight" data-aos="zoom-in" data-aos-delay="200">
+             <h2 class="text-white font-bold text-4xl md:text-7xl leading-tight" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
                  好产品是什么?什么是好产品?
              </h2>
          </div>
@@ -327,10 +384,10 @@
 
     <!-- Section 4: Defining a Good Product -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -339,27 +396,27 @@
                 <div class="theme-card" data-aos="fade-right" data-aos-delay="200">
                     <div class="line-graphic items-start mb-4"><span class="icon">1</span><span class="line"></span></div>
                     <h3 class="text-white font-bold text-xl mb-2">符合强国建设背景下的高质量发展</h3>
-                    <p class="text-gray-300">符合中国传统文化、民族文化、教育文化、审美文化、中国式教育现代化方向的绿色低碳教育产品。</p>
+                    <p class="text-gray-300 text-sm md:text-base">符合中国传统文化、民族文化、教育文化、审美文化、中国式教育现代化方向的绿色低碳教育产品。</p>
                 </div>
                  <div class="theme-card" data-aos="fade-left" data-aos-delay="300">
                      <div class="line-graphic items-start mb-4"><span class="icon">2</span><span class="line"></span></div>
                      <h3 class="text-white font-bold text-xl mb-2">符合中国学前教育法和教育装备规范要求</h3>
-                     <p class="text-gray-300">符合中国当今教育政策背景,例如学前教育法、学前教育装备规范等政策。</p>
+                     <p class="text-gray-300 text-sm md:text-base">符合中国当今教育政策背景,例如学前教育法、学前教育装备规范等政策。</p>
                  </div>
                  <div class="theme-card" data-aos="fade-right" data-aos-delay="400">
                      <div class="line-graphic items-start mb-4"><span class="icon">3</span><span class="line"></span></div>
                      <h3 class="text-white font-bold text-xl mb-2">符合园所的环境需求</h3>
-                     <p class="text-gray-300">符合中国幼儿园教育教学的现实场景,能满足幼儿园物理与心理环境创设、教育教学的科学化属性。</p>
+                     <p class="text-gray-300 text-sm md:text-base">符合中国幼儿园教育教学的现实场景,能满足幼儿园物理与心理环境创设、教育教学的科学化属性。</p>
                  </div>
                  <div class="theme-card" data-aos="fade-left" data-aos-delay="500">
                     <div class="line-graphic items-start mb-4"><span class="icon">4</span><span class="line"></span></div>
                     <h3 class="text-white font-bold text-xl mb-2">符合老师的教学需求</h3>
-                    <p class="text-gray-300">满足中国幼儿园教师教育教学的应用,支持教师开展自主游戏、引导游戏、任务游戏、直接教学。</p>
+                    <p class="text-gray-300 text-sm md:text-base">满足中国幼儿园教师教育教学的应用,支持教师开展自主游戏、引导游戏、任务游戏、直接教学。</p>
                  </div>
                  <div class="theme-card md:col-span-2" data-aos="fade-up" data-aos-delay="600">
                      <div class="line-graphic items-start mb-4"><span class="icon">5</span><span class="line"></span></div>
                      <h3 class="text-white font-bold text-xl mb-2">符合孩子身心发展的需求</h3>
-                     <p class="text-gray-300">符合中国幼儿身心发展的友好化设计、支架幼儿在游戏化场景中的学习,能引发幼儿的好奇渴望、 能力发展、文化自信满足。</p>
+                     <p class="text-gray-300 text-sm md:text-base">符合中国幼儿身心发展的友好化设计、支架幼儿在游戏化场景中的学习,能引发幼儿的好奇渴望、 能力发展、文化自信满足。</p>
                  </div>
             </div>
          </div>
@@ -367,16 +424,16 @@
 
     <!-- Section 5: Good Product Elaboration -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
             <h2 class="section-title text-white">好产品是什么?</h2>
-            <div class="theme-card p-8 mt-8" data-aos="fade-up" data-aos-delay="200">
-                <p class="text-xl leading-relaxed text-gray-200">
+            <div class="theme-card p-6 md:p-8 mt-8" data-aos="fade-up" data-aos-delay="200"> <!-- Adjusted padding -->
+                <p class="text-base md:text-xl leading-relaxed text-gray-200"> <!-- Adjusted text size -->
                     在中国幼儿教育领域,“好产品”不仅是对<span class="text-tesla-red font-bold">文化内涵</span>与<span class="text-tesla-red font-bold">政策精神</span>的深度承载,更是
                     引领行业未来的前瞻指向。它根植于中国传统文化的底蕴,融合当代学前教育法规与方
                     针,契合幼儿园真实教学与环境创设需求,并能从教学与游戏的全方位维度帮助教师高
@@ -390,10 +447,10 @@
 
     <!-- Section 6: How to Make Good Products -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -402,8 +459,8 @@
                  <div class="lg:col-span-2" data-aos="fade-right" data-aos-delay="200">
                      <div class="theme-card p-6 mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-flask mr-2 text-tesla-red"></i>万能工匠建构玩学具工效理论研究</h3>
-                         <p>人体工效 / 发展工效 / 教育工效</p>
-                         <ul class="text-sm mt-2 text-gray-400">
+                         <p class="text-gray-300 text-sm md:text-base">人体工效 / 发展工效 / 教育工效</p>
+                         <ul class="text-xs md:text-sm mt-2 text-gray-400"> <!-- Adjusted text size -->
                              <li>课程适应性, 学习性, 互动性</li>
                              <li>情绪与社会性发展, 动作发展, 言语发展, 认知发展</li>
                              <li>可操作性, 安全性, 舒适性</li>
@@ -411,7 +468,7 @@
                      </div>
                       <div class="theme-card p-6 mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-vial mr-2 text-tesla-red"></i>实证检验</h3>
-                          <ul class="text-sm mt-2 text-gray-400">
+                          <ul class="text-xs md:text-sm mt-2 text-gray-400"> <!-- Adjusted text size -->
                              <li>人体工效测评, 发展工效测评, 教育工效测评</li>
                              <li>教学指导观察, 材料安全性分析, 生物力学分析</li>
                          </ul>
@@ -419,7 +476,7 @@
                      </div>
                       <div class="theme-card p-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-rocket mr-2 text-tesla-red"></i>万能工匠建构玩学具工效应用研究</h3>
-                          <ul class="text-sm mt-2 text-gray-400 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <ul class="text-xs md:text-sm mt-2 text-gray-400 grid grid-cols-1 sm:grid-cols-2 gap-2"> <!-- Adjusted text size -->
                               <li>研究结果推广 (论文著作, 会议, 社交媒体)</li>
                               <li>成果市场转化 (供应链生产调整, 用户反馈, 产品迭代)</li>
                               <li>装备升级改造 (教学手册, 指导视频, 材料包, 教师培训)</li>
@@ -430,27 +487,27 @@
                  <div class="lg:col-span-1 flex flex-col" data-aos="fade-left" data-aos-delay="400">
                      <div class="theme-card p-6 flex-grow mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-graduation-cap mr-2 text-tesla-red"></i>博士后工作站</h3>
-                         <p class="text-gray-300">持续科研活动,提升企业的核心竞争力</p>
+                         <p class="text-gray-300 text-sm md:text-base">持续科研活动,提升企业的核心竞争力</p> <!-- Adjusted text size -->
                      </div>
                      <div class="theme-card p-6 flex-grow mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-university mr-2 text-tesla-red"></i>教育研究院</h3>
                      </div>
                       <div class="theme-card p-6 flex-grow">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-users-cog mr-2 text-tesla-red"></i>公司设计部和市场部</h3>
-                         <p class="text-gray-300">跨部门协作,优化设计,调整营销策略</p>
+                         <p class="text-gray-300 text-sm md:text-base">跨部门协作,优化设计,调整营销策略</p> <!-- Adjusted text size -->
                      </div>
                      <div class="image-container mt-6"><img src="https://via.placeholder.com/400x400?text=Stylized+Toy+House" alt="Stylized Toy House"></div>
                  </div>
             </div>
          </div>
-    </section>
+     </section>
 
     <!-- Section 7: Qualifications 1 -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -459,12 +516,12 @@
                  <div data-aos="fade-right" data-aos-delay="200">
                      <div class="theme-card p-6 mb-6">
                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-scroll mr-2 text-tesla-red"></i>中国教育装备协会课题</h3>
-                         <p class="text-gray-300">《生态文明建设视角下碳中和科学教育模式的创新与实践》</p>
+                         <p class="text-gray-300 text-sm md:text-base">《生态文明建设视角下碳中和科学教育模式的创新与实践》</p> <!-- Adjusted text size -->
                           <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=Document+Scan" alt="Document Scan"></div>
                      </div>
                       <div class="theme-card p-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-building mr-2 text-tesla-red"></i>合作/研究机构</h3>
-                         <ul class="list-disc list-inside text-gray-300 space-y-1">
+                         <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm"> <!-- Adjusted text size -->
                              <li>湖南省教育生产装备处</li>
                              <li>天津市教育科学研究院</li>
                              <li>北京教育装备行业协会</li>
@@ -479,7 +536,7 @@
                  <div data-aos="fade-left" data-aos-delay="400">
                      <div class="theme-card p-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-university mr-2 text-tesla-red"></i>合作高校</h3>
-                         <ul class="list-disc list-inside text-gray-300 space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-y-1">
+                         <ul class="list-disc list-inside text-gray-300 space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-y-1 text-sm"> <!-- Adjusted text size -->
                              <li>首都师范大学</li>
                              <li>北京交通大学</li>
                              <li>华南理工大学</li>
@@ -491,30 +548,30 @@
                              <li>东华理工大学</li>
                              <li>浙江师范大学</li>
                          </ul>
-                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=University+Logos" alt="University Logos"></div>
+                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=University+Logos+Grid" alt="University Logos Grid"></div>
                      </div>
                  </div>
             </div>
          </div>
-    </section>
+     </section>
 
      <!-- Section 8: Green & Environmental Protection -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
             <h2 class="section-title text-white">好产品--绿色环保</h2>
              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 items-center">
                  <div data-aos="fade-right" data-aos-delay="200">
-                     <h3 class="text-white font-bold text-2xl mb-4"><i class="fas fa-leaf mr-2 text-tesla-red"></i>使用优质绿色环保材料</h3>
+                     <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-leaf mr-2 text-tesla-red"></i>使用优质绿色环保材料</h3>
                       <div class="image-container mb-6"><img src="https://via.placeholder.com/600x400?text=Product+Quality+Logo" alt="Product Quality Logo"></div>
                       <div class="theme-card p-6">
                          <h4 class="text-white font-bold text-xl mb-3">相关规定摘要:</h4>
-                         <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                         <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
                              <li>严禁使用有毒、易燃、易碎物品, 及可能存在各种残留物的容器、用品作为玩教具。</li>
                              <li>不得直接使用泡沫塑料、海绵等作为玩教具。</li>
                              <li>不得使用尖锐物或在玩耍过程中易产生小零件的物品。</li>
@@ -527,23 +584,23 @@
                      </div>
                  </div>
                   <div data-aos="fade-left" data-aos-delay="400">
-                      <h3 class="text-white font-bold text-2xl mb-4"><i class="fas fa-exclamation-triangle mr-2 text-tesla-red"></i>潜在隐患痛点</h3>
+                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-exclamation-triangle mr-2 text-tesla-red"></i>潜在隐患痛点</h3>
                       <div class="bento-grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div class="theme-card p-4">
                               <h4 class="text-white font-bold mb-2"><i class="fas fa-fire-alt mr-2 text-tesla-red"></i>安全隐患</h4>
-                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
                                   <li>易燃材料,存在一定的燃烧隐患</li>
                               </ul>
                           </div>
                            <div class="theme-card p-4">
                               <h4 class="text-white font-bold mb-2"><i class="fas fa-recycle mr-2 text-tesla-red"></i>环保隐患</h4>
-                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
                                   <li>回收难,气味较大</li>
                               </ul>
                           </div>
-                           <div class="theme-card p-4 col-span-1 sm:col-span-2">
+                           <div class="theme-card p-4 col-span-full"> <!-- Changed to col-span-full -->
                               <h4 class="text-white font-bold mb-2"><i class="fas fa-wrench mr-2 text-tesla-red"></i>耐用隐患</h4>
-                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
                                   <li>机械强度低,容易变形和破损</li>
                                   <li>表面粗糙,容易积留污渍导致无法清洗</li>
                               </ul>
@@ -556,17 +613,19 @@
 
      <!-- Section 9: Qualifications 2 - Patents -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10 text-center">
              <h2 class="section-title text-white inline-block text-center w-full">国家专利</h2>
              <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
-                 <p class="text-white font-bold text-6xl md:text-8xl">30<span class="text-tesla-red">项</span></p>
-                 <p class="text-white text-2xl md:text-3xl mt-2">
+                 <p class="text-white font-bold text-5xl md:text-8xl"> <!-- Adjusted text size -->
+                     30<span class="text-tesla-red">项</span>
+                    </p>
+                 <p class="text-white text-xl md:text-3xl mt-2"> <!-- Adjusted text size -->
                      <span class="text-tesla-red font-bold">商标10余项</span> /
                      <span class="text-tesla-red font-bold">专利20余项</span>
                  </p>
@@ -591,10 +650,10 @@
 
     <!-- Section 10: Tri-Element World Elements -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10 text-center">
@@ -602,19 +661,19 @@
              <div class="bento-grid grid-cols-2 md:grid-cols-4 gap-8 mt-8 items-center">
                  <div data-aos="zoom-in" data-aos-delay="200">
                      <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Point+Elements" alt="Point Elements"></div>
-                     <p class="text-white font-bold text-xl">点元素</p>
+                     <p class="text-white font-bold text-base md:text-xl">点元素</p> <!-- Adjusted text size -->
                  </div>
                  <div data-aos="zoom-in" data-aos-delay="300">
                      <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Line+Elements" alt="Line Elements"></div>
-                     <p class="text-white font-bold text-xl">线元素</p>
+                     <p class="text-white font-bold text-base md:text-xl">线元素</p> <!-- Adjusted text size -->
                  </div>
                   <div data-aos="zoom-in" data-aos-delay="400">
                      <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Surface+Elements" alt="Surface Elements"></div>
-                     <p class="text-white font-bold text-xl">面元素</p>
+                     <p class="text-white font-bold text-base md:text-xl">面元素</p> <!-- Adjusted text size -->
                  </div>
                   <div data-aos="zoom-in" data-aos-delay="500">
                      <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Dynamic+Elements" alt="Dynamic Elements"></div>
-                     <p class="text-white font-bold text-xl">动态元素</p>
+                     <p class="text-white font-bold text-base md:text-xl">动态元素</p> <!-- Adjusted text size -->
                  </div>
              </div>
          </div>
@@ -622,22 +681,22 @@
 
      <!-- Section 11-14: Product Ergonomics & Core Advantages -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
             <h2 class="section-title text-white">产品工效与核心优势</h2>
-            <p class="text-center text-gray-300 text-lg mt-4" data-aos="fade-up" data-aos-delay="100">融合材料学、工程力学和人体工程学</p>
+            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">融合材料学、工程力学和人体工程学</p> <!-- Adjusted text size -->
 
             <div class="bento-grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
                  <!-- Section 11 content -->
                  <div class="theme-card p-6" data-aos="fade-right" data-aos-delay="200">
                       <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cogs mr-2 text-tesla-red"></i>结构与连接优势</h3>
                       <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Structure+Diagram+1" alt="Structure Diagram 1"></div>
-                      <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                      <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
                           <li>稳定内支架</li><li>进口ABS外壳</li><li>软性防滑触点</li><li>强劲永久磁铁</li>
                           <li>360°双向可旋转</li><li>超声波无缝焊接</li><li>磁铁全包覆</li>
                           <li>卡扣无螺丝</li><li>隐藏性磁珠</li><li>多尺寸通用孔</li><li>多定位卡柱</li><li>软硬胶二次包覆</li>
@@ -648,7 +707,7 @@
                  <div class="theme-card p-6" data-aos="fade-left" data-aos-delay="300">
                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-grip-horizontal mr-2 text-tesla-red"></i>材质与手感优势</h3>
                      <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Structure+Diagram+2" alt="Structure Diagram 2"></div>
-                     <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                     <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
                          <li>进口ABS材质</li><li>软性保护圈</li><li>加强支撑架</li><li>无缝超声焊接</li>
                          <li>凸点防护,软性耐磨</li><li>包胶设计,舒适手感</li><li>灵活转弯,随心所欲</li><li>圆环设计,自由互联</li>
                      </ul>
@@ -657,12 +716,12 @@
                  <div class="theme-card p-6" data-aos="fade-right" data-aos-delay="400">
                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-magnet mr-2 text-tesla-red"></i>磁吸与消音优势</h3>
                       <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Magnetic+Sound+Diagram" alt="Magnetic Sound Diagram"></div>
-                      <p class="text-white font-bold">磁吸新纪元,颠覆拼装:</p>
-                      <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm mt-1">
+                      <p class="text-white font-bold text-sm md:text-base">磁吸新纪元,颠覆拼装:</p> <!-- Adjusted text size -->
+                      <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm mt-1"> <!-- Adjusted text size -->
                           <li>任意数量,随意拼接</li><li>多角度,无限创意</li><li>自由旋转,磁吸随心</li>
                       </ul>
-                      <p class="text-white font-bold mt-4">消音设计,为游戏活动带来安静与和谐:</p>
-                       <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm mt-1">
+                      <p class="text-white font-bold text-sm md:text-base mt-4">消音设计,为游戏活动带来安静与和谐:</p> <!-- Adjusted text size -->
+                       <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm mt-1"> <!-- Adjusted text size -->
                           <li>相较同类产品 减少噪音</li><li>剧烈晃动时的声音强度 (图示)</li>
                       </ul>
                  </div>
@@ -670,10 +729,10 @@
                  <div class="theme-card p-6" data-aos="fade-left" data-aos-delay="500">
                       <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-hand-holding-heart mr-2 text-tesla-red"></i>防滑与安全触感</h3>
                        <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Anti-slip+Tactile+Diagram" alt="Anti-slip Tactile Diagram"></div>
-                       <p class="text-white font-bold">凸点设计 防滑防污耐脏</p>
-                       <p class="text-white font-bold mt-2">软性包胶面 婴儿肌肤般触感和安全防撞</p>
-                       <p class="text-gray-300 text-sm mt-2">360° 凸点均匀分布</p>
-                        <p class="text-gray-300 text-sm">60° 倾斜不滑落</p>
+                       <p class="text-white font-bold text-sm md:text-base">凸点设计 防滑防污耐脏</p> <!-- Adjusted text size -->
+                       <p class="text-white font-bold text-sm md:text-base mt-2">软性包胶面 婴儿肌肤般触感和安全防撞</p> <!-- Adjusted text size -->
+                       <p class="text-gray-300 text-xs md:text-sm mt-2">360° 凸点均匀分布</p> <!-- Adjusted text size -->
+                        <p class="text-gray-300 text-xs md:text-sm">60° 倾斜不滑落</p> <!-- Adjusted text size -->
                  </div>
             </div>
          </div>
@@ -681,56 +740,56 @@
 
     <!-- Section 15: Color Systems -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
             <h2 class="section-title text-white text-center w-full">产品工效与核心优势</h2>
-            <p class="text-center text-gray-300 text-lg mt-4" data-aos="fade-up" data-aos-delay="100">四大色系--让每一份选择都称心如意</p>
-             <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">四大色系--让每一份选择都称心如意</p> <!-- Adjusted text size -->
+             <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"> <!-- Changed to grid-cols-1 sm:grid-cols-2 -->
                  <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="200">
-                      <h3 class="text-white font-bold text-xl mb-2">小王子</h3>
+                      <h3 class="text-white font-bold text-base md:text-xl mb-2">小王子</h3> <!-- Adjusted text size -->
                       <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Little+Prince+Palette" alt="Little Prince Palette"></div>
-                       <p class="text-gray-300 text-sm mt-2">也许世界上也有五千朵和你一模一样的花,但只有你是 我独一无二的玫瑰!</p>
+                       <p class="text-gray-300 text-xs md:text-sm mt-2">也许世界上也有五千朵和你一模一样的花,但只有你是 我独一无二的玫瑰!</p> <!-- Adjusted text size -->
                        <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Little+Prince+Build" alt="Little Prince Build"></div>
                  </div>
                   <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="300">
-                      <h3 class="text-white font-bold text-xl mb-2">小精灵</h3>
+                      <h3 class="text-white font-bold text-base md:text-xl mb-2">小精灵</h3> <!-- Adjusted text size -->
                        <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Little+Elf+Palette" alt="Little Elf Palette"></div>
-                       <p class="text-gray-300 text-sm mt-2">传说精灵的眼泪只有一滴,它很美,闪着蓝色的光。来自森林的精 灵,在遥远的深处守护着你。</p>
+                       <p class="text-gray-300 text-xs md:text-sm mt-2">传说精灵的眼泪只有一滴,它很美,闪着蓝色的光。来自森林的精 灵,在遥远的深处守护着你。</p> <!-- Adjusted text size -->
                        <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Little+Elf+Build" alt="Little Elf Build"></div>
                  </div>
                   <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="400">
-                      <h3 class="text-white font-bold text-xl mb-2">梦幻王国</h3>
+                      <h3 class="text-white font-bold text-base md:text-xl mb-2">梦幻王国</h3> <!-- Adjusted text size -->
                        <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Dream+Kingdom+Palette" alt="Dream Kingdom Palette"></div>
-                       <p class="text-gray-300 text-sm mt-2">它是梦想与奇迹的化身,每一位路过的人都会不由自主地停下脚 步,被它的美丽深深地打动。</p>
+                       <p class="text-gray-300 text-xs md:text-sm mt-2">它是梦想与奇迹的化身,每一位路过的人都会不由自主地停下脚 步,被它的美丽深深地打动。</p> <!-- Adjusted text size -->
                        <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Dream+Kingdom+Build" alt="Dream Kingdom Build"></div>
                  </div>
                   <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="500">
-                      <h3 class="text-white font-bold text-xl mb-2">宋韵青花</h3>
+                      <h3 class="text-white font-bold text-base md:text-xl mb-2">宋韵青花</h3> <!-- Adjusted text size -->
                        <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Song+Celadon+Palette" alt="Song Celadon Palette"></div>
-                       <p class="text-gray-300 text-sm mt-2">宋朝的艺术成就和审美风格独特且影响深远。宋代的绘画、书法、瓷 器等艺术形式既有对自然美景的描绘,也有对个人心境的表达。</p>
+                       <p class="text-gray-300 text-xs md:text-sm mt-2">宋朝的艺术成就和审美风格独特且影响深远。宋代的绘画、书法、瓷 器等艺术形式既有对自然美景的描绘,也有对个人心境的表达。</p> <!-- Adjusted text size -->
                        <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Song+Celadon+Build" alt="Song Celadon Build"></div>
                  </div>
              </div>
          </div>
-    </section>
+     </section>
 
     <!-- Section 16: Ecosystem -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
             <h2 class="section-title text-white text-center w-full">产品工效与核心优势</h2>
-            <p class="text-center text-gray-300 text-lg mt-4" data-aos="fade-up" data-aos-delay="100">无缝连接中号、大号产品,共创完美生态体验</p>
-             <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">无缝连接中号、大号产品,共创完美生态体验</p> <!-- Adjusted text size -->
+             <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"> <!-- Changed to grid-cols-1 sm:grid-cols-2 -->
                  <!-- Placeholder images of larger builds -->
                  <div class="image-container" data-aos="zoom-in" data-aos-delay="200"><img src="https://via.placeholder.com/400x300?text=Build+Example+1" alt="Build Example 1"></div>
                  <div class="image-container" data-aos="zoom-in" data-aos-delay="300"><img src="https://via.placeholder.com/400x300?text=Build+Example+2" alt="Build Example 2"></div>
@@ -738,20 +797,20 @@
                  <div class="image-container" data-aos="zoom-in" data-aos-delay="500"><img src="https://via.placeholder.com/400x300?text=Build+Example+4" alt="Build Example 4"></div>
              </div>
          </div>
-    </section>
+     </section>
 
     <!-- Section 17: Free Play Kit -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10 text-center">
             <h2 class="section-title text-white inline-block w-full">三元大世界自主游戏套装</h2>
-            <div class="theme-card p-8 mt-8" data-aos="fade-up" data-aos-delay="200">
-                 <h3 class="text-white font-bold text-2xl mb-4"><i class="fas fa-heart mr-2 text-tesla-red"></i>趣动童心 教学体系</h3>
+            <div class="theme-card p-6 md:p-8 mt-8" data-aos="fade-up" data-aos-delay="200"> <!-- Adjusted padding -->
+                 <h3 class="text-white font-bold text-xl md:text-2xl mb-4"><i class="fas fa-heart mr-2 text-tesla-red"></i>趣动童心 教学体系</h3> <!-- Adjusted text size -->
                  <div class="image-container mt-4"><img src="https://via.placeholder.com/800x500?text=Teaching+System+Diagram" alt="Teaching System Diagram"></div>
             </div>
          </div>
@@ -759,10 +818,10 @@
 
     <!-- Section 18: Teaching Materials -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -772,7 +831,7 @@
                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-book-open mr-2 text-tesla-red"></i>教师指导手册 (通用3册)</h3>
                       <div class="image-container mb-6"><img src="https://via.placeholder.com/600x400?text=Teacher+Guidebooks" alt="Teacher Guidebooks"></div>
                       <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cards mr-2 text-tesla-red"></i>游戏图卡</h3>
-                       <ul class="list-disc list-inside text-gray-300 space-y-1">
+                       <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base"> <!-- Adjusted text size -->
                            <li>基础游戏图卡72张</li>
                            <li>运动游戏图卡36张</li>
                            <li>主题游戏图卡12张</li>
@@ -784,19 +843,19 @@
                   </div>
              </div>
               <div class="theme-card p-6 mt-8" data-aos="fade-up" data-aos-delay="600">
-                  <p class="text-gray-300">
+                  <p class="text-gray-300 text-sm md:text-base"> <!-- Adjusted text size -->
                       游戏图卡分层分级,基础游戏、趣味运动游戏、主题游戏,<span class="text-tesla-red font-bold">多种维度、多种形式、多样玩法</span>,全面支持和满足幼儿游戏水平、游戏经验的提 升与发展,多角度支持幼儿游戏需求。
                   </p>
               </div>
          </div>
-    </section>
+     </section>
 
     <!-- Section 19: Application Cases -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -812,28 +871,28 @@
 
     <!-- Section 20: Tagline -->
      <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="relative z-10 max-w-screen-xl mx-auto">
-            <p class="text-white font-bold text-4xl md:text-6xl leading-tight" data-aos="zoom-in" data-aos-delay="200">
+            <p class="text-white font-bold text-3xl md:text-6xl leading-tight" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
                 不是要比别人好,<br>是自己要做的更好
             </p>
          </div>
     </section>
 
     <!-- Section 21: Empty (Transition) -->
-    <section class="h-32 relative"></section>
+    <section class="h-16 md:h-32 relative"></section> <!-- Adjusted height -->
 
     <!-- Section 22: How to Do Good Education 1 -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -842,8 +901,8 @@
                  <div data-aos="fade-right" data-aos-delay="200">
                       <div class="theme-card p-6 mb-6">
                           <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-flask mr-2 text-tesla-red"></i>博士后工作站:</h3>
-                          <div class="image-container float-right ml-4 mb-4 w-32 h-32"><img src="https://via.placeholder.com/128x128?text=Postdoc+Logo" alt="Postdoc Logo"></div>
-                           <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                          <div class="image-container float-none md:float-right ml-0 md:ml-4 mb-4 w-24 h-24 md:w-32 md:h-32 mx-auto md:mx-0"><img src="https://via.placeholder.com/128x128?text=Postdoc+Logo" alt="Postdoc Logo"></div> <!-- Adjusted image size and centering -->
+                           <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base clear-both"> <!-- Adjusted text size, added clear-both -->
                                <li>教育部产学研协同育人项目</li>
                                <li>专家智库引领</li>
                                <li>国家课题研究</li>
@@ -856,7 +915,7 @@
                       </div>
                  </div>
                  <div data-aos="fade-left" data-aos-delay="400">
-                      <div class="theme-card p-6">
+                     <div class="theme-card p-6">
                           <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-chart-area mr-2 text-tesla-red"></i>基础研究:</h3>
                            <div class="image-container mt-4"><img src="https://via.placeholder.com/600x600?text=Research+Area+Diagram" alt="Research Area Diagram"></div>
                       </div>
@@ -867,33 +926,33 @@
 
      <!-- Section 23: University-Industry-Research -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10 text-center">
             <h2 class="section-title text-white inline-block w-full">校企产学研合作, 赋能高质量发展</h2>
-            <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+            <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"> <!-- Changed to grid-cols-1 sm:grid-cols-2 -->
                  <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="200">
-                     <p class="text-white font-bold text-5xl md:text-6xl leading-tight">20<span class="text-tesla-red">+</span></p>
-                     <p class="text-white font-bold text-xl mt-2">家校企合作高校</p>
+                     <p class="text-white font-bold text-4xl md:text-6xl leading-tight">20<span class="text-tesla-red">+</span></p> <!-- Adjusted text size -->
+                     <p class="text-white font-bold text-base md:text-xl mt-2">家校企合作高校</p> <!-- Adjusted text size -->
                      <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=University+Logos+Grid" alt="University Logos Grid"></div>
                  </div>
                   <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="300">
-                      <p class="text-white font-bold text-5xl md:text-6xl leading-tight">8<span class="text-tesla-red">项</span></p>
-                      <p class="text-white font-bold text-xl mt-2">国家级省级课题研究</p>
+                      <p class="text-white font-bold text-4xl md:text-6xl leading-tight">8<span class="text-tesla-red">项</span></p> <!-- Adjusted text size -->
+                      <p class="text-white font-bold text-base md:text-xl mt-2">国家级省级课题研究</p> <!-- Adjusted text size -->
                        <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=Project+Certificates" alt="Project Certificates"></div>
                   </div>
                    <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="400">
-                      <p class="text-white font-bold text-5xl md:text-6xl leading-tight">78<span class="text-tesla-red">家</span></p>
-                      <p class="text-white font-bold text-xl mt-2">课题实践基地</p>
+                      <p class="text-white font-bold text-4xl md:text-6xl leading-tight">78<span class="text-tesla-red">家</span></p> <!-- Adjusted text size -->
+                      <p class="text-white font-bold text-base md:text-xl mt-2">课题实践基地</p> <!-- Adjusted text size -->
                        <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=Practice+Base+Image" alt="Practice Base Image"></div>
                   </div>
                    <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="500">
-                      <p class="text-white font-bold text-5xl md:text-6xl leading-tight">20<span class="text-tesla-red">家</span></p>
-                      <p class="text-white font-bold text-xl mt-2">博士后工作站<br>区域服务中心</p>
+                      <p class="text-white font-bold text-4xl md:text-6xl leading-tight">20<span class="text-tesla-red">家</span></p> <!-- Adjusted text size -->
+                      <p class="text-white font-bold text-base md:text-xl mt-2">博士后工作站<br>区域服务中心</p> <!-- Adjusted text size -->
                        <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=Postdoc+Station+Image" alt="Postdoc Station Image"></div>
                   </div>
             </div>
@@ -902,10 +961,10 @@
 
     <!-- Section 24: Teacher & Research Support -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -930,7 +989,7 @@
                           <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cloud mr-2 text-tesla-red"></i>数字化工具 / 万能有云</h3>
                            <div class="image-container mt-4"><img src="https://via.placeholder.com/600x600?text=Digital+Platform+UI" alt="Digital Platform UI"></div>
                       </div>
-                      <p class="text-center text-white font-bold text-xl mt-4" data-aos="fade-up" data-aos-delay="600">万能有云, 赋能高质量办园</p>
+                      <p class="text-center text-white font-bold text-base md:text-xl mt-4" data-aos="fade-up" data-aos-delay="600">万能有云, 赋能高质量办园</p> <!-- Adjusted text size -->
                  </div>
              </div>
          </div>
@@ -938,28 +997,28 @@
 
     <!-- Section 25: Digital Platform Architecture -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
             <h2 class="section-title text-white text-center w-full">数字化服务平台--万能有云</h2>
-            <p class="text-center text-gray-300 text-lg mt-4" data-aos="fade-up" data-aos-delay="100">万能有云平台系统架构图</p>
+            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">万能有云平台系统架构图</p> <!-- Adjusted text size -->
              <div class="image-container mt-8" data-aos="fade-up" data-aos-delay="200">
                  <!-- Placeholder for Architecture Diagram -->
                  <img src="https://via.placeholder.com/1000x800?text=Platform+Architecture+Diagram" alt="Platform Architecture Diagram">
              </div>
          </div>
-    </section>
+     </section>
 
      <!-- Section 26: Digital Platform Data -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10">
@@ -968,23 +1027,25 @@
                  <div data-aos="fade-right" data-aos-delay="200">
                      <div class="theme-card p-6 mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-chart-bar mr-2 text-tesla-red"></i>营销系统</h3>
-                         <p class="text-gray-300">平台操作智能化 / 内容体系标准化 / 营销数据可视化</p>
+                         <p class="text-gray-300 text-sm md:text-base">平台操作智能化 / 内容体系标准化 / 营销数据可视化</p> <!-- Adjusted text size -->
                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=Marketing+Dashboard" alt="Marketing Dashboard"></div>
                      </div>
                       <div class="theme-card p-6 mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cogs mr-2 text-tesla-red"></i>决策系统</h3>
-                         <p class="text-gray-300">决策分析数字化 / 管理数据可视化</p>
+                         <p class="text-gray-300 text-sm md:text-base">决策分析数字化 / 管理数据可视化</p> <!-- Adjusted text size -->
                       </div>
                       <div class="image-container mt-8"><img src="https://via.placeholder.com/600x300?text=Business+Flow+Diagram" alt="Business Flow Diagram"></div>
                  </div>
                  <div data-aos="fade-left" data-aos-delay="400">
                       <div class="theme-card p-6 mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-headset mr-2 text-tesla-red"></i>服务系统</h3>
-                         <p class="text-gray-300">培训服务线上化 / 用户操作智能化 / 培训管理轻松化</p>
+                         <p class="text-gray-300 text-sm md:text-base">培训服务线上化 / 用户操作智能化 / 培训管理轻松化</p> <!-- Adjusted text size -->
                       </div>
                        <div class="theme-card p-6">
                           <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-line-chart mr-2 text-tesla-red"></i>关键数据</h3>
-                          <p class="text-gray-300 text-center">总访问量达到<span class="text-tesla-red font-bold text-2xl mx-1">22万次</span>,<br>整体增长率: <span class="text-tesla-red font-bold text-2xl mx-1">323%</span></p>
+                          <p class="text-gray-300 text-center text-sm md:text-base"> <!-- Adjusted text size -->
+                              总访问量达到<span class="text-tesla-red font-bold text-xl md:text-2xl mx-1">22万次</span>,<br>整体增长率: <span class="text-tesla-red font-bold text-xl md:text-2xl mx-1">323%</span>
+                          </p>
                            <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=Visit+Growth+Chart" alt="Visit Growth Chart"></div>
                       </div>
                  </div>
@@ -995,15 +1056,15 @@
     <!-- Section 27: Title Repetition -->
     <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
          <!-- Logo Top Left -->
-         <div class="absolute top-8 left-8 z-20">
+         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
           <!-- Tri Logo Top Right -->
-         <div class="absolute top-8 right-8 z-20">
+         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="relative z-10 max-w-screen-xl mx-auto">
-             <h2 class="text-white font-bold text-5xl md:text-7xl leading-tight" data-aos="zoom-in" data-aos-delay="200">
+             <h2 class="text-white font-bold text-4xl md:text-7xl leading-tight" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
                  好产品 好教育 好服务
              </h2>
          </div>
@@ -1011,21 +1072,21 @@
 
     <!-- Section 28: Call to Action -->
      <section class="relative min-h-[80vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="relative z-10 max-w-screen-xl mx-auto flex flex-col items-center">
-            <p class="text-white font-bold text-4xl md:text-6xl leading-tight mb-8" data-aos="zoom-in" data-aos-delay="200">
+            <p class="text-white font-bold text-3xl md:text-6xl leading-tight mb-8" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
                 2025我们团结一起,<br>克服困难
             </p>
-             <div class="image-container w-48 h-48 rounded-lg bg-white p-4 flex items-center justify-center mb-8" data-aos="zoom-in" data-aos-delay="400">
+             <div class="image-container w-32 h-32 md:w-48 md:h-48 rounded-lg bg-white p-4 flex items-center justify-center mb-8" data-aos="zoom-in" data-aos-delay="400"> <!-- Adjusted size -->
                  <!-- QR Code Placeholder -->
                  <img src="https://via.placeholder.com/150x150?text=QR+Code" alt="WeChat QR Code">
              </div>
-             <p class="text-white font-bold text-4xl md:text-6xl leading-tight" data-aos="zoom-in" data-aos-delay="600">
+             <p class="text-white font-bold text-3xl md:text-6xl leading-tight" data-aos="zoom-in" data-aos-delay="600"> <!-- Adjusted text size -->
                 共同为中国教育的<br>高质量发展贡献力量
             </p>
          </div>
@@ -1033,15 +1094,15 @@
 
      <!-- Section 29: Summary -->
      <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="max-w-screen-xl mx-auto relative z-10 text-center">
              <h2 class="section-title text-white inline-block w-full">核心总结</h2>
-             <div class="bento-grid summary-grid gap-8 mt-8">
+             <div class="bento-grid summary-grid gap-4 md:gap-8 mt-8"> <!-- Adjusted gap -->
                  <div class="summary-item" data-aos="zoom-in" data-aos-delay="200">
                      <div class="number">69800</div>
                      <p class="text-label">市场价</p>
@@ -1084,15 +1145,15 @@
 
     <!-- Section 30: Thank You -->
      <section class="relative min-h-[80vh] flex items-center justify-center text-center px-4" data-aos="fade-in" data-aos-duration="1500">
-          <div class="absolute top-8 left-8 z-20">
+          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
-          <div class="absolute top-8 right-8 z-20">
+          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
          <div class="relative z-10 max-w-screen-xl mx-auto flex flex-col items-center">
-             <h2 class="text-white font-bold text-6xl md:text-8xl mb-8" data-aos="fade-up" data-aos-delay="200">感谢聆听!</h2>
-             <div class="image-container max-w-lg mt-8" data-aos="fade-up" data-aos-delay="400">
+             <h2 class="text-white font-bold text-5xl md:text-8xl mb-8" data-aos="fade-up" data-aos-delay="200">感谢聆听!</h2> <!-- Adjusted text size -->
+             <div class="image-container max-w-xs md:max-w-lg mt-8" data-aos="fade-up" data-aos-delay="400"> <!-- Adjusted max-width -->
                  <!-- Placeholder image of the toy scene -->
                  <img src="https://via.placeholder.com/800x600?text=Thank+You+Scene" alt="Thank You Scene">
              </div>
@@ -1123,9 +1184,11 @@
 
         class Particle {
             constructor() {
+                // Start particles randomly across the entire window
                 this.pos = createVector(random(width), random(height));
                 this.vel = createVector(random(-0.3, 0.3), random(-0.3, 0.3)); // Slower movement
-                this.color = color(255, random(150, 200), 0, random(50, 150)); // Orange/Reddish transparent particles
+                // Orange/Reddish transparent particles
+                this.color = color(random(220, 255), random(50, 150), 0, random(50, 150)); // More orange/reddish
             }
 
             update() {
@@ -1150,11 +1213,15 @@
             connect(other) {
                 const d = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
                 if (d < MAX_DIST) {
-                    // Line color fading from red to transparent orange
-                    const lineColor = lerpColor(color(227, 25, 55, map(d, 0, MAX_DIST, 150, 0)), color(255, 140, 0, map(d, 0, MAX_DIST, 150, 0)), map(d, 0, MAX_DIST, 0, 1));
-                    stroke(lineColor);
-                    strokeWeight(0.5);
-                    line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
+                     // Line color fading from red to transparent orange/red
+                     // Use lerpColor to transition between two colors + alpha mapping
+                     const c1 = color(227, 25, 55, map(d, 0, MAX_DIST, 150, 0)); // Tesla Red, fading transparency
+                     const c2 = color(255, 100, 0, map(d, 0, MAX_DIST, 100, 0)); // A more orange color, fading transparency
+                     const lineColor = lerpColor(c1, c2, d / MAX_DIST); // Blend based on distance
+
+                     stroke(lineColor);
+                     strokeWeight(0.5);
+                     line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
                 }
             }
         }
@@ -1163,9 +1230,14 @@
         function setup() {
             // Create canvas within the container div
             const canvasContainer = select('#canvas-container');
-            let canvas = createCanvas(canvasContainer.width, canvasContainer.height);
-            canvas.parent('canvas-container');
-            background(0); // Initial black background
+            // Use windowWidth/Height for canvas size as it's fixed background
+            let canvas = createCanvas(windowWidth, windowHeight);
+            // The parent('#canvas-container') call isn't strictly necessary for a fixed canvas,
+            // but good practice if the container had complex positioning.
+            // canvas.parent('canvas-container');
+            canvas.position(0, 0); // Ensure it's at 0,0
+            canvas.style('z-index', '-1'); // Send canvas to the background
+            canvas.style('pointer-events', 'none'); // Allow mouse events to pass through canvas
 
             // Create particles
             for (let i = 0; i < NUM_PARTICLES; i++) {
@@ -1175,7 +1247,8 @@
 
         // p5.js draw function
         function draw() {
-            background(0, 0, 0, 20); // Semi-transparent black background for fade effect
+            // Use a slightly transparent background to create subtle trails and blend with CSS gradient
+            background(0, 0, 0, 20); // Low alpha black for fade effect
 
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
@@ -1189,10 +1262,10 @@
 
         // p5.js windowResized function
         function windowResized() {
-             const canvasContainer = select('#canvas-container');
-             resizeCanvas(canvasContainer.width, canvasContainer.height);
+             // Resize the canvas to new window dimensions
+             resizeCanvas(windowWidth, windowHeight);
              background(0); // Redraw background on resize
-             // Re-initialize particles for better distribution if needed, or let them reposition gradually
+             // No need to re-initialize particles for a simple movement pattern
              // particles = [];
              // for (let i = 0; i < NUM_PARTICLES; i++) {
              //     particles.push(new Particle());
