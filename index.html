@@ -108,12 +108,9 @@
              padding-bottom: 4rem; /* Add padding at the bottom */
              z-index: 10;
         }
-         /* Removed blurred background image */
-         /* .bg-image-blur { ... } */
-
         .section-hero-content {
              position: relative;
-             z-index: 10;
+             z-index: 10; /* Ensure content is above any potential local backgrounds */
              text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
         }
         .section-hero h1 {
@@ -440,10 +437,10 @@
     <!-- p5.js Particles Background Canvas (will be created by sketch.js) -->
     <!-- The canvas element is not explicitly added here, p5.js will create it and attach to body -->
 
-    <!-- Section 1: Title / Intro -->
-    <section class="section-hero" data-aos="fade-in" data-aos-duration="1500">
-         <!-- Background image placeholder - optional, particle effect is main background -->
-         <!-- <div class="bg-image-blur" style="background-image: url('path/to/your/hero-image.jpg');"></div> -->
+    <!-- Section 1: Title / Intro (Slide 1) -->
+    <section class="section-hero" data-aos="fade-in" data-aos-duration="1500" style="background-image: url('https://images.unsplash.com/photo-1534519117144-542e61024186?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+         <!-- Overlay to make text readable -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 1) 100%); z-index: 5;"></div>
         <div class="section-hero-content">
             <h1 data-aos="fade-up" data-aos-delay="500">
                 zipx--<span class="text-large-zh">电商运营的</span><span class="text-red">copilot</span>
@@ -451,7 +448,7 @@
         </div>
     </section>
 
-    <!-- Section 2: Index -->
+    <!-- Section 2: Index (Slide 2) -->
     <section class="bento-section" data-aos="fade-up">
         <h2 class="section-title title-red text-center">目录 / Contents</h2>
         <div class="bento-grid index-grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -475,7 +472,7 @@
         </div>
     </section>
 
-    <!-- Section 3: About zipx (01) -->
+    <!-- Section 3: About zipx (01) (Slide 3) -->
     <section class="bento-section" data-aos="fade-up">
         <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
             <div class="number-box">01</div>
@@ -484,7 +481,7 @@
          <!-- Content of zipx 简介 and zipx 的愿景和使命 will go here -->
     </section>
 
-    <!-- Content Section 1: zipx 简介 -->
+    <!-- Content Section 1: zipx 简介 (Slide 4) -->
     <section class="bento-section !mt-0 pt-0" data-aos="fade-up"> <!-- Added mt-0 pt-0 to connect to previous section title -->
          <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx简介</h3>
          <p class="text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="300">
@@ -511,13 +508,13 @@
                  <div class="text-zh">流量导向</div>
              </div>
          </div>
-         <!-- Image Placeholder from slide 4 -->
+         <!-- Image Placeholder from slide 4 - Using a different cityscape image -->
          <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="900">
-             <img src="https://via.placeholder.com/1200x600?text=Cityscape+Background+Image" alt="Cityscape background">
+             <img src="https://images.unsplash.com/photo-1505533321630-979265b69d85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cityscape background">
          </div>
     </section>
 
-    <!-- Content Section 2: zipx 的愿景和使命 -->
+    <!-- Content Section 2: zipx 的愿景和使命 (Slide 5) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的愿景和使命</h3>
          <div class="grid md:grid-cols-2 gap-8">
@@ -525,20 +522,20 @@
                  <h4 class="text-tesla-red font-bold text-2xl mb-4">我们的愿景</h4>
                  <p class="text-xl leading-relaxed text-gray-300">全球电商行业的copilot</p>
                   <div class="image-container mt-4 rounded-lg overflow-hidden border border-tesla-red/20">
-                      <img src="https://via.placeholder.com/600x400?text=Vision+Image+1" alt="Vision image">
+                      <img src="https://images.unsplash.com/photo-1556761175-5973ce0c8abc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vision image: Business meeting discussing charts">
                   </div>
              </div>
               <div data-aos="fade-left" data-aos-delay="400">
                  <h4 class="text-tesla-red font-bold text-2xl mb-4">我们的使命</h4>
                  <p class="text-xl leading-relaxed text-gray-300">做电商领域人和AI协作共赢的Agent</p>
                   <div class="image-container mt-4 rounded-lg overflow-hidden border border-tesla-red/20">
-                      <img src="https://via.placeholder.com/600x400?text=Mission+Image+2" alt="Mission image">
+                      <img src="https://images.unsplash.com/photo-1606857521015-7f9fcf40f6d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mission image: People working together with AI/tech">
                   </div>
              </div>
          </div>
     </section>
 
-    <!-- Content Section 3: zipx 的战略规划 -->
+    <!-- Content Section 3: zipx 的战略规划 (Slide 6) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的战略规划</h3>
          <div class="grid md:grid-cols-2 gap-8">
@@ -568,13 +565,13 @@
                  <p class="text-gray-300">2024年6月份后</p>
              </div>
          </div>
-          <!-- Placeholder for the circular graphic from slide 6 -->
+          <!-- Placeholder for the circular graphic from slide 6 - Keeping as placeholder as it's a specific graphic -->
           <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="700">
-             <img src="https://via.placeholder.com/800x500?text=Strategy+Circular+Graphic" alt="Strategy graphic">
+             <img src="https://via.placeholder.com/800x500?text=Strategy+Circular+Graphic" alt="Strategy graphic - Specific to PPT, keep as placeholder or replace with a custom graphic">
           </div>
     </section>
 
-     <!-- Section 7: zipx Products (02) -->
+     <!-- Section 7: zipx Products (02) (Slide 7) -->
     <section class="bento-section" data-aos="fade-up">
         <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
             <div class="number-box">02</div>
@@ -583,7 +580,7 @@
          <!-- Content of Products sections will go here -->
     </section>
 
-    <!-- Content Section 4: zipx 当前的技术和产品 -->
+    <!-- Content Section 4: zipx 当前的技术和产品 (Slide 8) -->
      <section class="bento-section !mt-0 pt-0" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx当前的技术和产品</h3>
          <!-- Summarize the flowchart components -->
@@ -616,21 +613,21 @@
                  </p>
              </div>
          </div>
-          <!-- Placeholder for the flowchart image - note this is hard to make dynamic -->
+          <!-- Placeholder for the flowchart image - Keeping as placeholder as it's a specific diagram -->
          <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="600">
-            <img src="https://via.placeholder.com/1200x800?text=Technical+Flowchart" alt="Technical Flowchart">
+            <img src="https://via.placeholder.com/1200x800?text=Technical+Flowchart+-+Specific+Graphic" alt="Technical Flowchart - Specific to PPT, keep as placeholder or replace with custom graphic">
          </div>
     </section>
 
-    <!-- Content Section 5: zipx 网站 -->
+    <!-- Content Section 5: zipx 网站 (Slide 9) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx网站</h3>
          <div class="grid md:grid-cols-2 gap-8">
              <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-right" data-aos-delay="300">
-                 <img src="https://via.placeholder.com/600x400?text=zipx.ai+Website+Screenshot+1" alt="zipx.ai website screenshot">
+                 <img src="https://images.unsplash.com/photo-1626282665060-9a9d5c51e3d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="zipx.ai website screenshot - Generic Dashboard">
              </div>
              <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-left" data-aos-delay="400">
-                 <img src="https://via.placeholder.com/600x400?text=zipx.ai+Website+Screenshot+2" alt="zipx.ai website screenshot">
+                 <img src="https://images.unsplash.com/photo-1504270997636-07ddfbd48931?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="zipx.ai website screenshot - Generic UI">
              </div>
          </div>
          <div class="text-center mt-8 text-xl" data-aos="fade-up" data-aos-delay="500">
@@ -639,7 +636,7 @@
          </div>
     </section>
 
-     <!-- Content Section 6: zipx 的主要产品--商品图片生成 -->
+     <!-- Content Section 6: zipx 的主要产品--商品图片生成 (Slide 10)-->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的主要产品--商品图片生成</h3>
          <div class="bento-grid product-features-grid grid-cols-1 md:grid-cols-3 mt-8 gap-6">
@@ -670,21 +667,21 @@
                  完成
               </p>
           </div>
-         <!-- Placeholder for the image generation flowchart graphic -->
+         <!-- Placeholder for the image generation flowchart graphic - Keeping as placeholder -->
           <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="700">
-             <img src="https://via.placeholder.com/800x400?text=Image+Generation+Flowchart" alt="Image Generation Flowchart">
+             <img src="https://via.placeholder.com/800x400?text=Image+Generation+Flowchart+-+Specific+Graphic" alt="Image Generation Flowchart - Specific to PPT, keep as placeholder">
           </div>
     </section>
 
-    <!-- Content Section 7: zipx 的产品--产品图片生成 (Continued) -->
+    <!-- Content Section 7: zipx 的产品--商品图片生成 (Continued) (Slide 11) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品--商品图片生成</h3>
          <div class="grid md:grid-cols-2 gap-8 items-center">
              <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-right" data-aos-delay="300">
-                 <img src="https://via.placeholder.com/600x400?text=Product+Image+Example+1" alt="Product Image Example 1">
+                 <img src="https://images.unsplash.com/photo-1564501049412-61c249983c92?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Product Image Example 1: Conference Room">
              </div>
               <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-left" data-aos-delay="400">
-                 <img src="https://via.placeholder.com/600x400?text=Product+Image+Example+2" alt="Product Image Example 2">
+                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c70c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Product Image Example 2: Meeting Room">
              </div>
          </div>
           <ul class="mt-8 space-y-4 text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="500">
@@ -697,12 +694,12 @@
          </p>
     </section>
 
-    <!-- Content Section 8: zipx 的产品---产品描述生成 -->
+    <!-- Content Section 8: zipx 的产品---产品描述生成 (Slide 12) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品---产品描述生成</h3>
          <div class="grid md:grid-cols-2 gap-8">
              <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-right" data-aos-delay="300">
-                 <img src="https://via.placeholder.com/600x800?text=Product+Description+Form" alt="Product Description Form">
+                 <img src="https://images.unsplash.com/photo-1520986707478-5517c9bf2187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Product Description Form - Generic UI Form">
              </div>
              <div data-aos="fade-left" data-aos-delay="400">
                   <ul class="mt-4 space-y-4 text-lg leading-relaxed text-gray-300">
@@ -716,7 +713,7 @@
          </div>
     </section>
 
-    <!-- Content Section 9: zipx 的产品---产品描述生成 (Examples) -->
+    <!-- Content Section 9: zipx 的产品---产品描述生成 (Examples) (Slide 13) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品---产品描述生成 (示例)</h3>
          <div class="grid md:grid-cols-2 gap-8">
@@ -743,8 +740,9 @@
          </div>
           <div class="bento-card mt-8" data-aos="fade-up" data-aos-delay="500">
               <h4 class="text-tesla-red font-bold text-xl mb-4">上架类目 (Listing Category)</h4>
+              <!-- Keeping this placeholder as it's a specific UI element -->
               <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20">
-                <img src="https://via.placeholder.com/800x150?text=Listing+Category+Example" alt="Listing category example">
+                <img src="https://via.placeholder.com/800x150?text=Listing+Category+Example+-+Specific+UI" alt="Listing category example - Specific UI from PPT">
              </div>
           </div>
          <p class="text-highlight-large-red text-center mt-8" data-aos="fade-up" data-aos-delay="600">
@@ -755,7 +753,7 @@
           </p>
     </section>
 
-    <!-- Content Section 10: zipx 的产品迭代和规划 -->
+    <!-- Content Section 10: zipx 的产品迭代和规划 (Slide 14) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品迭代和规划</h3>
          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -794,34 +792,31 @@
          </div>
      </section>
 
-     <!-- Section 15: zipx Team (Optional - Not explicitly numbered 03/04) -->
+     <!-- Section 15: zipx Team (Optional - Not explicitly numbered 03/04) (Slide 15) -->
      <section class="bento-section" data-aos="fade-up">
         <h2 class="section-title text-center">zipx的团队 / Our Team</h2>
          <div class="team-grid bento-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
              <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="200">
-                 <!-- Placeholder image -->
-                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=YK" alt="黄永术">
+                 <!-- Using generic professional portraits -->
+                 <img src="https://images.unsplash.com/photo-1507003211169-cdad4c8e7290?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Team Member 1">
                  <h4>黄永术</h4>
                  <p class="title">创始人, CEO</p>
                  <p class="text-gray-300 text-sm">毕业后先就职于世界500强马士基物流集团中国500强深圳金雅福控股集团... (bio continues)</p>
              </div>
               <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="300">
-                 <!-- Placeholder image -->
-                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=RQ" alt="邝锐强">
+                 <img src="https://images.unsplash.com/photo-15602500975-cd9fdccf08f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Team Member 2">
                  <h4>邝锐强</h4>
                  <p class="title">联创、开发负责人</p>
                  <p class="text-gray-300 text-sm">华东交通大学计算机专业毕业,10多年开发经验,国内10项发明专利的发明人... (bio continues)</p>
              </div>
               <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="400">
-                 <!-- Placeholder image -->
-                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=W" alt="邵伟">
+                 <img src="https://images.unsplash.com/photo-1544725176-7c639ca94c38?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Team Member 3">
                  <h4>邵伟</h4>
                  <p class="title">联创、运营负责人</p>
                  <p class="text-gray-300 text-sm">沈阳化工大学本科毕业,5年的生产管理经验,8年的国内和跨境电商运营经验... (bio continues)</p>
              </div>
               <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="500">
-                 <!-- Placeholder image -->
-                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=JW" alt="童君伟">
+                 <img src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Team Member 4">
                  <h4>童君伟</h4>
                  <p class="title">联创、营销负责人</p>
                  <p class="text-gray-300 text-sm">2003年至今,20年互联网行业经营,从百度SEO到淘宝再到私域流量运营... (bio continues)</p>
@@ -829,7 +824,7 @@
          </div>
      </section>
 
-      <!-- Section 16: AI + Cross-border E-commerce Operations (03) -->
+      <!-- Section 16: AI + Cross-border E-commerce Operations (03) (Slide 16) -->
     <section class="bento-section" data-aos="fade-up">
         <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
             <div class="number-box">03</div>
@@ -841,7 +836,7 @@
          <!-- Content of subsequent AI related sections -->
     </section>
 
-    <!-- Content Section 11: 科技--新商业范式的到来, ”AI+” 将无处不在 -->
+    <!-- Content Section 11: 科技--新商业范式的到来, ”AI+” 将无处不在 (Slide 17) -->
      <section class="bento-section !mt-0 pt-0" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">科技--新商业范式的到来, ”AI+” 将无处不在</h3>
         <p class="text-highlight-large-zh text-center mb-8" data-aos="fade-up" data-aos-delay="300">
@@ -875,7 +870,7 @@
          </div>
     </section>
 
-    <!-- Content Section 12: 人和AI分工协作的时代 -->
+    <!-- Content Section 12: 人和AI分工协作的时代 (Slide 18) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">人和AI分工协作的时代</h3>
          <div class="grid md:grid-cols-4 gap-8 text-center items-start">
@@ -907,7 +902,7 @@
          </div>
      </section>
 
-     <!-- Content Section 13: 关系搜索和向量搜索 -->
+     <!-- Content Section 13: 关系搜索和向量搜索 (Slide 19) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">关系搜索和向量搜索</h3>
          <div class="grid md:grid-cols-2 gap-8">
@@ -932,7 +927,7 @@
          </p>
     </section>
 
-      <!-- Section 24: Market and Cooperation (04) -->
+      <!-- Section 24: Market and Cooperation (04) (Slide 24) -->
     <section class="bento-section" data-aos="fade-up">
         <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
             <div class="number-box">04</div>
@@ -941,7 +936,7 @@
          <!-- Content of subsequent Market/Cooperation sections -->
     </section>
 
-    <!-- Content Section 14: zipx 为哪些用户服务 -->
+    <!-- Content Section 14: zipx 为哪些用户服务 (Slide 20) -->
      <section class="bento-section !mt-0 pt-0" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx为哪些用户服务</h3>
          <p class="text-highlight-large-red text-center mb-8" data-aos="fade-up" data-aos-delay="300">
@@ -973,11 +968,12 @@
          <div class="central-circle mx-auto" data-aos="zoom-in" data-aos-delay="800">跨境电商</div>
      </section>
 
-    <!-- Content Section 15: 跨境电商的成熟市场和成长性市场 -->
+    <!-- Content Section 15: 跨境电商的成熟市场和成长性市场 (Slide 21/23) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">跨境电商的成熟市场和成长性市场</h3>
+         <!-- Using a global business map image -->
          <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="300">
-             <img src="https://via.placeholder.com/1200x600?text=Global+Ecommerce+Market+Map" alt="Global Ecommerce Market Map">
+             <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Global Ecommerce Market Map - Generic Business Map">
          </div>
          <div class="mt-8 space-y-4 text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="400">
              <p><span class="text-tesla-red font-bold text-xl mr-2">1、</span>亚太、北美、西欧等发达国家和地区的电商已经逐步走向成熟稳定,跨境电商的稳业绩地区;</p>
@@ -987,7 +983,7 @@
          <p class="text-gray-300 text-sm mt-8" data-aos="fade-up" data-aos-delay="500">全球各地区电商发展情况统计数据 (具体数据点省略，见PPT图片)</p>
      </section>
 
-    <!-- Content Section 16: 跨境电商产品上架市场估算 -->
+    <!-- Content Section 16: 跨境电商产品上架市场估算 (Slide 22) -->
      <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">跨境电商产品上架市场估算</h3>
          <h4 class="text-tesla-red font-bold text-xl text-center mb-4" data-aos="fade-up" data-aos-delay="300">亚马逊平台卖家市场估算</h4>
@@ -1025,7 +1021,7 @@
          </p>
     </section>
 
-    <!-- Content Section 17: 跨境电商成本拆解和zipx定位 -->
+    <!-- Content Section 17: 跨境电商成本拆解和zipx定位 (Slide 26) -->
     <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">跨境电商成本拆解和zipx定位</h3>
          <div class="grid md:grid-cols-2 gap-8">
@@ -1040,7 +1036,7 @@
                     1、人力资源和杂项成本占据1/3以上的商家的运营成本,人力工作主要集中在作图和写listing。
                  </p>
                  <p class="text-highlight-large-red mt-2">
-                    2、AI替代重复性工作具有可行性和迫切性。
+                    2、AI替代重复性工作具有可行性和紧迫性。
                  </p>
              </div>
               <div data-aos="fade-left" data-aos-delay="400">
@@ -1060,13 +1056,13 @@
                   </p>
              </div>
          </div>
-         <!-- Placeholder for the comparison charts -->
+         <!-- Placeholder for the comparison charts - Keeping as placeholder -->
          <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="500">
-            <img src="https://via.placeholder.com/1200x600?text=Cost+Breakdown+and+Target+Audience" alt="Cost Breakdown and Target Audience charts">
+            <img src="https://via.placeholder.com/1200x600?text=Cost+Breakdown+and+Target+Audience+charts+-+Specific" alt="Cost Breakdown and Target Audience charts - Specific to PPT, keep as placeholder">
          </div>
     </section>
 
-    <!-- Content Section 18: zipx 的会员体系和合作 -->
+    <!-- Content Section 18: zipx 的会员体系和合作 (Slide 27) -->
     <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的会员体系和合作</h3>
          <h4 class="text-tesla-red font-bold text-xl text-center mb-4" data-aos="fade-up" data-aos-delay="300">会员级别及权益</h4>
@@ -1100,7 +1096,7 @@
           </p>
     </section>
 
-    <!-- Content Section 19: zipx 让你知道 (Marketing & Cooperation) -->
+    <!-- Content Section 19: zipx 让你知道 (Marketing & Cooperation) (Slide 25) -->
     <section class="bento-section" data-aos="fade-up">
         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx 让你知道 (市场推广与合作)</h3>
          <div class="grid md:grid-cols-2 gap-8">
@@ -1148,7 +1144,7 @@
      </section>
 
 
-     <!-- Section 28: Thank You -->
+     <!-- Section 28: Thank You (Slide 28) -->
      <section class="bento-section text-center" data-aos="fade-in">
         <h2 class="section-title text-white font-bold text-6xl mb-8" data-aos="fade-up" data-aos-delay="200">THANK YOU</h2>
          <h3 class="text-white font-bold text-4xl mb-8" data-aos="fade-up" data-aos-delay="300">zipx团队非常感谢您的关注</h3>
@@ -1195,17 +1191,20 @@
     <!-- Your p5.js Sketch for Particle Background -->
     <script>
         let particles = [];
-        const numParticles = 150; // Adjust based on desired density and performance
-        const maxDist = 120; // Max distance for drawing lines between particles
-        const particleColor = [255, 255, 255]; // White particles
-        const lineColor = [255, 255, 255]; // White lines, will use alpha
+        // Adjust particle count based on desired density and performance
+        // For a more subtle background, fewer particles might be better.
+        const numParticles = 100;
+        const maxDist = 150; // Max distance for drawing lines between particles
+        // Using a light grey for particles and lines, could add a hint of red if desired
+        const particleColor = [200, 200, 200];
+        const lineColor = [200, 200, 200]; // Will use alpha
 
         class Particle {
             constructor() {
                 // Start particles randomly across the entire window
                 this.pos = createVector(random(width), random(height));
-                // Give particles a slight random velocity
-                this.vel = createVector(random(-0.5, 0.5), random(-0.5, 0.5));
+                // Give particles a slight random velocity for gentle movement
+                this.vel = p5.Vector.random2D().mult(random(0.1, 0.4)); // Slower, more organic movement
                 this.size = random(1, 3); // Random size for variation
             }
 
@@ -1225,7 +1224,7 @@
             display() {
                 noStroke();
                 // Semi-transparent particles
-                fill(particleColor[0], particleColor[1], particleColor[2], 100);
+                fill(particleColor[0], particleColor[1], particleColor[2], 80); // Lower alpha for subtlety
                 ellipse(this.pos.x, this.pos.y, this.size);
             }
 
@@ -1234,7 +1233,7 @@
                 const d = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
                 if (d < maxDist) {
                     // Draw a line, opacity decreases as distance approaches maxDist
-                    const alpha = map(d, 0, maxDist, 150, 0); // Fade out lines based on distance
+                    const alpha = map(d, 0, maxDist, 100, 0); // Fade out lines based on distance, lower max opacity
                     stroke(lineColor[0], lineColor[1], lineColor[2], alpha); // Semi-transparent lines
                     strokeWeight(0.5); // Thin lines
                     line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
