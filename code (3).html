@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zipx - 电商运营的copilot</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS CSS CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --tesla-red: #E31937;
+            --text-color: #e5e7eb; /* Light gray text for contrast */
+            --bg-color: #000; /* Pure black background */
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll caused by animations */
+            position: relative; /* Needed for z-index context */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #fff; /* White headings */
+        }
+        .text-tesla-red {
+            color: var(--tesla-red);
+        }
+        .bg-tesla-red {
+            background-color: var(--tesla-red);
+        }
+        .border-tesla-red {
+            border-color: var(--tesla-red);
+        }
+        /* Custom Bento Grid like sections */
+        .bento-section {
+            margin-bottom: 6rem; /* Spacing between sections */
+            padding: 4rem 1rem;
+            max-width: 1200px; /* Limit content width */
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 10; /* Ensure content is above particles */
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1.5rem; /* Gap between grid items */
+        }
+
+        /* Section Title Styling */
+        .section-title {
+             font-size: clamp(2.5rem, 7vw, 5rem); /* Responsive large title */
+             font-weight: bold;
+             margin-bottom: 3rem;
+             position: relative;
+             display: inline-block; /* Allows ::after positioning */
+             color: #fff; /* Default white */
+        }
+        .section-title.title-red {
+            color: var(--tesla-red);
+        }
+         .section-title::after {
+            content: '';
+            display: block;
+            width: 50%; /* Red line under title */
+            height: 6px;
+            background-color: var(--tesla-red);
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+         /* Title specific for section number */
+         .section-number-title {
+             display: flex;
+             align-items: center;
+             margin-bottom: 3rem;
+         }
+         .section-number-title .number-box {
+             font-size: clamp(3rem, 10vw, 8rem);
+             font-weight: bold;
+             color: var(--tesla-red);
+             border: 8px solid var(--tesla-red);
+             padding: 0.5rem 1.5rem;
+             line-height: 1;
+             margin-right: 2rem;
+             flex-shrink: 0;
+         }
+         .section-number-title .title-text {
+             font-size: clamp(2.5rem, 7vw, 5rem);
+             font-weight: bold;
+             color: #fff;
+             line-height: 1.2;
+         }
+
+
+        /* Hero Section Styling */
+        .section-hero {
+             position: relative;
+             height: 90vh; /* Slightly less than full viewport */
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: flex-end; /* Align content to bottom */
+             text-align: center;
+             overflow: hidden;
+             padding-bottom: 4rem; /* Add padding at the bottom */
+             z-index: 10;
+        }
+         /* Removed blurred background image */
+         /* .bg-image-blur { ... } */
+
+        .section-hero-content {
+             position: relative;
+             z-index: 10;
+             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .section-hero h1 {
+            font-size: clamp(2rem, 8vw, 6rem); /* Main title size */
+            line-height: 1.2;
+            color: #fff;
+            font-weight: normal; /* Not overly bold */
+         }
+         .section-hero h1 .text-large-zh {
+             font-size: clamp(3rem, 10vw, 8rem); /* Huge Chinese text */
+             font-weight: bold;
+         }
+         .section-hero h1 .text-red {
+             color: var(--tesla-red);
+         }
+
+
+        /* Index Section */
+        .index-grid {
+            grid-template-columns: 150px repeat(auto-fit, minmax(200px, 1fr)); /* C block + items */
+            align-items: start;
+        }
+        .index-c-block {
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: bold;
+            color: var(--tesla-red);
+            line-height: 0.8;
+            position: relative;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .index-c-block span {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            display: block;
+            font-weight: normal;
+            color: #fff;
+            margin-top: 0.5rem;
+        }
+        .index-item {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+         .index-item span.number {
+            color: var(--tesla-red);
+            margin-right: 0.5rem;
+         }
+         .index-item span.page {
+            color: var(--text-color);
+            font-weight: normal;
+            margin-left: 0.5rem;
+         }
+         .index-item span.dots {
+            flex-grow: 1;
+            border-bottom: 2px dashed rgba(227, 25, 55, 0.5); /* Dashed line */
+            margin: 0 0.5rem;
+            position: relative;
+            top: -0.3em; /* Align line vertically */
+         }
+         .index-item {
+             display: flex;
+             align-items: baseline;
+             justify-content: space-between; /* Distribute items */
+         }
+
+
+        /* Bento Card Styling */
+        .bento-card {
+             background: linear-gradient(135deg, rgba(227, 25, 55, 0.05), rgba(255, 255, 255, 0.05)); /* Subtle gradient tint */
+             border: 1px solid rgba(227, 25, 55, 0.3); /* Semi-transparent red border */
+             padding: 1.5rem;
+             border-radius: 8px;
+             backdrop-filter: blur(3px); /* Slight blur effect */
+             -webkit-backdrop-filter: blur(3px); /* Safari support */
+             position: relative;
+             overflow: hidden;
+        }
+         .bento-card h3 {
+             font-size: 1.5rem;
+             font-weight: bold;
+             color: var(--tesla-red);
+             margin-bottom: 1rem;
+         }
+        .bento-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .bento-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(229, 231, 235, 0.8); /* Slightly transparent text */
+            line-height: 1.5;
+        }
+        .bento-card li::before {
+            content: '\2022'; /* Bullet point */
+            color: var(--tesla-red);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        /* Highlighted text within content */
+        .text-highlight-red {
+            color: var(--tesla-red);
+            font-weight: bold;
+        }
+         .text-highlight-large-zh {
+             font-size: clamp(1.5rem, 4vw, 2.5rem);
+             font-weight: bold;
+             color: #fff; /* Or maybe red, depends on emphasis */
+             display: block; /* Often on its own line */
+             margin-top: 1rem;
+         }
+        .text-highlight-large-red {
+             font-size: clamp(1.5rem, 4vw, 2.5rem);
+             font-weight: bold;
+             color: var(--tesla-red);
+             display: block; /* Often on its own line */
+             margin-top: 1rem;
+        }
+
+
+        /* Product Features Section (Slide 10) */
+        .product-features-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            text-align: center;
+        }
+        .feature-item .icon {
+            width: 80px; /* Large icon */
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%; /* Circle */
+            background: linear-gradient(45deg, rgba(227, 25, 55, 0.3), rgba(227, 25, 55, 0.0)); /* Radial-like gradient */
+            color: var(--tesla-red);
+            font-size: 2.5rem;
+            border: 2px solid rgba(227, 25, 55, 0.5);
+        }
+         .feature-item .number {
+             font-size: 4rem; /* Huge number */
+             font-weight: bold;
+             color: var(--tesla-red);
+             line-height: 1;
+         }
+        .feature-item .text-zh {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+         .feature-item .text-en {
+            font-size: 1rem;
+            color: rgba(229, 231, 235, 0.8);
+         }
+
+         /* Team Section (Slide 15) */
+         .team-grid {
+             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+             gap: 2rem;
+         }
+         .team-member {
+             text-align: center;
+         }
+         .team-member img {
+             width: 120px;
+             height: 120px;
+             border-radius: 50%;
+             border: 3px solid var(--tesla-red);
+             margin: 0 auto 1rem;
+             object-fit: cover;
+         }
+         .team-member h4 {
+             font-size: 1.3rem;
+             font-weight: bold;
+             color: #fff;
+             margin-bottom: 0.5rem;
+         }
+          .team-member p {
+              font-size: 0.9rem;
+              color: rgba(229, 231, 235, 0.7);
+              line-height: 1.4;
+          }
+         .team-member .title {
+             color: var(--tesla-red);
+             font-weight: normal;
+             margin-bottom: 1rem;
+             font-size: 1rem;
+         }
+
+         /* Market Data Table (Slide 22) */
+         .data-table {
+             width: 100%;
+             border-collapse: collapse;
+             margin-top: 2rem;
+         }
+         .data-table th, .data-table td {
+             border: 1px solid rgba(227, 25, 55, 0.3);
+             padding: 10px;
+             text-align: left;
+             color: rgba(229, 231, 235, 0.8);
+             font-size: 0.9rem;
+         }
+          .data-table th {
+              background-color: rgba(227, 25, 55, 0.1);
+              color: #fff;
+              font-weight: bold;
+          }
+          .data-table tr:nth-child(even) {
+             background-color: rgba(227, 25, 55, 0.05);
+          }
+         .data-table td strong {
+             color: var(--tesla-red); /* Highlight numbers */
+         }
+
+         /* User Types Section (Slide 20) */
+         .user-type-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+         }
+         .user-type-item {
+             text-align: center;
+             position: relative;
+             z-index: 1; /* Ensure above potential background shapes */
+         }
+         .user-type-item .central-circle {
+             width: 150px;
+             height: 150px;
+             background-color: rgba(227, 25, 55, 0.2); /* Transparent red */
+             border-radius: 50%;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-size: 1.5rem;
+             font-weight: bold;
+             color: #fff;
+             border: 3px solid var(--tesla-red);
+             margin: 2rem auto 3rem;
+         }
+         .user-type-item .heading {
+             font-size: 1.8rem;
+             font-weight: bold;
+             color: var(--tesla-red);
+             margin-bottom: 1rem;
+         }
+          .user-type-item .benefit {
+             font-size: 1.2rem;
+             font-weight: bold;
+             color: #fff; /* White benefit text */
+             margin-top: 1rem;
+          }
+
+
+         /* Particles Canvas Styling */
+        canvas {
+            display: block;
+            position: fixed; /* Covers the entire viewport */
+            top: 0;
+            left: 0;
+            z-index: -1; /* Put behind other content */
+            pointer-events: none; /* Optional: Ensure it doesn't block mouse events on content */
+            width: 100vw;
+            height: 100vh;
+            background-color: #000; /* Ensure black background */
+        }
+
+        /* Custom icon styling for strategy points (Slide 25) */
+        .strategy-item .icon {
+             width: 60px; /* Larger icon */
+             height: 60px;
+             border: 3px solid var(--tesla-red);
+             border-radius: 50%;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             color: var(--tesla-red);
+             font-size: 2rem; /* Larger icon size */
+             flex-shrink: 0;
+             background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for contrast */
+             margin: 0 auto 1rem;
+        }
+
+
+        /* Thank You Section (Slide 28) */
+         .thanks-grid {
+             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+             gap: 2rem;
+         }
+         .thanks-item {
+             text-align: center;
+         }
+         .thanks-item .icon {
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              border: 3px solid var(--tesla-red);
+              background: linear-gradient(45deg, rgba(227, 25, 55, 0.2), transparent); /* Subtle gradient */
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 2.5rem;
+              color: var(--tesla-red);
+              margin: 0 auto 1rem;
+         }
+         .thanks-item .text-zh {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.5rem;
+         }
+          .thanks-item .text-en {
+            font-size: 1rem;
+            color: rgba(229, 231, 235, 0.8);
+          }
+
+    </style>
+</head>
+<body class="bg-black text-gray-200">
+
+    <!-- p5.js Particles Background Canvas (will be created by sketch.js) -->
+    <!-- The canvas element is not explicitly added here, p5.js will create it and attach to body -->
+
+    <!-- Section 1: Title / Intro -->
+    <section class="section-hero" data-aos="fade-in" data-aos-duration="1500">
+         <!-- Background image placeholder - optional, particle effect is main background -->
+         <!-- <div class="bg-image-blur" style="background-image: url('path/to/your/hero-image.jpg');"></div> -->
+        <div class="section-hero-content">
+            <h1 data-aos="fade-up" data-aos-delay="500">
+                zipx--<span class="text-large-zh">电商运营的</span><span class="text-red">copilot</span>
+            </h1>
+        </div>
+    </section>
+
+    <!-- Section 2: Index -->
+    <section class="bento-section" data-aos="fade-up">
+        <h2 class="section-title title-red text-center">目录 / Contents</h2>
+        <div class="bento-grid index-grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+             <div class="index-c-block" data-aos="fade-right" data-aos-delay="200">
+                 C<span>目录<br>ONTENTS</span>
+             </div>
+             <div class="flex flex-col justify-center" data-aos="fade-left" data-aos-delay="300">
+                 <div class="index-item" data-aos="fade-up" data-aos-delay="400">
+                     <span class="number">01</span> 关于zipx.ai <span class="dots"></span> <span class="page">P03</span>
+                 </div>
+                 <div class="index-item" data-aos="fade-up" data-aos-delay="500">
+                     <span class="number">02</span> 产品和团队 <span class="dots"></span> <span class="page">P09</span>
+                 </div>
+                 <div class="index-item" data-aos="fade-up" data-aos-delay="600">
+                     <span class="number">03</span> AI+跨境电商运营 <span class="dots"></span> <span class="page">P14</span>
+                 </div>
+                 <div class="index-item" data-aos="fade-up" data-aos-delay="700">
+                     <span class="number">04</span> 会员和合作 <span class="dots"></span> <span class="page">P19</span>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Section 3: About zipx (01) -->
+    <section class="bento-section" data-aos="fade-up">
+        <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
+            <div class="number-box">01</div>
+            <h2 class="title-text">关于zipx</h2>
+        </div>
+         <!-- Content of zipx 简介 and zipx 的愿景和使命 will go here -->
+    </section>
+
+    <!-- Content Section 1: zipx 简介 -->
+    <section class="bento-section !mt-0 pt-0" data-aos="fade-up"> <!-- Added mt-0 pt-0 to connect to previous section title -->
+         <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx简介</h3>
+         <p class="text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="300">
+            zipx.ai是一个利用AI助力电商运营的SAAS平台,是商家的copilot。通过zipx,商家以“元”级的成本,“秒”级的速度,生成产品图片、产品描述和优化关键词SEO等服务,真正做到帮助商家<span class="text-highlight-red">“降本增效”</span>,让上架和运营变得简单。
+         </p>
+         <p class="text-lg leading-relaxed text-gray-300 mt-4" data-aos="fade-up" data-aos-delay="400">
+             产品图片和产品文案以融合平台的推荐算法以及TOP items的关键参数,帮助商家生成符合平台推荐算法的<span class="text-highlight-red">Listing内容,主动匹配流量</span>。
+         </p>
+         <div class="bento-grid product-features-grid grid-cols-2 md:grid-cols-4 mt-8 gap-6">
+             <div class="feature-item" data-aos="zoom-in" data-aos-delay="500">
+                 <div class="icon"><i class="fas fa-dollar-sign"></i></div>
+                 <div class="text-zh">省钱</div>
+             </div>
+              <div class="feature-item" data-aos="zoom-in" data-aos-delay="600">
+                 <div class="icon"><i class="fas fa-clock"></i></div>
+                 <div class="text-zh">省时</div>
+             </div>
+              <div class="feature-item" data-aos="zoom-in" data-aos-delay="700">
+                 <div class="icon"><i class="fas fa-check-circle"></i></div>
+                 <div class="text-zh">易用</div>
+             </div>
+              <div class="feature-item" data-aos="zoom-in" data-aos-delay="800">
+                 <div class="icon"><i class="fas fa-chart-line"></i></div>
+                 <div class="text-zh">流量导向</div>
+             </div>
+         </div>
+         <!-- Image Placeholder from slide 4 -->
+         <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="900">
+             <img src="https://via.placeholder.com/1200x600?text=Cityscape+Background+Image" alt="Cityscape background">
+         </div>
+    </section>
+
+    <!-- Content Section 2: zipx 的愿景和使命 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的愿景和使命</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div data-aos="fade-right" data-aos-delay="300">
+                 <h4 class="text-tesla-red font-bold text-2xl mb-4">我们的愿景</h4>
+                 <p class="text-xl leading-relaxed text-gray-300">全球电商行业的copilot</p>
+                  <div class="image-container mt-4 rounded-lg overflow-hidden border border-tesla-red/20">
+                      <img src="https://via.placeholder.com/600x400?text=Vision+Image+1" alt="Vision image">
+                  </div>
+             </div>
+              <div data-aos="fade-left" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-2xl mb-4">我们的使命</h4>
+                 <p class="text-xl leading-relaxed text-gray-300">做电商领域人和AI协作共赢的Agent</p>
+                  <div class="image-container mt-4 rounded-lg overflow-hidden border border-tesla-red/20">
+                      <img src="https://via.placeholder.com/600x400?text=Mission+Image+2" alt="Mission image">
+                  </div>
+             </div>
+         </div>
+    </section>
+
+    <!-- Content Section 3: zipx 的战略规划 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的战略规划</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div class="bento-card" data-aos="fade-right" data-aos-delay="300">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">验证市场, 获得生存 <i class="fas fa-check-circle ml-2"></i></h4>
+                 <ul class="text-gray-300">
+                     <li>跨境电商上架的刚需验证“跨境商家的copilot”,部分跨境电商平台作为实验市场。</li>
+                     <li>研发融合“推荐算法+prompt引擎+AI生成”,对内形成初步的技术架构,对外满足市场的需求,验证PMF</li>
+                 </ul>
+             </div>
+              <div class="bento-card" data-aos="fade-left" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">扩大市场, 谋得发展 <i class="fas fa-chart-line ml-2"></i></h4>
+                 <ul class="text-gray-300">
+                     <li>扩展图文生成,把产品扩大到AI生成详情图,全面AI替代商品的平面设计工作,扩大市场;</li>
+                     <li>服务全球跨境电商平台和当地电商平台的商家。</li>
+                 </ul>
+             </div>
+              <div class="bento-card" data-aos="fade-up" data-aos-delay="500">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">AGI时代, 电商行业的Agent <i class="fas fa-robot ml-2"></i></h4>
+                 <ul class="text-gray-300">
+                     <li>AGI进入成熟,研发服务商家的Agent,让用户以一个界面完成所有电商运营工作;</li>
+                     <li>集成聚合AI服务电商大的模型,满足电商运营全流程的工作流需求</li>
+                 </ul>
+             </div>
+              <div class="bento-card" data-aos="fade-up" data-aos-delay="600">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">Vector database方向, 打造AI时代的电商图片和文字搜索新范式的核心数据库 <i class="fas fa-database ml-2"></i></h4>
+                 <p class="text-gray-300">2024年6月份后</p>
+             </div>
+         </div>
+          <!-- Placeholder for the circular graphic from slide 6 -->
+          <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="700">
+             <img src="https://via.placeholder.com/800x500?text=Strategy+Circular+Graphic" alt="Strategy graphic">
+          </div>
+    </section>
+
+     <!-- Section 7: zipx Products (02) -->
+    <section class="bento-section" data-aos="fade-up">
+        <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
+            <div class="number-box">02</div>
+            <h2 class="title-text">zipx的产品</h2>
+        </div>
+         <!-- Content of Products sections will go here -->
+    </section>
+
+    <!-- Content Section 4: zipx 当前的技术和产品 -->
+     <section class="bento-section !mt-0 pt-0" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx当前的技术和产品</h3>
+         <!-- Summarize the flowchart components -->
+         <div class="grid md:grid-cols-2 gap-8">
+             <div class="bento-card" data-aos="fade-right" data-aos-delay="300">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4"><i class="fas fa-users mr-2"></i>用户输入 (Inputs)</h4>
+                 <ul class="text-gray-300">
+                     <li>图片请求</li>
+                     <li>文本请求</li>
+                     <li>详情页</li>
+                 </ul>
+             </div>
+              <div class="bento-card" data-aos="fade-left" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4"><i class="fas fa-brain mr-2"></i>zipx 核心系统 (Core System)</h4>
+                 <ul class="text-gray-300">
+                     <li>图片/文本识别系统</li>
+                     <li>商品数据分析和数据库</li>
+                     <li>prompt智能生成系统</li>
+                     <li>AI生成系统 (图片/文案/详情页生成模型)</li>
+                 </ul>
+             </div>
+              <div class="bento-card md:col-span-2" data-aos="fade-up" data-aos-delay="500">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4"><i class="fas fa-store mr-2"></i>电商平台输出 (Outputs)</h4>
+                 <ul class="text-gray-300">
+                     <li>电商平台推荐系统</li>
+                     <li>Top20 SKU (数据 & 图片)</li>
+                 </ul>
+                  <p class="mt-4 text-gray-300 text-sm">
+                      基于推荐算法从结果推到参数，将要素转变成生成的prompt，生成新的匹配商家产品特点、平台推荐算法和关键词的文案和图片。
+                 </p>
+             </div>
+         </div>
+          <!-- Placeholder for the flowchart image - note this is hard to make dynamic -->
+         <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="600">
+            <img src="https://via.placeholder.com/1200x800?text=Technical+Flowchart" alt="Technical Flowchart">
+         </div>
+    </section>
+
+    <!-- Content Section 5: zipx 网站 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx网站</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-right" data-aos-delay="300">
+                 <img src="https://via.placeholder.com/600x400?text=zipx.ai+Website+Screenshot+1" alt="zipx.ai website screenshot">
+             </div>
+             <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-left" data-aos-delay="400">
+                 <img src="https://via.placeholder.com/600x400?text=zipx.ai+Website+Screenshot+2" alt="zipx.ai website screenshot">
+             </div>
+         </div>
+         <div class="text-center mt-8 text-xl" data-aos="fade-up" data-aos-delay="500">
+             <p><span class="text-highlight-large-zh">中国站:</span> <a href="https://www.zipx.vip" class="text-tesla-red hover:underline">https://www.zipx.vip</a></p>
+             <p class="mt-2"><span class="text-highlight-large-zh">国际站:</span> <a href="https://www.zipx.ai" class="text-tesla-red hover:underline">https://www.zipx.ai</a></p>
+         </div>
+    </section>
+
+     <!-- Content Section 6: zipx 的主要产品--商品图片生成 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的主要产品--商品图片生成</h3>
+         <div class="bento-grid product-features-grid grid-cols-1 md:grid-cols-3 mt-8 gap-6">
+             <div class="feature-item" data-aos="zoom-in" data-aos-delay="300">
+                 <div class="number">0</div><div class="icon"><i class="fas fa-mouse-pointer"></i></div>
+                 <div class="text-zh">简单</div>
+                 <p class="text-en">操作简单,点击几个按钮就能得到想要的图片</p>
+             </div>
+              <div class="feature-item" data-aos="zoom-in" data-aos-delay="400">
+                 <div class="number">0</div><div class="icon"><i class="fas fa-robot"></i></div>
+                 <div class="text-zh">智能</div>
+                  <p class="text-en">可以自定义想要的产品背景,也可以提交参考图片让AI生成背景描述</p>
+             </div>
+              <div class="feature-item" data-aos="zoom-in" data-aos-delay="500">
+                 <div class="number">0</div><div class="icon"><i class="fas fa-lightbulb"></i></div>
+                 <div class="text-zh">灵活</div>
+                  <p class="text-en">生成图片后,用户可以挑选图片,不合适再点击“生成图片”几秒钟即可生成新图。</p>
+             </div>
+         </div>
+          <!-- Summarize the flowchart steps -->
+          <div class="mt-8 text-center">
+              <p class="text-xl text-gray-300" data-aos="fade-up" data-aos-delay="600">
+                 上传商品原图 <i class="fas fa-arrow-right text-tesla-red mx-2"></i>
+                 输入背景描述/系统推荐模板 <i class="fas fa-arrow-right text-tesla-red mx-2"></i>
+                 AI生成背景描述 <i class="fas fa-arrow-right text-tesla-red mx-2"></i>
+                 点击生成图片 <i class="fas fa-arrow-right text-tesla-red mx-2"></i>
+                 生成2张 <i class="fas fa-arrow-right text-tesla-red mx-2"></i>
+                 完成
+              </p>
+          </div>
+         <!-- Placeholder for the image generation flowchart graphic -->
+          <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="700">
+             <img src="https://via.placeholder.com/800x400?text=Image+Generation+Flowchart" alt="Image Generation Flowchart">
+          </div>
+    </section>
+
+    <!-- Content Section 7: zipx 的产品--产品图片生成 (Continued) -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品--商品图片生成</h3>
+         <div class="grid md:grid-cols-2 gap-8 items-center">
+             <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-right" data-aos-delay="300">
+                 <img src="https://via.placeholder.com/600x400?text=Product+Image+Example+1" alt="Product Image Example 1">
+             </div>
+              <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-left" data-aos-delay="400">
+                 <img src="https://via.placeholder.com/600x400?text=Product+Image+Example+2" alt="Product Image Example 2">
+             </div>
+         </div>
+          <ul class="mt-8 space-y-4 text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="500">
+              <li><i class="fas fa-check-circle text-tesla-red mr-3"></i>zipx.ai的AI技术可以快速、准确地生成和更换产品图片的背景,帮助卖家创建专业的<span class="text-highlight-red">产品图片</span>。</li>
+              <li><i class="fas fa-check-circle text-tesla-red mr-3"></i>卖家只需要上传产品图片,选择需要更换的背景,zipx.ai就可以自动处理图片并生成新的图片。</li>
+              <li><i class="fas fa-check-circle text-tesla-red mr-3"></i>使用zipx.ai的服务可以大大节省卖家的时间和成本,同时提高产品图片的质量和吸引力。</li>
+          </ul>
+         <p class="text-highlight-large-red text-center mt-8" data-aos="fade-up" data-aos-delay="600">
+             每一张图片都是创作,没有版权之争
+         </p>
+    </section>
+
+    <!-- Content Section 8: zipx 的产品---产品描述生成 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品---产品描述生成</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-right" data-aos-delay="300">
+                 <img src="https://via.placeholder.com/600x800?text=Product+Description+Form" alt="Product Description Form">
+             </div>
+             <div data-aos="fade-left" data-aos-delay="400">
+                  <ul class="mt-4 space-y-4 text-lg leading-relaxed text-gray-300">
+                     <li><i class="fas fa-check-circle text-tesla-red mr-3"></i><span class="font-bold text-white">商品名称:</span> 8个字符以上,产品名称不翻译,建议输入上架当地市场语言的产品名称;</li>
+                     <li><i class="fas fa-check-circle text-tesla-red mr-3"></i><span class="font-bold text-white">产品属性:</span> 建议5-10个产品的主要材质、特征、卖点等,属性越具体越多,生成的结 果越好;</li>
+                     <li><i class="fas fa-check-circle text-tesla-red mr-3"></i><span class="font-bold text-white">字符长度:</span> 建议选择600以上</li>
+                     <li><i class="fas fa-check-circle text-tesla-red mr-3"></i><span class="font-bold text-white">描述风格:</span> 默认是专业的,您也可以选择其他的风格,5种风格可选;</li>
+                     <li><i class="fas fa-check-circle text-tesla-red mr-3"></i><span class="font-bold text-white">语言:</span> 选择您想要描述输出的语言,支持全球各主要国家和地区的语言。</li>
+                 </ul>
+             </div>
+         </div>
+    </section>
+
+    <!-- Content Section 9: zipx 的产品---产品描述生成 (Examples) -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品---产品描述生成 (示例)</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div class="bento-card" data-aos="fade-right" data-aos-delay="300">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">市场描述 (Market Description)</h4>
+                 <p class="text-gray-300 text-sm leading-relaxed">
+                    1. The modern style 3 seats soft sofa is a stylish and comfortable seating option for your living space... (text continues from PPT)
+                 </p>
+                  <h4 class="text-tesla-red font-bold text-xl mt-6 mb-4">简述 (Brief Description)</h4>
+                 <p class="text-gray-300 text-sm leading-relaxed">
+                     1. Stylish and comfortable, this modern 3-seater sofa adds sophistication to your home... (text continues from PPT)
+                 </p>
+             </div>
+             <div class="bento-card" data-aos="fade-left" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">产品特点、属性及利益 (Features, Attributes & Benefits)</h4>
+                 <p class="text-gray-300 text-sm">特点: Modern and stylish design, Comfortably seats three people... (list continues)</p>
+                 <p class="text-gray-300 text-sm mt-2">属性: Modern style, Fashionable, Three-seater... (list continues)</p>
+                 <p class="text-gray-300 text-sm mt-2">利益: Enhances the modern look, Provides ample seating... (list continues)</p>
+                  <h4 class="text-tesla-red font-bold text-xl mt-6 mb-4">关键字 (Keywords)</h4>
+                 <p class="text-gray-300 text-sm">modern style 3 seats soft sofa, contemporary design couch... (list continues)</p>
+                  <h4 class="text-tesla-red font-bold text-xl mt-6 mb-4">标题 (Titles)</h4>
+                 <p class="text-gray-300 text-sm">1. Experience modern elegance and comfort... (list continues)</p>
+             </div>
+         </div>
+          <div class="bento-card mt-8" data-aos="fade-up" data-aos-delay="500">
+              <h4 class="text-tesla-red font-bold text-xl mb-4">上架类目 (Listing Category)</h4>
+              <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20">
+                <img src="https://via.placeholder.com/800x150?text=Listing+Category+Example" alt="Listing category example">
+             </div>
+          </div>
+         <p class="text-highlight-large-red text-center mt-8" data-aos="fade-up" data-aos-delay="600">
+             输入关键信息,1分钟内生成市场描述、简述、上架标题、5点优势、优化关键词和商家目录建议等;
+         </p>
+          <p class="text-highlight-large-red text-center mt-2" data-aos="fade-up" data-aos-delay="700">
+              如果您除了做美国市场,还做阿拉伯市场,您可以点击“克隆”按钮,选择语言即可重新生成。
+          </p>
+    </section>
+
+    <!-- Content Section 10: zipx 的产品迭代和规划 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的产品迭代和规划</h3>
+         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+             <div class="bento-card" data-aos="fade-up" data-aos-delay="300">
+                 <h4 class="text-tesla-red font-bold text-xl mb-2">第一阶段</h4>
+                 <p class="text-sm text-gray-300 mb-2">2023年3-5月份, <span class="text-highlight-red">已完成</span></p>
+                 <ul class="text-gray-300 text-sm">
+                     <li>基于stable diffusion开发和训练的作图模型</li>
+                     <li>增加图片引擎和prompt引擎,用户傻瓜式使用</li>
+                 </ul>
+             </div>
+             <div class="bento-card" data-aos="fade-up" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-xl mb-2">第二阶段</h4>
+                 <!-- Timeframe not specified in slide, placeholder -->
+                 <p class="text-sm text-gray-300 mb-2">待定</p>
+                 <ul class="text-gray-300 text-sm">
+                     <li>拆分Listing框架,基于GPT开发封装产品模型</li>
+                     <li>增加流量规则和产品特性,结合模型,优化Listing。</li>
+                 </ul>
+             </div>
+             <div class="bento-card" data-aos="fade-up" data-aos-delay="500">
+                 <h4 class="text-tesla-red font-bold text-xl mb-2">第三阶段</h4>
+                 <p class="text-sm text-gray-300 mb-2">2023年9月-2024年9月</p>
+                 <ul class="text-gray-300 text-sm">
+                     <li>图文模型的开发和训练,面向产品详情图、活动海报、佩戴类产品图片等方向,全面完成平面设计的工具</li>
+                     <li>打造电商行业和平面设计行业的基础VD(vector data).</li>
+                 </ul>
+             </div>
+             <div class="bento-card" data-aos="fade-up" data-aos-delay="600">
+                 <h4 class="text-tesla-red font-bold text-xl mb-2">第四阶段</h4>
+                 <p class="text-sm text-gray-300 mb-2">2024年6月份后</p>
+                 <ul class="text-gray-300 text-sm">
+                     <li>Vector database方向,打造AI时代的电商图片和文字搜索新范式 的核心数据库</li>
+                 </ul>
+             </div>
+         </div>
+     </section>
+
+     <!-- Section 15: zipx Team (Optional - Not explicitly numbered 03/04) -->
+     <section class="bento-section" data-aos="fade-up">
+        <h2 class="section-title text-center">zipx的团队 / Our Team</h2>
+         <div class="team-grid bento-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+             <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="200">
+                 <!-- Placeholder image -->
+                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=YK" alt="黄永术">
+                 <h4>黄永术</h4>
+                 <p class="title">创始人, CEO</p>
+                 <p class="text-gray-300 text-sm">毕业后先就职于世界500强马士基物流集团中国500强深圳金雅福控股集团... (bio continues)</p>
+             </div>
+              <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="300">
+                 <!-- Placeholder image -->
+                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=RQ" alt="邝锐强">
+                 <h4>邝锐强</h4>
+                 <p class="title">联创、开发负责人</p>
+                 <p class="text-gray-300 text-sm">华东交通大学计算机专业毕业,10多年开发经验,国内10项发明专利的发明人... (bio continues)</p>
+             </div>
+              <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="400">
+                 <!-- Placeholder image -->
+                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=W" alt="邵伟">
+                 <h4>邵伟</h4>
+                 <p class="title">联创、运营负责人</p>
+                 <p class="text-gray-300 text-sm">沈阳化工大学本科毕业,5年的生产管理经验,8年的国内和跨境电商运营经验... (bio continues)</p>
+             </div>
+              <div class="team-member bento-card" data-aos="zoom-in" data-aos-delay="500">
+                 <!-- Placeholder image -->
+                 <img src="https://via.placeholder.com/150/E31937/FFFFFF?text=JW" alt="童君伟">
+                 <h4>童君伟</h4>
+                 <p class="title">联创、营销负责人</p>
+                 <p class="text-gray-300 text-sm">2003年至今,20年互联网行业经营,从百度SEO到淘宝再到私域流量运营... (bio continues)</p>
+             </div>
+         </div>
+     </section>
+
+      <!-- Section 16: AI + Cross-border E-commerce Operations (03) -->
+    <section class="bento-section" data-aos="fade-up">
+        <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
+            <div class="number-box">03</div>
+            <h2 class="title-text">AI+跨境电商运营</h2>
+        </div>
+        <p class="text-lg leading-relaxed text-gray-300 mt-4" data-aos="fade-up" data-aos-delay="200">
+           爆发的AI,成熟的电商,ZIPX如何让AI赋能电商变得高效和省钱
+        </p>
+         <!-- Content of subsequent AI related sections -->
+    </section>
+
+    <!-- Content Section 11: 科技--新商业范式的到来, ”AI+” 将无处不在 -->
+     <section class="bento-section !mt-0 pt-0" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">科技--新商业范式的到来, ”AI+” 将无处不在</h3>
+        <p class="text-highlight-large-zh text-center mb-8" data-aos="fade-up" data-aos-delay="300">
+            “三位一体结构演化模式”: 人、组织、社会, 数字化
+        </p>
+         <div class="grid md:grid-cols-3 gap-8">
+             <div class="bento-card text-center" data-aos="zoom-in" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-2xl mb-2"><i class="fas fa-eye mr-2"></i>感知</h4>
+                 <p class="text-sm text-gray-300">“信息”系统</p>
+                 <p class="mt-4 text-gray-300 text-sm">以数据为信息媒介通过观察与整个人类环境交互捕获环境的信息</p>
+             </div>
+              <div class="bento-card text-center" data-aos="zoom-in" data-aos-delay="500">
+                 <h4 class="text-tesla-red font-bold text-2xl mb-2"><i class="fas fa-brain mr-2"></i>思考</h4>
+                 <p class="text-sm text-gray-300">“模型”系统</p>
+                 <p class="mt-4 text-gray-300 text-sm">将数据转化为知识表达,通过推理和规划来实现预期目标的记忆和泛化</p>
+             </div>
+              <div class="bento-card text-center" data-aos="zoom-in" data-aos-delay="600">
+                 <h4 class="text-tesla-red font-bold text-2xl mb-2"><i class="fas fa-cogs mr-2"></i>实现</h4>
+                 <p class="text-sm text-gray-300">“行动”系统</p>
+                 <p class="mt-4 text-gray-300 text-sm">与环境互动,控制能量转换,实现对物理、生物世界和人类社会的控制,达成预期目标</p>
+             </div>
+         </div>
+          <p class="text-highlight-large-zh text-center mt-8" data-aos="fade-up" data-aos-delay="700">与环境互动 更好地满足人类需求</p>
+          <p class="text-highlight-large-zh text-center mt-4" data-aos="fade-up" data-aos-delay="800">通用智能 涌现、代理 功能可见、具身</p>
+          <p class="text-highlight-large-zh text-center mt-4" data-aos="fade-up" data-aos-delay="900">共同进化 行动(实现)生态系统 / 模型(知识)生态系统 / 信息(感知)生态系统</p>
+         <!-- Simplified representation of the ecosystem/logos -->
+         <div class="text-center mt-8 text-gray-300" data-aos="fade-up" data-aos-delay="1000">
+             <p>Examples: IBM, Microsoft, Google, aws, OpenAI, TESLA</p>
+             <p class="text-sm mt-2">互联网范式: 信息无处不在 (1995-96)</p>
+             <p class="text-sm mt-1">下个范式: "行动"无处不在 / 新范式: "模型"知识无处不在 (2022-23)</p>
+         </div>
+    </section>
+
+    <!-- Content Section 12: 人和AI分工协作的时代 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">人和AI分工协作的时代</h3>
+         <div class="grid md:grid-cols-4 gap-8 text-center items-start">
+             <div data-aos="zoom-in" data-aos-delay="300">
+                 <div class="icon text-5xl text-tesla-red"><i class="fas fa-tractor"></i></div>
+                 <h4 class="text-white font-bold text-xl mt-2 mb-2">农业时代</h4>
+                 <p class="text-highlight-large-red">地球是方的</p>
+                 <p class="text-gray-300 text-sm mt-2">人和自然的分工协作。自然成长,人工种植和索取。</p>
+             </div>
+              <div data-aos="zoom-in" data-aos-delay="400">
+                 <div class="icon text-5xl text-tesla-red"><i class="fas fa-industry"></i></div>
+                 <h4 class="text-white font-bold text-xl mt-2 mb-2">工业时代</h4>
+                 <p class="text-highlight-large-red">地球是圆的</p>
+                  <p class="text-gray-300 text-sm mt-2">人和寡头(资本)的分工协作。寡头出资,个人执行。</p>
+             </div>
+              <div data-aos="zoom-in" data-aos-delay="500">
+                 <div class="icon text-5xl text-tesla-red"><i class="fas fa-info-circle"></i></div>
+                 <h4 class="text-white font-bold text-xl mt-2 mb-2">信息时代</h4>
+                 <p class="text-highlight-large-red">世界是平的</p>
+                  <p class="text-gray-300 text-sm mt-2">信息的获取和处理变得简单,形成全球化的分工和协作。</p>
+             </div>
+              <div data-aos="zoom-in" data-aos-delay="600">
+                 <div class="icon text-5xl text-tesla-red"><i class="fas fa-robot"></i></div>
+                 <h4 class="text-white font-bold text-xl mt-2 mb-2">人工智能</h4>
+                 <p class="text-highlight-large-red">世界是扁的</p>
+                  <p class="text-gray-300 text-sm mt-2">人和AI的协作。大数据、算力支持将信息加工成模型,机器自动执行,人协调,扁平化的组织。</p>
+                  <p class="text-gray-300 text-sm mt-4">70+人做成chatGPT,13人做成了midjourney</p>
+             </div>
+         </div>
+     </section>
+
+     <!-- Content Section 13: 关系搜索和向量搜索 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">关系搜索和向量搜索</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div data-aos="fade-right" data-aos-delay="300">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">关系搜索:</h4>
+                 <p class="text-gray-300">输入:《西游记》,吴承恩,编号:xxx</p>
+                 <p class="text-gray-300">输出:4楼A区#12书架</p>
+                  <div class="icon text-6xl text-tesla-red mt-4"><i class="fas fa-undo"></i></div>
+             </div>
+              <div data-aos="fade-left" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">向量搜索:</h4>
+                 <p class="text-gray-300">输入:一个和尚带3个动物探险取经的故事 (文字或图片)</p>
+                 <p class="text-gray-300">输出:《西游记》,吴承恩,4楼A区#12书架</p>
+                  <div class="icon text-6xl text-tesla-red mt-4"><i class="fas fa-redo"></i></div>
+             </div>
+         </div>
+         <p class="text-highlight-large-red text-center mt-8" data-aos="fade-up" data-aos-delay="500">
+             随着AI时代的到来,向量检索和数据库的完善,未来的搜索将想多模态方向发展,人机交互将更加便捷和精准。
+         </p>
+         <p class="text-highlight-large-red text-center mt-2" data-aos="fade-up" data-aos-delay="600">
+             向量搜索和向量数据库将是未来的核心检索方式。
+         </p>
+    </section>
+
+      <!-- Section 24: Market and Cooperation (04) -->
+    <section class="bento-section" data-aos="fade-up">
+        <div class="section-number-title" data-aos="fade-right" data-aos-delay="100">
+            <div class="number-box">04</div>
+            <h2 class="title-text">市场和合作</h2>
+        </div>
+         <!-- Content of subsequent Market/Cooperation sections -->
+    </section>
+
+    <!-- Content Section 14: zipx 为哪些用户服务 -->
+     <section class="bento-section !mt-0 pt-0" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx为哪些用户服务</h3>
+         <p class="text-highlight-large-red text-center mb-8" data-aos="fade-up" data-aos-delay="300">
+             加人VS裁员?zipx的option C
+         </p>
+         <div class="user-type-grid bento-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+             <div class="user-type-item bento-card" data-aos="zoom-in" data-aos-delay="400">
+                 <div class="heading">跨境大麦</div>
+                 <p class="text-gray-300 text-sm">100-500人团队,2/3人员做运营,日常作图、写描述、优化关键词和投放广告</p>
+                 <p class="benefit text-highlight-large-red">zipx可以极大降本增效</p>
+             </div>
+              <div class="user-type-item bento-card" data-aos="zoom-in" data-aos-delay="500">
+                 <div class="heading">独立站</div>
+                 <p class="text-gray-300 text-sm">持续的上产品,需要持续作图、写描述和关键词.</p>
+                 <p class="benefit text-highlight-large-red">zipx让上品变得简单</p>
+             </div>
+              <div class="user-type-item bento-card" data-aos="zoom-in" data-aos-delay="600">
+                 <div class="heading">跨境代运营</div>
+                 <p class="text-gray-300 text-sm">接更多的生意以为着加更多的平面设计和运营人员,意味管理和人力成本增加。</p>
+                 <p class="benefit text-highlight-large-red">zipx人均可运营的店数量增加5X</p>
+             </div>
+              <div class="user-type-item bento-card" data-aos="zoom-in" data-aos-delay="700">
+                 <div class="heading">普通商家和厂家</div>
+                 <p class="text-gray-300 text-sm">商家: 从供应链平台选品上架电商平台,需要不断的试品直到找出卖得好的产品</p>
+                 <p class="text-gray-300 text-sm mt-2">厂家: 没有专业的运营人员,不想增加团队去做产品图片设计和上架,通常简单地给供应链公司,利润薄,账期长</p>
+                 <p class="benefit text-highlight-large-red">zipx不用加人也能完成</p>
+             </div>
+         </div>
+         <div class="central-circle mx-auto" data-aos="zoom-in" data-aos-delay="800">跨境电商</div>
+     </section>
+
+    <!-- Content Section 15: 跨境电商的成熟市场和成长性市场 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">跨境电商的成熟市场和成长性市场</h3>
+         <div class="image-container rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="300">
+             <img src="https://via.placeholder.com/1200x600?text=Global+Ecommerce+Market+Map" alt="Global Ecommerce Market Map">
+         </div>
+         <div class="mt-8 space-y-4 text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="400">
+             <p><span class="text-tesla-red font-bold text-xl mr-2">1、</span>亚太、北美、西欧等发达国家和地区的电商已经逐步走向成熟稳定,跨境电商的稳业绩地区;</p>
+             <p><span class="text-tesla-red font-bold text-xl mr-2">2、</span>发展中国家和欠发达地区的跨境电商逐步发展,是平台和商家拓展的重点地区;</p>
+             <p><span class="text-tesla-red font-bold text-xl mr-2">3、</span><span class="text-highlight-red">小地区语种服务将成为一个新的刚需</span></p>
+         </div>
+         <p class="text-gray-300 text-sm mt-8" data-aos="fade-up" data-aos-delay="500">全球各地区电商发展情况统计数据 (具体数据点省略，见PPT图片)</p>
+     </section>
+
+    <!-- Content Section 16: 跨境电商产品上架市场估算 -->
+     <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">跨境电商产品上架市场估算</h3>
+         <h4 class="text-tesla-red font-bold text-xl text-center mb-4" data-aos="fade-up" data-aos-delay="300">亚马逊平台卖家市场估算</h4>
+         <!-- Simplified Table Structure -->
+         <div class="overflow-x-auto">
+            <table class="data-table w-full" data-aos="fade-up" data-aos-delay="400">
+                 <thead>
+                     <tr>
+                         <th>站点</th>
+                         <th>卖家数量</th>
+                         <th>市场总量($1000/年)</th>
+                         <th>中国卖家</th>
+                         <th>市场总量(¥5000/年)</th>
+                         <th>中国卖家占比</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr><td>美国</td><td>1170467.00</td><td>1170467000.00</td><td>614431.00</td><td>3072155000.00</td><td><strong>52.5%</strong></td></tr>
+                     <tr><td>德国</td><td>224800.00</td><td>224800000</td><td>129210</td><td>646050000</td><td><strong>57.5%</strong></td></tr>
+                      <tr><td>西班牙</td><td>169816.00</td><td>169816000.00</td><td>103531.00</td><td>517655000.00</td><td><strong>61.0%</strong></td></tr>
+                       <tr><td>法国</td><td>201128.00</td><td>201128000</td><td>120762</td><td>603810000</td><td><strong>60.0%</strong></td></tr>
+                        <tr><td>意大利</td><td>184317.00</td><td>184317000.00</td><td>110425.00</td><td>552125000.00</td><td><strong>59.9%</strong></td></tr>
+                         <tr><td>日本</td><td>263621.00</td><td>263621000</td><td>126580</td><td>632900000</td><td><strong>48.0%</strong></td></tr>
+                         <tr><td>英国</td><td>267186.00</td><td>267186000.00</td><td>136702.00</td><td>683510000.00</td><td><strong>51.2%</strong></td></tr>                         <tr><td>总计</td><td><strong>2481335.00</strong></td><td><strong>2481335000.00</strong></td><td><strong>1341641.00</strong></td><td><strong>6708205000.00</strong></td><td></td></tr>
+                 </tbody>
+            </table>
+         </div>
+         <p class="text-gray-300 text-sm mt-4" data-aos="fade-up" data-aos-delay="500">数据来源:卖家数据来源于“卖家精灵”的统计</p>
+         <p class="text-gray-300 text-sm mt-4 leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+             测算说明:以全球最大的跨境电商平台亚马逊为例。数据中卖家数量部分可能会有重复统计,因为存在一个卖家同时在多个国家和地区卖产品,但是无论在哪个国家上产品都需要图片和写LISTING,所以重复对整体市场总量的测算影响不大。<br>
+             价格说明:根据freelancer\fiver第三方兼职的价格测算,兼职外包做产品图片和写listing是行业同行做法,也是成本比较低的做法,一个SKU单价20-80美元不等,取中间位数测算,单价50美金,保守估计每家每年50个SKU。
+         </p>
+         <p class="text-gray-300 text-sm mt-4 leading-relaxed" data-aos="fade-up" data-aos-delay="700">
+             全球除了亚马逊,还有Ebay、wayfair、walmart、shopify等电商平台都大量需要使用作图和写listing,考虑同个语言同个产品只需要生成一次listing和图片,因此以亚马逊作为基础而不测算其他数据。事实上,加上其他电商平台的需求,市场总量无疑翻倍。
+         </p>
+    </section>
+
+    <!-- Content Section 17: 跨境电商成本拆解和zipx定位 -->
+    <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">跨境电商成本拆解和zipx定位</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div data-aos="fade-right" data-aos-delay="300">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">成本结构差异现象与难题</h4>
+                 <ul class="text-gray-300 space-y-3 text-sm">
+                     <li><span class="font-bold text-white">物流:</span> 跨境电商 > 其他。复杂度高,成本高,国际格局影响不确定性。</li>
+                     <li><span class="font-bold text-white">平台佣金及广告营销:</span> 跨境电商 > 淘品牌。海外平台费用高,缺乏营销经验。</li>
+                     <li><span class="font-bold text-white">人员及其他杂项:</span> 跨境电商 > 消费品品牌。业务和人员规模扩大,管理经验不足。</li>
+                 </ul>
+                 <p class="text-highlight-large-red mt-8">
+                    1、人力资源和杂项成本占据1/3以上的商家的运营成本,人力工作主要集中在作图和写listing。
+                 </p>
+                 <p class="text-highlight-large-red mt-2">
+                    2、AI替代重复性工作具有可行性和迫切性。
+                 </p>
+             </div>
+              <div data-aos="fade-left" data-aos-delay="400">
+                 <h4 class="text-tesla-red font-bold text-xl mb-4">从卖家规模看服务客群差异化</h4>
+                 <ul class="text-gray-300 space-y-3 text-sm">
+                     <li><span class="font-bold text-white">KA级卖家:</span> 业务模块均有成规模专业团队,能内部覆盖全链路。</li>
+                     <li><span class="font-bold text-white">S级卖家:</span> 部分业务借助专业服务商降本增效。</li>
+                     <li><span class="font-bold text-white">腰部卖家:</span> 自有团队专注核心业务,借助服务商完成销售全链路。</li>
+                     <li><span class="font-bold text-white">中小卖家:</span> 团队规模小,仅在核心业务有少量人员。</li>
+                 </ul>
+                  <h4 class="text-tesla-red font-bold text-xl mt-6 mb-4">zipx定位与服务</h4>
+                  <p class="text-gray-300 text-sm">
+                      1、<span class="font-bold text-white">大麦、代运营:</span> zipx可以采用私有化部署方式,满足用户专业性、安全性和稳定性的需求;
+                  </p>
+                  <p class="text-gray-300 text-sm mt-2">
+                      2、<span class="font-bold text-white">针对广大中小卖家和厂家:</span> 提供简单易用的前端,满足日常零散图片生成和写listing的需求
+                  </p>
+             </div>
+         </div>
+         <!-- Placeholder for the comparison charts -->
+         <div class="image-container mt-8 rounded-lg overflow-hidden border border-tesla-red/20" data-aos="fade-up" data-aos-delay="500">
+            <img src="https://via.placeholder.com/1200x600?text=Cost+Breakdown+and+Target+Audience" alt="Cost Breakdown and Target Audience charts">
+         </div>
+    </section>
+
+    <!-- Content Section 18: zipx 的会员体系和合作 -->
+    <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx的会员体系和合作</h3>
+         <h4 class="text-tesla-red font-bold text-xl text-center mb-4" data-aos="fade-up" data-aos-delay="300">会员级别及权益</h4>
+         <div class="overflow-x-auto">
+            <table class="data-table w-full" data-aos="fade-up" data-aos-delay="400">
+                 <thead>
+                     <tr>
+                         <th>会员级别</th>
+                         <th>费用(RMB)</th>
+                         <th>积分数量</th>
+                         <th>积分定价(元/积分)</th>
+                         <th>会员权益</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr><td>注册用户</td><td>0</td><td>65</td><td>0</td><td>●1次产品作图/描述生成, ●推荐奖励积分</td></tr>
+                     <tr><td>测试用户</td><td>9</td><td>68</td><td>0.132</td><td>产品作图/描述生成, ●推荐奖励积分, ●1台设备使用</td></tr>
+                     <tr><td>普通VIP用户</td><td>198</td><td>240</td><td>0.825</td><td>■产品作图/描述生成, ■推荐奖励积分, ■2台设备使用</td></tr>
+                     <tr><td>VIP用户</td><td>888</td><td>1200</td><td>0.74</td><td>●产品作图/描述生成, ●推荐奖励积分, ●10台设备使用</td></tr>
+                     <tr><td>企业用户</td><td>1998</td><td>3600</td><td>0.553</td><td>▲产品作图/描述生成, ▲推荐奖励积分, ▲不限设备使用</td></tr>
+                 </tbody>
+            </table>
+         </div>
+         <p class="text-gray-300 text-sm mt-4" data-aos="fade-up" data-aos-delay="500">
+             渠道伙伴: 大户、企业级用户的私有化部署 <span class="text-white font-bold ml-4">添加微信: Cartney624</span>
+         </p>
+          <h4 class="text-tesla-red font-bold text-xl mt-6 mb-2" data-aos="fade-up" data-aos-delay="600">积分说明</h4>
+          <p class="text-gray-300 text-sm leading-relaxed" data-aos="fade-up" data-aos-delay="700">
+              1、积分永久保存,不能申请退费。使用完后用户再自行购买,按购买会员级别付费;<br>
+              2、操作消耗:生成一次图片消耗4积分,下载一张图片消耗6积分;生成一次产品描述消耗5积分;生成不成功,积分将退回。
+          </p>
+    </section>
+
+    <!-- Content Section 19: zipx 让你知道 (Marketing & Cooperation) -->
+    <section class="bento-section" data-aos="fade-up">
+        <h3 class="text-white font-bold text-3xl mb-6" data-aos="fade-up" data-aos-delay="200">zipx 让你知道 (市场推广与合作)</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+             <div class="bento-card" data-aos="fade-right" data-aos-delay="300">
+                 <div class="strategy-item text-center">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h4 class="text-tesla-red font-bold text-xl mb-2">合作开发,私有化部署</h4>
+                    <p class="text-gray-300 text-sm">针对行业大户(大麦、代运营及培训机构、行业SAAS)合作研发产品,给大B提供个性化的前端系统和现有SAAS集成服务,大B以自己品牌开展市场和服务用户</p>
+                 </div>
+             </div>
+              <div class="bento-card" data-aos="fade-left" data-aos-delay="400">
+                 <div class="strategy-item text-center">
+                    <div class="icon"><i class="fas fa-tags"></i></div>
+                    <h4 class="text-tesla-red font-bold text-xl mb-2">提供免费试用和折扣</h4>
+                    <p class="text-gray-300 text-sm">允许注册客户免费尝试zipx.ai的服务,每个注册用户可以获得免费生成图片和描述5次,直接体验平台的产品和服务。</p>
+                 </div>
+             </div>
+             <div class="bento-card" data-aos="fade-right" data-aos-delay="500">
+                 <div class="strategy-item text-center">
+                    <div class="icon"><i class="fas fa-share-alt"></i></div>
+                    <h4 class="text-tesla-red font-bold text-xl mb-2">利用社交媒体</h4>
+                    <p class="text-gray-300 text-sm">打造自己的新媒体矩阵,通过视频内容输出培育和吸引用户,做品牌和AI助力的宣传和引流。</p>
+                 </div>
+             </div>
+              <div class="bento-card" data-aos="fade-left" data-aos-delay="600">
+                 <div class="strategy-item text-center">
+                    <div class="icon"><i class="fas fa-building"></i></div>
+                    <h4 class="text-tesla-red font-bold text-xl mb-2">参加贸易展会和活动</h4>
+                    <p class="text-gray-300 text-sm">参加电商行业专业展会等活动,直接接触达行业的目标用户,这可以将品牌建立为电子商务行业中值得信赖的解决方案。</p>
+                 </div>
+             </div>
+             <div class="bento-card md:col-span-2" data-aos="fade-up" data-aos-delay="700">
+                  <div class="strategy-item text-center">
+                    <div class="icon"><i class="fas fa-user-friends"></i></div>
+                    <h4 class="text-tesla-red font-bold text-xl mb-2">与影响者合作</h4>
+                    <p class="text-gray-300 text-sm">行业服务团体、科技媒体大V等合作,培训市场使用AI助力电商运营</p>
+                 </div>
+                  <div class="strategy-item text-center mt-6">
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                    <h4 class="text-tesla-red font-bold text-xl mb-2">利用搜索引擎优化(SEO)</h4>
+                    <p class="text-gray-300 text-sm">优化zipx.ai的网站和内容,以提高搜索引擎的可见性并吸引有机流量。这可以吸引正在积极寻找类似zipx.ai解决方案的潜在客户。</p>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+
+     <!-- Section 28: Thank You -->
+     <section class="bento-section text-center" data-aos="fade-in">
+        <h2 class="section-title text-white font-bold text-6xl mb-8" data-aos="fade-up" data-aos-delay="200">THANK YOU</h2>
+         <h3 class="text-white font-bold text-4xl mb-8" data-aos="fade-up" data-aos-delay="300">zipx团队非常感谢您的关注</h3>
+         <div class="thanks-grid bento-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            <div class="thanks-item" data-aos="zoom-in" data-aos-delay="400">
+                 <div class="icon"><i class="fas fa-heart"></i></div>
+                 <div class="text-zh">志同道合</div>
+                 <p class="text-en">欢迎同行,人、财、资源和Ideas,我们都需要</p>
+             </div>
+              <div class="thanks-item" data-aos="zoom-in" data-aos-delay="500">
+                 <div class="icon"><i class="fas fa-smile-beam"></i></div>
+                 <div class="text-zh">感兴趣</div>
+                 <p class="text-en">欢迎体验和反馈,拍砖也可以</p>
+             </div>
+             <div class="thanks-item" data-aos="zoom-in" data-aos-delay="600">
+                 <div class="icon"><i class="fas fa-paper-plane"></i></div>
+                 <div class="text-zh">一般的</div>
+                 <p class="text-en">欢迎告诉给你身边可能感兴趣的朋友</p>
+             </div>
+              <div class="thanks-item" data-aos="zoom-in" data-aos-delay="700">
+                 <div class="icon"><i class="fas fa-star"></i></div>
+                 <div class="text-zh">都不是</div>
+                 <p class="text-en">非常感谢你,至少我在你心理留个印象</p>
+             </div>
+         </div>
+     </section>
+
+
+    <!-- AOS Initialization Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800, // values from 0 to 3000, with step 50ms
+        easing: 'ease-in-out', // default easing for AOS animations
+        once: true, // whether animation should happen only once - while scrolling down
+        mirror: false, // whether elements should animate out while scrolling past them
+        offset: 100, // offset (in px) from the top or bottom of the browser to trigger animations
+      });
+    </script>
+
+    <!-- p5.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+
+    <!-- Your p5.js Sketch for Particle Background -->
+    <script>
+        let particles = [];
+        const numParticles = 150; // Adjust based on desired density and performance
+        const maxDist = 120; // Max distance for drawing lines between particles
+        const particleColor = [255, 255, 255]; // White particles
+        const lineColor = [255, 255, 255]; // White lines, will use alpha
+
+        class Particle {
+            constructor() {
+                // Start particles randomly across the entire window
+                this.pos = createVector(random(width), random(height));
+                // Give particles a slight random velocity
+                this.vel = createVector(random(-0.5, 0.5), random(-0.5, 0.5));
+                this.size = random(1, 3); // Random size for variation
+            }
+
+            update() {
+                this.pos.add(this.vel);
+                this.edges(); // Keep particles within the screen
+            }
+
+            edges() {
+                // Wrap particles around the screen edges
+                if (this.pos.x < 0) this.pos.x = width;
+                if (this.pos.x > width) this.pos.x = 0;
+                if (this.pos.y < 0) this.pos.y = height;
+                if (this.pos.y > height) this.pos.y = 0;
+            }
+
+            display() {
+                noStroke();
+                // Semi-transparent particles
+                fill(particleColor[0], particleColor[1], particleColor[2], 100);
+                ellipse(this.pos.x, this.pos.y, this.size);
+            }
+
+            // Connect particle to another particle if they are close
+            connect(other) {
+                const d = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
+                if (d < maxDist) {
+                    // Draw a line, opacity decreases as distance approaches maxDist
+                    const alpha = map(d, 0, maxDist, 150, 0); // Fade out lines based on distance
+                    stroke(lineColor[0], lineColor[1], lineColor[2], alpha); // Semi-transparent lines
+                    strokeWeight(0.5); // Thin lines
+                    line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
+                }
+            }
+        }
+
+        // p5.js setup function - runs once at the beginning
+        function setup() {
+            // Create canvas covering the entire window
+            let canvas = createCanvas(windowWidth, windowHeight);
+            canvas.position(0, 0); // Position canvas at the top-left corner
+            canvas.style('z-index', '-1'); // Send canvas to the background
+            canvas.style('pointer-events', 'none'); // Allow mouse events to pass through canvas
+
+            // Create particles
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        // p5.js draw function - runs continuously
+        function draw() {
+            background(0); // Clear background with black each frame
+
+            // Update and display particles, and connect them
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].display();
+
+                // Connect to other particles (only check subsequent particles to avoid drawing lines twice)
+                for (let j = i + 1; j < particles.length; j++) {
+                    particles[i].connect(particles[j]);
+                }
+            }
+        }
+
+        // p5.js windowResized function - called when the window is resized
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+            // Optional: Re-initialize particles if their starting positions should adapt to new size
+            // particles = [];
+            // for (let i = 0; i < numParticles; i++) {
+            //     particles.push(new Particle());
+            // }
+        }
+
+    </script>
+
+</body>
+</html>
