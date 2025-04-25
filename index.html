@@ -23,8 +23,9 @@
             color: var(--text-color);
             font-family: sans-serif;
             overflow-x: hidden; /* Prevent horizontal scroll caused by animations */
-            position: relative; /* Needed for z-index context */
+            position: relative; /* Needed for z-index context and absolute canvas */
             min-height: 100vh; /* Ensure gradient covers at least viewport height */
+             /* Allow content to define body height */
         }
         h1, h2, h3, h4, h5, h6 {
             color: #fff; /* White headings */
@@ -218,19 +219,19 @@
 
         /* Style for the p5 canvas container */
         #canvas-container {
-            position: fixed; /* Covers the entire viewport */
+            /* Use absolute positioning to cover the document height */
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%; /* Cover full width of parent (body) */
+            height: 100%; /* Cover full height of parent (body) */
             z-index: -1; /* Put behind other content */
             pointer-events: none; /* Ensure it doesn't block mouse events */
-            overflow: hidden; /* Hide particles outside viewport */
+            overflow: hidden; /* Hide particles outside container */
         }
         canvas {
             display: block;
-            width: 100%; /* Ensure canvas stretches within container */
-            height: 100%; /* Ensure canvas stretches within container */
+            /* Canvas size will be set by p5.js based on document dimensions */
         }
 
         /* Specific styles for the summary section (Slide 29) */
@@ -305,7 +306,7 @@
 </head>
 <body class="leading-relaxed">
 
-    <!-- p5.js Canvas Container -->
+    <!-- p5.js Canvas Container - Covers the entire document height -->
     <div id="canvas-container"></div>
 
     <!-- Section 1: Title / Intro -->
@@ -315,7 +316,7 @@
              <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
          </div>
           <!-- Tri Logo Top Right -->
-         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8" data-aos="fade-left" data-aos-delay="300">
+         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
              <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
          </div>
 
@@ -459,7 +460,7 @@
                  <div class="lg:col-span-2" data-aos="fade-right" data-aos-delay="200">
                      <div class="theme-card p-6 mb-6">
                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-flask mr-2 text-tesla-red"></i>万能工匠建构玩学具工效理论研究</h3>
-                         <p class="text-gray-300 text-sm md:text-base">人体工效 / 发展工效 / 教育工效</p>
+                         <p class="text-gray-300 text-sm md:text-base">人体工效 / 发展工效 / 教育工效</p> <!-- Adjusted text size -->
                          <ul class="text-xs md:text-sm mt-2 text-gray-400"> <!-- Adjusted text size -->
                              <li>课程适应性, 学习性, 互动性</li>
                              <li>情绪与社会性发展, 动作发展, 言语发展, 认知发展</li>
@@ -677,7 +678,7 @@
                  </div>
              </div>
          </div>
-    </section>
+     </section>
 
      <!-- Section 11-14: Product Ergonomics & Core Advantages -->
      <section class="bento-section relative px-4" data-aos="fade-up">
@@ -1184,7 +1185,7 @@
 
         class Particle {
             constructor() {
-                // Start particles randomly across the entire window
+                // Start particles randomly across the entire *document* height initially
                 this.pos = createVector(random(width), random(height));
                 this.vel = createVector(random(-0.3, 0.3), random(-0.3, 0.3)); // Slower movement
                 // Orange/Reddish transparent particles
@@ -1197,7 +1198,7 @@
             }
 
             edges() {
-                // Wrap around edges
+                // Wrap around edges of the *canvas* (which covers the document)
                 if (this.pos.x < 0) this.pos.x = width;
                 if (this.pos.x > width) this.pos.x = 0;
                 if (this.pos.y < 0) this.pos.y = height;
@@ -1213,10 +1214,9 @@
             connect(other) {
                 const d = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
                 if (d < MAX_DIST) {
-                     // Line color fading from red to transparent orange/red
-                     // Use lerpColor to transition between two colors + alpha mapping
-                     const c1 = color(227, 25, 55, map(d, 0, MAX_DIST, 150, 0)); // Tesla Red, fading transparency
-                     const c2 = color(255, 100, 0, map(d, 0, MAX_DIST, 100, 0)); // A more orange color, fading transparency
+                     // Line color blending between Tesla Red and a more orange hue, with fading transparency
+                     const c1 = color(227, 25, 55, map(d, 0, MAX_DIST, 150, 0)); // Tesla Red, fading alpha
+                     const c2 = color(255, 100, 0, map(d, 0, MAX_DIST, 100, 0)); // Orange, fading alpha
                      const lineColor = lerpColor(c1, c2, d / MAX_DIST); // Blend based on distance
 
                      stroke(lineColor);
@@ -1228,27 +1228,42 @@
 
         // p5.js setup function
         function setup() {
-            // Create canvas within the container div
-            const canvasContainer = select('#canvas-container');
-            // Use windowWidth/Height for canvas size as it's fixed background
-            let canvas = createCanvas(windowWidth, windowHeight);
-            // The parent('#canvas-container') call isn't strictly necessary for a fixed canvas,
-            // but good practice if the container had complex positioning.
-            // canvas.parent('canvas-container');
-            canvas.position(0, 0); // Ensure it's at 0,0
+            // Create canvas covering the entire *document* width and height
+            // Use window.innerWidth for width as it handles horizontal responsiveness
+            // Use document.body.offsetHeight for the full scrollable height
+            let canvas = createCanvas(window.innerWidth, document.body.offsetHeight);
+
+            // Position canvas absolutely at the top-left of the body
+            canvas.position(0, 0);
             canvas.style('z-index', '-1'); // Send canvas to the background
             canvas.style('pointer-events', 'none'); // Allow mouse events to pass through canvas
+            // Ensure the canvas element itself has the correct dimensions set by p5.js
+            // (The CSS width/height 100% on #canvas-container is helpful but p5 also sets inline styles)
 
-            // Create particles
+            background(0); // Initial black background
+
+            // Create particles distributed across the initial full document size
             for (let i = 0; i < NUM_PARTICLES; i++) {
                 particles.push(new Particle());
             }
+
+             // Optional: Add a small delay before initial draw to ensure DOM is settled
+             // This might help document.body.offsetHeight be more accurate initially
+             // setTimeout(() => {
+             //    resizeCanvas(window.innerWidth, document.body.offsetHeight);
+             //    background(0); // Redraw background after resize
+             //     particles = []; // Re-distribute particles
+             //     for (let i = 0; i < NUM_PARTICLES; i++) {
+             //        particles.push(new Particle());
+             //    }
+             // }, 100); // 100ms delay
         }
 
         // p5.js draw function
         function draw() {
             // Use a slightly transparent background to create subtle trails and blend with CSS gradient
-            background(0, 0, 0, 20); // Low alpha black for fade effect
+            // A low alpha black works well for dark backgrounds
+            background(0, 0, 0, 20); // Or rgba(0, 0, 0, 0.05) depending on desired trail length
 
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
@@ -1260,17 +1275,32 @@
             }
         }
 
-        // p5.js windowResized function
+        // p5.js windowResized function - called when the *viewport* is resized
         function windowResized() {
-             // Resize the canvas to new window dimensions
-             resizeCanvas(windowWidth, windowHeight);
-             background(0); // Redraw background on resize
-             // No need to re-initialize particles for a simple movement pattern
-             // particles = [];
-             // for (let i = 0; i < NUM_PARTICLES; i++) {
-             //     particles.push(new Particle());
-             // }
+             // Resize the canvas to new window dimensions and the current document height
+             // Note: document.body.offsetHeight might not update instantly if resize reflows content significantly,
+             // but it's the best we can do with just p5 and plain JS on static content.
+             resizeCanvas(window.innerWidth, document.body.offsetHeight);
+             background(0); // Clear canvas and redraw background on resize
+             // For simplicity with static content, we won't re-distribute particles on every viewport resize.
+             // If content height changed dynamically after load, you'd need a MutationObserver or similar
+             // to trigger a canvas resize and potentially particle re-distribution.
         }
+
+        // Basic attempt to handle initial load height and potential late content rendering
+        window.addEventListener('load', () => {
+             if (typeof setup === 'function') {
+                 // Ensure canvas is sized correctly after all content is loaded
+                 resizeCanvas(window.innerWidth, document.body.offsetHeight);
+                 background(0); // Redraw background
+                  // Optional: Re-distribute particles if needed
+                  // particles = [];
+                  // for (let i = 0; i < NUM_PARTICLES; i++) {
+                  //    particles.push(new Particle());
+                  // }
+             }
+        });
+
 
     </script>
 
