@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>贝玛教育新品发布会</title>
+    <title>湖南东晖耀建设有限公司</title>
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
@@ -13,19 +13,22 @@
     <style>
         :root {
             --tesla-red: #E31937;
-            --text-color: #f3f4f6; /* Light gray text for contrast */
-            /* Using a darker orange/red gradient for background */
-            --bg-gradient-start: #ff8c00; /* Dark orange */
-            --bg-gradient-end: #cc5200; /* Deeper orange */
+            --orange-logo: #FFA500; /* Orange from the logo */
+            --yellow-logo: #FFD700; /* Yellow from the logo */
+            --dark-bg: #1a1a1a; /* Dark background */
+            --card-bg: rgba(255, 165, 0, 0.05); /* Subtle orange transparent background for cards */
+            --card-border: rgba(255, 165, 0, 0.3); /* Semi-transparent orange border */
+            --text-light: #e5e7eb; /* Light gray text */
+            --text-dark: #1a1a1a; /* Dark text for contrasting backgrounds */
         }
         body {
-            background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
-            color: var(--text-color);
+            background-color: var(--dark-bg);
+            color: var(--text-light);
             font-family: sans-serif;
             overflow-x: hidden; /* Prevent horizontal scroll caused by animations */
-            position: relative; /* Needed for z-index context and absolute canvas */
-            min-height: 100vh; /* Ensure gradient covers at least viewport height */
-             /* Allow content to define body height */
+            position: relative; /* Needed for z-index context */
+            min-height: 100vh; /* Ensure body covers at least viewport height */
+            padding-bottom: 4rem; /* Add space at the bottom */
         }
         h1, h2, h3, h4, h5, h6 {
             color: #fff; /* White headings */
@@ -33,1132 +36,818 @@
         .text-tesla-red {
             color: var(--tesla-red);
         }
-        .bg-tesla-red {
-            background-color: var(--tesla-red);
+        .text-orange-logo {
+            color: var(--orange-logo);
         }
-        .border-tesla-red {
-            border-color: var(--tesla-red);
+         .text-yellow-logo {
+            color: var(--yellow-logo);
+         }
+
+
+        /* General Section Styling */
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px; /* Limit content width */
+            margin: 0 auto;
+            position: relative;
+            z-index: 10; /* Ensure content is above particles */
         }
-        /* Custom Bento Grid like sections */
-        .bento-section {
-            margin-bottom: 4rem; /* Spacing between sections */
-            padding: 2rem 0;
+
+        /* Hero/Welcome Section */
+        .hero-section {
+            min-height: 80vh; /* Make hero section tall */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
-        .bento-grid {
-            display: grid;
-            gap: 1.5rem; /* Gap between grid items */
+        .hero-title {
+             font-size: clamp(3rem, 10vw, 6rem); /* Very large title */
+             font-weight: bold;
+             line-height: 1.1;
+             color: #fff;
+             margin-bottom: 1.5rem;
         }
-         /* Gradient overlay for visual elements - keep subtle */
-        .gradient-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)); /* Subtle dark overlay */
-            z-index: 1;
+        .hero-subtitle {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+             color: var(--orange-logo);
+             font-weight: bold;
+             margin-bottom: 2rem;
         }
-        .section-title {
-             font-size: clamp(2.5rem, 8vw, 6rem); /* Adjusted min font size for smaller screens */
+         .hero-logo img {
+             width: clamp(150px, 40vw, 300px); /* Responsive logo size */
+             height: auto;
+             margin-bottom: 2rem;
+             filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.5)); /* Subtle glow */
+         }
+
+        /* Section Title Styling */
+         .section-title {
+             font-size: clamp(2.5rem, 7vw, 5rem); /* Large section title */
              font-weight: bold;
              margin-bottom: 2rem;
              position: relative;
              display: inline-block; /* Allows ::after positioning */
              color: #fff;
-        }
+         }
          .section-title::after {
-            content: '';
-            display: block;
-            width: 50%; /* Red line under title */
-            height: 8px;
-            background: linear-gradient(to right, var(--tesla-red), rgba(227, 25, 55, 0.3)); /* Transparent gradient */
-            margin-top: 0.5rem;
-            opacity: 0.9; /* Use transparency for科技感 */
-        }
-         /* Specific style for the vertical 20 25 */
-         .vertical-text {
-             display: flex;
-             flex-direction: column;
-             font-size: clamp(3rem, 12vw, 8rem); /* Adjusted min font size */
-             font-weight: bold;
-             line-height: 0.9;
-             color: #fff;
-             margin-right: 1rem; /* Slightly reduced margin for mobile */
+             content: '';
+             display: block;
+             width: 60%; /* Highlight line under title */
+             height: 6px;
+             background: linear-gradient(to right, var(--tesla-red), rgba(227, 25, 55, 0.3)); /* Transparent gradient red line */
+             margin-top: 0.5rem;
+             opacity: 0.8;
+         }
+         .section-title.text-right::after {
+              margin-left: auto; /* Align line to the right */
          }
 
-         /* Card styles */
-        .theme-card {
-            background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black */
-            border: 1px solid rgba(227, 25, 55, 0.4); /* Semi-transparent red border */
-            padding: 1.5rem;
+
+        /* Bento Card/Block Styling */
+        .bento-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
-            backdrop-filter: blur(3px); /* Frosted glass effect */
-            position: relative;
-            overflow: hidden;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+             backdrop-filter: blur(3px); /* Subtle blur */
         }
-        .theme-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60px; /* Slightly smaller */
-            height: 60px; /* Slightly smaller */
-            background: linear-gradient(to bottom left, var(--tesla-red), transparent);
-            opacity: 0.1;
-            transform: translate(40%, -40%) rotate(45deg);
-            pointer-events: none;
-        }
-         .theme-card h3 {
-             color: var(--tesla-red);
-             font-size: 1.3rem; /* Slightly smaller on mobile */
-             font-weight: bold;
-             margin-bottom: 0.5rem;
+         .bento-card:hover {
+             transform: translateY(-4px);
+             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
          }
-          @media (min-width: 768px) { /* Adjust size back on desktop */
-               .theme-card h3 {
-                   font-size: 1.5rem;
-               }
-               .theme-card::before {
-                   width: 80px;
-                   height: 80px;
-               }
-          }
-          .theme-card p {
-             color: rgba(243, 244, 246, 0.9); /* Slightly transparent text */
-          }
-
-         /* Line graphics */
-         .line-graphic {
-             display: flex;
-             align-items: center;
+         .bento-card h3 {
+             color: var(--yellow-logo); /* Yellow heading */
+             font-size: 1.8rem;
+             font-weight: bold;
              margin-bottom: 1rem;
          }
-         .line-graphic .icon {
-             width: 24px; /* Smaller icon on mobile */
-             height: 24px; /* Smaller icon on mobile */
-             border: 2px solid var(--tesla-red);
-             border-radius: 50%;
+
+        /* Specific Section Styles */
+         .profile-text {
+             font-size: 1.1rem;
+             line-height: 1.8;
+             color: var(--text-light);
+         }
+         .motto-list {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 1.5rem;
+             margin-top: 2rem;
+         }
+         .motto-item {
+             font-size: 1.2rem;
+             font-weight: bold;
+             color: var(--orange-logo);
              display: flex;
              align-items: center;
-             justify-content: center;
+             gap: 0.5rem;
+         }
+         .motto-item i {
              color: var(--tesla-red);
-             font-size: 0.9rem; /* Smaller icon size */
-             flex-shrink: 0;
-             background-color: rgba(0, 0, 0, 0.5);
-         }
-          @media (min-width: 768px) { /* Adjust size back on desktop */
-              .line-graphic .icon {
-                  width: 30px;
-                  height: 30px;
-                  font-size: 1rem;
-              }
-          }
-         .line-graphic .line {
-             flex-grow: 1;
-             height: 2px;
-             background: linear-gradient(to right, var(--tesla-red), rgba(227, 25, 55, 0.3));
-             opacity: 0.8;
-             margin-left: 0.8rem;
-             margin-right: 0.8rem; /* Add right margin for text */
-         }
-         .line-graphic div {
-              flex-grow: 1;
-              color: rgba(243, 244, 246, 0.9);
-              font-size: 0.9rem; /* Smaller text on mobile */
-          }
-          @media (min-width: 768px) {
-              .line-graphic div {
-                  font-size: 1rem;
-              }
-          }
-         .line-graphic h4 {
-             color: #fff;
-             font-weight: bold;
-             margin-bottom: 0.3rem;
+             font-size: 1.5rem;
          }
 
-         /* Image styles */
-         .image-container {
-             position: relative;
-             overflow: hidden;
-             border-radius: 8px;
-             border: 1px solid rgba(227, 25, 55, 0.2);
-             z-index: 1;
-         }
-         .image-container img {
+        /* Certifications/Images Grid */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+         .cert-grid img {
              display: block;
              width: 100%;
              height: auto;
-             object-fit: cover;
+             border: 1px solid rgba(255, 255, 255, 0.1);
+             border-radius: 4px;
+             transition: transform 0.3s ease;
+         }
+         .cert-grid img:hover {
+             transform: scale(1.03);
          }
 
-         /* Logo style */
-         .logo {
-             height: 40px; /* Adjust size for mobile */
-             width: auto;
-             margin-right: 1rem;
-             flex-shrink: 0;
-         }
-         @media (min-width: 768px) { /* Adjust size back on desktop */
-             .logo {
-                 height: 50px;
-             }
-         }
-
-         /* Tri-element world logo style */
-         .tri-logo {
-             height: 60px; /* Adjust size for mobile */
-             width: auto;
-             opacity: 0.8;
-         }
-          @media (min-width: 768px) { /* Adjust size back on desktop */
-              .tri-logo {
-                  height: 80px;
-              }
-          }
-
-        /* Style for the p5 canvas container */
-        #canvas-container {
-            /* Use absolute positioning to cover the document height */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%; /* Cover full width of parent (body) */
-            height: 100%; /* Cover full height of parent (body) */
-            z-index: -1; /* Put behind other content */
-            pointer-events: none; /* Ensure it doesn't block mouse events */
-            overflow: hidden; /* Hide particles outside container */
+        /* Qualifications List */
+        .qualifications-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        canvas {
-            display: block;
-            /* Canvas size will be set by p5.js based on document dimensions */
-        }
+         .qualification-item {
+             background-color: rgba(255, 165, 0, 0.1); /* Subtle orange */
+             border-left: 4px solid var(--orange-logo);
+             padding: 1rem;
+             font-size: 1rem;
+             color: var(--text-light);
+         }
+         .qualification-item strong {
+             color: #fff;
+         }
 
-        /* Specific styles for the summary section (Slide 29) */
-        .summary-grid {
-             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted min width for mobile */
-        }
-        .summary-item {
+        /* Branch Offices */
+         .branch-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+             gap: 1rem;
+         }
+         .branch-item {
+              background: linear-gradient(to right, rgba(255, 165, 0, 0.8), rgba(255, 165, 0, 0.5)); /* Orange gradient button */
+              color: var(--text-dark);
+              font-weight: bold;
+              padding: 1rem;
+              border-radius: 25px; /* Pill shape */
+              text-align: center;
+              transition: transform 0.2s ease;
+         }
+         .branch-item:hover {
+             transform: scale(1.05);
+         }
+         .branch-item i {
+             margin-right: 0.5rem;
+             color: rgba(0,0,0,0.3); /* Dark icon */
+         }
+
+        /* Project/Social/Culture Item Layouts */
+        .item-layout {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-center;
-            padding: 1rem; /* Reduced padding */
-            background-color: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(227, 25, 55, 0.5);
-            border-radius: 8px;
-            backdrop-filter: blur(3px);
-            text-align: center;
-            color: #fff;
-        }
-        .summary-item .number {
-            font-size: 2.5rem; /* Smaller font size on mobile */
-            font-weight: bold;
-            color: var(--tesla-red);
-            line-height: 1;
-            margin-bottom: 0.5rem;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
          @media (min-width: 768px) {
-             .summary-item .number {
-                 font-size: 3rem;
+             .item-layout {
+                 flex-direction: row;
+                 align-items: center;
              }
-             .summary-item {
-                 padding: 1.5rem;
+              .item-layout.reverse {
+                  flex-direction: row-reverse;
+              }
+             .item-layout .image-block {
+                 flex: 1;
+             }
+             .item-layout .text-block {
+                 flex: 1;
              }
          }
-        .summary-item .large-icon {
-             font-size: 2.5rem; /* Smaller icon size on mobile */
-             color: var(--tesla-red);
+         .item-layout .image-block img {
+             display: block;
+             width: 100%;
+             height: auto;
+             border-radius: 8px;
+              border: 1px solid rgba(255, 165, 0, 0.2);
+         }
+         .item-layout .text-block {
+             background-color: var(--card-bg);
+             border: 1px solid var(--card-border);
+             border-radius: 8px;
+             padding: 1.5rem;
+         }
+         .item-layout .text-block h3 {
+             margin-top: 0; /* Remove top margin */
+         }
+         .item-layout .text-block p {
+             font-size: 1rem;
+             line-height: 1.7;
+             color: var(--text-light);
+         }
+         .item-layout .image-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+             gap: 1rem;
+         }
+         .item-layout .image-grid img {
+              display: block;
+              width: 100%;
+              height: auto;
+              border-radius: 4px;
+               border: 1px solid rgba(255, 255, 255, 0.1);
+         }
+
+        /* Footer Contact Info */
+        .contact-info {
+             max-width: 600px;
+             margin: 0 auto;
+             text-align: center;
+             margin-top: 3rem;
+             padding-top: 2rem;
+             border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator line */
+        }
+         .contact-info h3 {
+             font-size: 2rem;
+             color: #fff;
+             margin-bottom: 1.5rem;
+         }
+         .contact-details {
+             font-size: 1.1rem;
+             line-height: 1.7;
+             color: var(--text-light);
+         }
+         .contact-details p {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             gap: 0.8rem;
              margin-bottom: 0.5rem;
+         }
+         .contact-details i {
+             color: var(--tesla-red);
+         }
+         .contact-qr img {
+             width: 120px;
+             height: 120px;
+             margin: 1.5rem auto 0;
+             border-radius: 4px;
+             border: 2px solid rgba(255, 255, 255, 0.3);
+         }
+
+
+         /* p5.js canvas styling */
+        canvas {
+            display: block;
+            position: fixed; /* Covers the entire viewport */
+            top: 0;
+            left: 0;
+            z-index: -1; /* Put behind other content */
+            pointer-events: none; /* Allow mouse events to pass through canvas */
+            width: 100vw;
+            height: 100vh;
         }
-         @media (min-width: 768px) {
-             .summary-item .large-icon {
-                 font-size: 3rem;
-             }
-         }
-         .summary-item .text-label {
-             font-size: 1.1rem; /* Slightly smaller on mobile */
-             font-weight: bold;
-             margin-top: 0.5rem;
-         }
-          @media (min-width: 768px) {
-             .summary-item .text-label {
-                 font-size: 1.2rem;
-             }
-         }
-         .summary-item .material-list {
-             font-size: 0.9rem; /* Smaller text on mobile */
-             color: rgba(243, 244, 246, 0.8);
-             list-style: none;
-             padding: 0;
-             margin-top: 0.5rem;
-         }
-         .summary-item .material-list li {
-             margin-bottom: 0.2rem;
-         }
-          @media (min-width: 768px) {
-             .summary-item .material-list {
-                 font-size: 1rem;
-             }
-         }
 
     </style>
 </head>
-<body class="leading-relaxed">
+<body>
 
-    <!-- p5.js Canvas Container - Covers the entire document height -->
-    <div id="canvas-container"></div>
+    <!-- p5.js Canvas (will be created by the script) -->
+    <div id="p5-canvas-container"></div>
 
-    <!-- Section 1: Title / Intro -->
-    <section class="relative min-h-screen flex items-center justify-center text-center px-4" data-aos="fade-in" data-aos-duration="1500">
-         <!-- Logo Top Left -->
-         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8" data-aos="fade-right" data-aos-delay="300">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <!-- Tri Logo Top Right -->
-         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-
-        <div class="relative z-10 flex flex-col md:flex-row items-center justify-center max-w-screen-xl mx-auto">
-            <div class="vertical-text mr-6" data-aos="fade-right" data-aos-delay="500">
-                <span>20</span>
-                <span>25</span>
-            </div>
-            <div class="text-left" data-aos="fade-up" data-aos-delay="700">
-                <h1 class="text-white font-bold text-5xl md:text-8xl leading-tight mb-4"> <!-- Adjusted h1 size for mobile -->
-                    好教育 好产品 好服务
-                </h1>
-                <p class="text-white text-xl md:text-3xl font-bold"> <!-- Adjusted text size for mobile -->
-                    暨「匠心创造 万能有品」发布会
-                </p>
-            </div>
+    <!-- Hero/Welcome Section -->
+    <section class="hero-section" data-aos="fade-in" data-aos-duration="1500">
+        <div class="hero-logo" data-aos="fade-down" data-aos-delay="500">
+             <!-- Placeholder for Company Logo -->
+             <img src="https://via.placeholder.com/300x300?text=Company+Logo" alt="湖南东晖耀建设有限公司 Logo">
         </div>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="700">热烈欢迎</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="900">各位领导莅临指导</p>
     </section>
 
-    <!-- Section 2: What Kind of People -->
-    <section class="bento-section relative px-4" data-aos="fade-up">
-         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-        <div class="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-8 relative z-10 items-center">
-            <div class="text-block" data-aos="fade-right" data-aos-delay="200">
-                <h2 class="section-title text-white">培养怎样的人</h2>
-                <div class="theme-card mt-8 p-6">
-                     <h3 class="text-white font-bold text-xl mb-4">《中国学前教育法》第四条:</h3>
-                     <p class="text-gray-300 text-sm md:text-base"> <!-- Adjusted text size -->
-                         培育社会主义核心价值观,继承 和弘扬中华优秀传统文化、革命 文化、社会主义先进文化,培育 中华民族共同体意识,为培养德 智体美劳全面发展的社会主义建 设者和接班人奠定基础。
-                     </p>
-                </div>
-            </div>
-             <div class="image-container" data-aos="fade-left" data-aos-delay="400">
-                 <!-- Images of classroom/people -->
-                 <img src="https://via.placeholder.com/800x500?text=Classroom+Scene" alt="Classroom Scene">
-             </div>
-        </div>
-         <div class="max-w-screen-xl mx-auto mt-8 text-center relative z-10 px-4"> <!-- Added px-4 -->
-             <p class="text-white font-bold text-xl md:text-4xl" data-aos="fade-up" data-aos-delay="600"> <!-- Adjusted text size -->
-                立德树人,培根铸魂,育人为本,支持儿童
+    <!-- Company Profile Section -->
+    <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="section-title">公司简介</h2>
+        <div class="bento-card" data-aos="fade-right" data-aos-delay="200">
+            <h3 class="text-orange-logo">湖南东晖耀建设有限公司</h3>
+            <p class="profile-text">
+                湖南东晖耀建设有限公司（原“湖南省东晖园林工程有限公司”成立于2014年11
+                月），具有“建筑工程施工总承包贰级”、“建筑装修装饰工程专业承包贰级”；“公
+                路工程施工总承包叁级”、“水利水电工程施工总承包叁级”、“市政公用工程施工总
+                承包叁级”；“桥梁工程专业承包叁级”、“隧道工程工程专业承包叁级”、“钢结构工程
+                专业承包叁级”、“公路路面工程专业承包叁级”、“公路路基工程专业承包叁级”、
+                “河湖整治工程专业承包叁级”、“环保工程专业承包叁级”、“施工劳务不分等级”
+                等资质。服务范围涵盖：建筑、装饰装修、公路、水利、市政、桥梁、隧道、钢结构、
+                公路路基路面、河湖整治、环保、施工劳务等领域。
             </p>
+        </div>
+         <div class="bento-card mt-8" data-aos="fade-left" data-aos-delay="300">
+             <p class="profile-text">
+                 湖南东晖耀建设有限公司管理人员及在建项目参保人员近百人。专业各类人才包括
+                 一级造价工程师、二级造价工程师、一级建造师、二级建造师、高级工程师、中级工
+                 程师、建筑安管人员、水利三类人员、交安三类人员、建筑九大员、水利五大员等。
+                 公司连年被评为“中国水利工程协会AAA级信用单位”、“湖南省水利工程施工AAA
+                 级信用单位”、“湖南省水利协会信用A+企业”、“湖南省守合同重信用企业”、
+                 “长沙市守合同重信用企业”、“长沙县建筑业协会常务理事单位”、通过“质量管
+                 理、职业健康管理、环境管理”三大体系认证、通过“市级安全质量标准化认证”、
+                 荣获“水利安全生产标准化二级”、连续多年荣获税务评价A级、荣获多项商标专利软
+                 著等、承建项目荣获“优秀施工单位”等荣誉称号。
+             </p>
+             <div class="motto-list">
+                  <div class="motto-item"><i class="fas fa-check-circle"></i> 诚信</div>
+                  <div class="motto-item"><i class="fas fa-check-circle"></i> 务实</div>
+                  <div class="motto-item"><i class="fas fa-check-circle"></i> 凝聚</div>
+                  <div class="motto-item"><i class="fas fa-check-circle"></i> 高效</div>
+             </div>
+              <p class="profile-text mt-4">
+                 公司一直秉持“诚信、务实、凝聚、高效”的企业宗旨，发挥好企业特色，立足湖南，面向全国高质量发展。
+              </p>
          </div>
     </section>
 
-    <!-- Section 3: What is a Good Product Question -->
-     <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
-         <!-- Logo Top Left -->
-         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <!-- Tri Logo Top Right -->
-         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="relative z-10 max-w-screen-xl mx-auto">
-             <h2 class="text-white font-bold text-4xl md:text-7xl leading-tight" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
-                 好产品是什么?什么是好产品?
-             </h2>
+    <!-- Certifications & Awards Section -->
+     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="section-title text-right">企业荣誉与资质</h2>
+         <div class="bento-card" data-aos="fade-left" data-aos-delay="200">
+            <h3>主要资质与荣誉</h3>
+             <div class="qualifications-list">
+                 <div class="qualification-item">建筑工程总包二级</div>
+                 <div class="qualification-item">装修装饰专业二级</div>
+                 <div class="qualification-item">市政工程总包三级</div>
+                 <div class="qualification-item">水利水电总包三级</div>
+                 <div class="qualification-item">公路工程总包三级</div>
+                 <div class="qualification-item">钢构工程专业三级</div>
+                 <div class="qualification-item">环保工程专业三级</div>
+                 <div class="qualification-item">公路路基专业三级</div>
+                 <div class="qualification-item">公路路面专业三级</div>
+                 <div class="qualification-item">桥梁工程专业三级</div>
+                 <div class="qualification-item">隧道工程专业三级</div>
+                 <div class="qualification-item">河湖整治专业三级</div>
+                 <div class="qualification-item">施工劳务资质</div>
+             </div>
+             <p class="profile-text mt-6">公司荣获多项国家及省级荣誉、体系认证和专利。</p>
+
+             <div class="cert-grid mt-8">
+                 <!-- Add placeholders for certification/award images -->
+                 <img src="https://via.placeholder.com/300x400?text=资质证书1" alt="资质证书">
+                 <img src="https://via.placeholder.com/300x400?text=资质证书2" alt="资质证书">
+                  <img src="https://via.placeholder.com/400x300?text=营业执照" alt="营业执照">
+                  <img src="https://via.placeholder.com/400x300?text=生产许可证" alt="生产许可证">
+                  <img src="https://via.placeholder.com/400x300?text=AAA信用评价" alt="AAA信用评价">
+                  <img src="https://via.placeholder.com/400x300?text=AAA信用评价2" alt="AAA信用评价">
+                  <img src="https://via.placeholder.com/400x300?text=守合同重信用1" alt="守合同重信用证书">
+                   <img src="https://via.placeholder.com/400x300?text=守合同重信用2" alt="守合同重信用证书">
+                  <img src="https://via.placeholder.com/400x300?text=守合同重信用3" alt="守合同重信用证书">
+                  <img src="https://via.placeholder.com/300x400?text=标准化二级" alt="安全生产标准化二级">
+                  <img src="https://via.placeholder.com/800x400?text=标准化网上公示" alt="安全生产标准化公示">
+                   <img src="https://via.placeholder.com/400x600?text=质量管理体系" alt="质量管理体系认证">
+                  <img src="https://via.placeholder.com/400x600?text=职健环管理体系" alt="职健环管理体系认证">
+                   <img src="https://via.placeholder.com/400x600?text=环境管理体系" alt="环境管理体系认证">
+                  <img src="https://via.placeholder.com/300x400?text=专利1" alt="实用新型专利证书">
+                   <img src="https://via.placeholder.com/300x400?text=专利2" alt="实用新型专利证书">
+                  <img src="https://via.placeholder.com/300x400?text=专利3" alt="实用新型专利证书">
+                  <img src="https://via.placeholder.com/800x500?text=优秀施工单位" alt="优秀施工单位奖牌">
+             </div>
          </div>
     </section>
 
-    <!-- Section 4: Defining a Good Product -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">好产品是什么?</h2>
-            <div class="bento-grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <div class="theme-card" data-aos="fade-right" data-aos-delay="200">
-                    <div class="line-graphic items-start mb-4"><span class="icon">1</span><span class="line"></span></div>
-                    <h3 class="text-white font-bold text-xl mb-2">符合强国建设背景下的高质量发展</h3>
-                    <p class="text-gray-300 text-sm md:text-base">符合中国传统文化、民族文化、教育文化、审美文化、中国式教育现代化方向的绿色低碳教育产品。</p>
-                </div>
-                 <div class="theme-card" data-aos="fade-left" data-aos-delay="300">
-                     <div class="line-graphic items-start mb-4"><span class="icon">2</span><span class="line"></span></div>
-                     <h3 class="text-white font-bold text-xl mb-2">符合中国学前教育法和教育装备规范要求</h3>
-                     <p class="text-gray-300 text-sm md:text-base">符合中国当今教育政策背景,例如学前教育法、学前教育装备规范等政策。</p>
-                 </div>
-                 <div class="theme-card" data-aos="fade-right" data-aos-delay="400">
-                     <div class="line-graphic items-start mb-4"><span class="icon">3</span><span class="line"></span></div>
-                     <h3 class="text-white font-bold text-xl mb-2">符合园所的环境需求</h3>
-                     <p class="text-gray-300 text-sm md:text-base">符合中国幼儿园教育教学的现实场景,能满足幼儿园物理与心理环境创设、教育教学的科学化属性。</p>
-                 </div>
-                 <div class="theme-card" data-aos="fade-left" data-aos-delay="500">
-                    <div class="line-graphic items-start mb-4"><span class="icon">4</span><span class="line"></span></div>
-                    <h3 class="text-white font-bold text-xl mb-2">符合老师的教学需求</h3>
-                    <p class="text-gray-300 text-sm md:text-base">满足中国幼儿园教师教育教学的应用,支持教师开展自主游戏、引导游戏、任务游戏、直接教学。</p>
-                 </div>
-                 <div class="theme-card md:col-span-2" data-aos="fade-up" data-aos-delay="600">
-                     <div class="line-graphic items-start mb-4"><span class="icon">5</span><span class="line"></span></div>
-                     <h3 class="text-white font-bold text-xl mb-2">符合孩子身心发展的需求</h3>
-                     <p class="text-gray-300 text-sm md:text-base">符合中国幼儿身心发展的友好化设计、支架幼儿在游戏化场景中的学习,能引发幼儿的好奇渴望、 能力发展、文化自信满足。</p>
-                 </div>
-            </div>
-         </div>
-     </section>
-
-    <!-- Section 5: Good Product Elaboration -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">好产品是什么?</h2>
-            <div class="theme-card p-6 md:p-8 mt-8" data-aos="fade-up" data-aos-delay="200"> <!-- Adjusted padding -->
-                <p class="text-base md:text-xl leading-relaxed text-gray-200"> <!-- Adjusted text size -->
-                    在中国幼儿教育领域,“好产品”不仅是对<span class="text-tesla-red font-bold">文化内涵</span>与<span class="text-tesla-red font-bold">政策精神</span>的深度承载,更是
-                    引领行业未来的前瞻指向。它根植于中国传统文化的底蕴,融合当代学前教育法规与方
-                    针,契合幼儿园真实教学与环境创设需求,并能从教学与游戏的全方位维度帮助教师高
-                    效开展活动。同时,它以幼儿身心发展为核心,提供富有游戏化与启发性的教育支架,
-                    助力幼儿在探索中培养好奇心、自信力与创造力。惟其如此,才能在<span class="text-tesla-red font-bold">内涵、品质与应用</span>
-                    层面实现高度统一,成为中国幼教行业的<span class="text-tesla-red font-bold">风向标与领航者</span>。
-                </p>
-            </div>
-         </div>
-     </section>
-
-    <!-- Section 6: How to Make Good Products -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">如何做好产品?</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-                 <div class="lg:col-span-2" data-aos="fade-right" data-aos-delay="200">
-                     <div class="theme-card p-6 mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-flask mr-2 text-tesla-red"></i>万能工匠建构玩学具工效理论研究</h3>
-                         <p class="text-gray-300 text-sm md:text-base">人体工效 / 发展工效 / 教育工效</p> <!-- Adjusted text size -->
-                         <ul class="text-xs md:text-sm mt-2 text-gray-400"> <!-- Adjusted text size -->
-                             <li>课程适应性, 学习性, 互动性</li>
-                             <li>情绪与社会性发展, 动作发展, 言语发展, 认知发展</li>
-                             <li>可操作性, 安全性, 舒适性</li>
-                         </ul>
-                     </div>
-                      <div class="theme-card p-6 mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-vial mr-2 text-tesla-red"></i>实证检验</h3>
-                          <ul class="text-xs md:text-sm mt-2 text-gray-400"> <!-- Adjusted text size -->
-                             <li>人体工效测评, 发展工效测评, 教育工效测评</li>
-                             <li>教学指导观察, 材料安全性分析, 生物力学分析</li>
-                         </ul>
-                         <div class="image-container mt-4"><img src="https://via.placeholder.com/600x200?text=Empirical+Test+Diagram" alt="Empirical Test Diagram"></div>
-                     </div>
-                      <div class="theme-card p-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-rocket mr-2 text-tesla-red"></i>万能工匠建构玩学具工效应用研究</h3>
-                          <ul class="text-xs md:text-sm mt-2 text-gray-400 grid grid-cols-1 sm:grid-cols-2 gap-2"> <!-- Adjusted text size -->
-                              <li>研究结果推广 (论文著作, 会议, 社交媒体)</li>
-                              <li>成果市场转化 (供应链生产调整, 用户反馈, 产品迭代)</li>
-                              <li>装备升级改造 (教学手册, 指导视频, 材料包, 教师培训)</li>
-                          </ul>
-                     </div>
-                 </div>
-
-                 <div class="lg:col-span-1 flex flex-col" data-aos="fade-left" data-aos-delay="400">
-                     <div class="theme-card p-6 flex-grow mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-graduation-cap mr-2 text-tesla-red"></i>博士后工作站</h3>
-                         <p class="text-gray-300 text-sm md:text-base">持续科研活动,提升企业的核心竞争力</p> <!-- Adjusted text size -->
-                     </div>
-                     <div class="theme-card p-6 flex-grow mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-university mr-2 text-tesla-red"></i>教育研究院</h3>
-                     </div>
-                      <div class="theme-card p-6 flex-grow">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-users-cog mr-2 text-tesla-red"></i>公司设计部和市场部</h3>
-                         <p class="text-gray-300 text-sm md:text-base">跨部门协作,优化设计,调整营销策略</p> <!-- Adjusted text size -->
-                     </div>
-                     <div class="image-container mt-6"><img src="https://via.placeholder.com/400x400?text=Stylized+Toy+House" alt="Stylized Toy House"></div>
-                 </div>
-            </div>
-         </div>
-     </section>
-
-    <!-- Section 7: Qualifications 1 -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">好产品--资质保障</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-                 <div data-aos="fade-right" data-aos-delay="200">
-                     <div class="theme-card p-6 mb-6">
-                        <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-scroll mr-2 text-tesla-red"></i>中国教育装备协会课题</h3>
-                         <p class="text-gray-300 text-sm md:text-base">《生态文明建设视角下碳中和科学教育模式的创新与实践》</p> <!-- Adjusted text size -->
-                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=Document+Scan" alt="Document Scan"></div>
-                     </div>
-                      <div class="theme-card p-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-building mr-2 text-tesla-red"></i>合作/研究机构</h3>
-                         <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm"> <!-- Adjusted text size -->
-                             <li>湖南省教育生产装备处</li>
-                             <li>天津市教育科学研究院</li>
-                             <li>北京教育装备行业协会</li>
-                             <li>安徽省长丰县教体局教研室</li>
-                             <li>广西师范大学出版社集团有限公司</li>
-                             <li>上海市教育委员会教育技术装备中心</li>
-                             <li>中国科学院重庆绿色智能技术研究院</li>
-                             <li>中国教育装备行业协会教育信息化装备分会</li>
-                         </ul>
-                      </div>
-                 </div>
-                 <div data-aos="fade-left" data-aos-delay="400">
-                     <div class="theme-card p-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-university mr-2 text-tesla-red"></i>合作高校</h3>
-                         <ul class="list-disc list-inside text-gray-300 space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-y-1 text-sm"> <!-- Adjusted text size -->
-                             <li>首都师范大学</li>
-                             <li>北京交通大学</li>
-                             <li>华南理工大学</li>
-                             <li>首都体育学院</li>
-                             <li>中国计量大学</li>
-                             <li>西北师范大学</li>
-                             <li>浙江贝玛教育科技有限公司</li>
-                             <li>北京邮电大学</li>
-                             <li>东华理工大学</li>
-                             <li>浙江师范大学</li>
-                         </ul>
-                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=University+Logos+Grid" alt="University Logos Grid"></div>
-                     </div>
-                 </div>
-            </div>
-         </div>
-     </section>
-
-     <!-- Section 8: Green & Environmental Protection -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">好产品--绿色环保</h2>
-             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 items-center">
-                 <div data-aos="fade-right" data-aos-delay="200">
-                     <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-leaf mr-2 text-tesla-red"></i>使用优质绿色环保材料</h3>
-                      <div class="image-container mb-6"><img src="https://via.placeholder.com/600x400?text=Product+Quality+Logo" alt="Product Quality Logo"></div>
-                      <div class="theme-card p-6">
-                         <h4 class="text-white font-bold text-xl mb-3">相关规定摘要:</h4>
-                         <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
-                             <li>严禁使用有毒、易燃、易碎物品, 及可能存在各种残留物的容器、用品作为玩教具。</li>
-                             <li>不得直接使用泡沫塑料、海绵等作为玩教具。</li>
-                             <li>不得使用尖锐物或在玩耍过程中易产生小零件的物品。</li>
-                             <li>不宜使用粮食作为玩教具。</li>
-                             <li>不得使用带有强烈光源的设备, 如激光笔作为玩具。</li>
-                             <li>供3岁以下幼儿使用的玩教具不应存在可拆卸的小零件; 供3~6岁幼儿使用的玩教具上如果存在小零件, 应在成人监护下使用;</li>
-                             <li>应选用安全无毒、易于清洗的原材料,不应使用泡沫塑料及包装材料作为玩教具,不应使用工业、医疗废旧物品。</li>
-                             <li>玩教具整体应结实,各部分连接要牢固,底座要稳固。</li>
-                         </ul>
-                     </div>
-                 </div>
-                  <div data-aos="fade-left" data-aos-delay="400">
-                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-exclamation-triangle mr-2 text-tesla-red"></i>潜在隐患痛点</h3>
-                      <div class="bento-grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div class="theme-card p-4">
-                              <h4 class="text-white font-bold mb-2"><i class="fas fa-fire-alt mr-2 text-tesla-red"></i>安全隐患</h4>
-                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
-                                  <li>易燃材料,存在一定的燃烧隐患</li>
-                              </ul>
-                          </div>
-                           <div class="theme-card p-4">
-                              <h4 class="text-white font-bold mb-2"><i class="fas fa-recycle mr-2 text-tesla-red"></i>环保隐患</h4>
-                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
-                                  <li>回收难,气味较大</li>
-                              </ul>
-                          </div>
-                           <div class="theme-card p-4 col-span-full"> <!-- Changed to col-span-full -->
-                              <h4 class="text-white font-bold mb-2"><i class="fas fa-wrench mr-2 text-tesla-red"></i>耐用隐患</h4>
-                              <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
-                                  <li>机械强度低,容易变形和破损</li>
-                                  <li>表面粗糙,容易积留污渍导致无法清洗</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
+    <!-- Branch Offices Section -->
+     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="section-title">公司分支机构 / 经营范围</h2>
+         <div class="bento-card" data-aos="fade-right" data-aos-delay="200">
+            <h3>经营范围区域</h3>
+             <!-- Placeholder for the map graphic -->
+             <div class="image-block mb-8">
+                 <img src="https://via.placeholder.com/600x400?text=Region+Map" alt="经营范围地图">
+             </div>
+             <div class="branch-grid">
+                 <!-- Add branches from the list -->
+                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>云南分公司</div>
+                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>西藏分公司</div>
+                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>江西分公司</div>
+                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>新疆分公司</div>
+                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>福建分公司</div>
+                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>四川分公司</div>
              </div>
          </div>
-     </section>
-
-     <!-- Section 9: Qualifications 2 - Patents -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10 text-center">
-             <h2 class="section-title text-white inline-block text-center w-full">国家专利</h2>
-             <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
-                 <p class="text-white font-bold text-5xl md:text-8xl"> <!-- Adjusted text size -->
-                     30<span class="text-tesla-red">项</span>
-                    </p>
-                 <p class="text-white text-xl md:text-3xl mt-2"> <!-- Adjusted text size -->
-                     <span class="text-tesla-red font-bold">商标10余项</span> /
-                     <span class="text-tesla-red font-bold">专利20余项</span>
-                 </p>
+          <div class="bento-card mt-8" data-aos="fade-left" data-aos-delay="300">
+             <h3>更多分支机构</h3>
+             <div class="branch-grid">
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>岳阳县分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>双牌分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>洞口分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>长沙县开慧分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>桑植分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>会同分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>益阳桃江县分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>隆回分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>宁远分公司</div>
+                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>新田分公司</div>
              </div>
-             <div class="bento-grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-12">
-                 <!-- Placeholder Patent Certificate Images -->
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="300"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+1" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="400"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+2" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="500"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+3" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="600"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+4" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="700"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+5" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="800"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+6" alt="Patent Certificate"></div>
-                  <div class="image-container" data-aos="zoom-in" data-aos-delay="900"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+7" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="1000"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+8" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="1100"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+9" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="1200"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+10" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="1300"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+11" alt="Patent Certificate"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="1400"><img src="https://via.placeholder.com/300x400?text=Patent+Cert+12" alt="Patent Certificate"></div>
-             </div>
-         </div>
-     </section>
-
-    <!-- Section 10: Tri-Element World Elements -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10 text-center">
-             <h2 class="section-title text-white inline-block w-full">三元大世界</h2>
-             <div class="bento-grid grid-cols-2 md:grid-cols-4 gap-8 mt-8 items-center">
-                 <div data-aos="zoom-in" data-aos-delay="200">
-                     <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Point+Elements" alt="Point Elements"></div>
-                     <p class="text-white font-bold text-base md:text-xl">点元素</p> <!-- Adjusted text size -->
-                 </div>
-                 <div data-aos="zoom-in" data-aos-delay="300">
-                     <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Line+Elements" alt="Line Elements"></div>
-                     <p class="text-white font-bold text-base md:text-xl">线元素</p> <!-- Adjusted text size -->
-                 </div>
-                  <div data-aos="zoom-in" data-aos-delay="400">
-                     <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Surface+Elements" alt="Surface Elements"></div>
-                     <p class="text-white font-bold text-base md:text-xl">面元素</p> <!-- Adjusted text size -->
-                 </div>
-                  <div data-aos="zoom-in" data-aos-delay="500">
-                     <div class="image-container mb-4"><img src="https://via.placeholder.com/300x300?text=Dynamic+Elements" alt="Dynamic Elements"></div>
-                     <p class="text-white font-bold text-base md:text-xl">动态元素</p> <!-- Adjusted text size -->
-                 </div>
-             </div>
-         </div>
-     </section>
-
-     <!-- Section 11-14: Product Ergonomics & Core Advantages -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">产品工效与核心优势</h2>
-            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">融合材料学、工程力学和人体工程学</p> <!-- Adjusted text size -->
-
-            <div class="bento-grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-                 <!-- Section 11 content -->
-                 <div class="theme-card p-6" data-aos="fade-right" data-aos-delay="200">
-                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cogs mr-2 text-tesla-red"></i>结构与连接优势</h3>
-                      <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Structure+Diagram+1" alt="Structure Diagram 1"></div>
-                      <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
-                          <li>稳定内支架</li><li>进口ABS外壳</li><li>软性防滑触点</li><li>强劲永久磁铁</li>
-                          <li>360°双向可旋转</li><li>超声波无缝焊接</li><li>磁铁全包覆</li>
-                          <li>卡扣无螺丝</li><li>隐藏性磁珠</li><li>多尺寸通用孔</li><li>多定位卡柱</li><li>软硬胶二次包覆</li>
-                          <li>软性凸点设计</li><li>圆弧面防碰撞</li>
-                      </ul>
-                 </div>
-                 <!-- Section 12 content -->
-                 <div class="theme-card p-6" data-aos="fade-left" data-aos-delay="300">
-                     <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-grip-horizontal mr-2 text-tesla-red"></i>材质与手感优势</h3>
-                     <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Structure+Diagram+2" alt="Structure Diagram 2"></div>
-                     <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm"> <!-- Adjusted text size -->
-                         <li>进口ABS材质</li><li>软性保护圈</li><li>加强支撑架</li><li>无缝超声焊接</li>
-                         <li>凸点防护,软性耐磨</li><li>包胶设计,舒适手感</li><li>灵活转弯,随心所欲</li><li>圆环设计,自由互联</li>
-                     </ul>
-                 </div>
-                 <!-- Section 13 content -->
-                 <div class="theme-card p-6" data-aos="fade-right" data-aos-delay="400">
-                     <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-magnet mr-2 text-tesla-red"></i>磁吸与消音优势</h3>
-                      <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Magnetic+Sound+Diagram" alt="Magnetic Sound Diagram"></div>
-                      <p class="text-white font-bold text-sm md:text-base">磁吸新纪元,颠覆拼装:</p> <!-- Adjusted text size -->
-                      <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm mt-1"> <!-- Adjusted text size -->
-                          <li>任意数量,随意拼接</li><li>多角度,无限创意</li><li>自由旋转,磁吸随心</li>
-                      </ul>
-                      <p class="text-white font-bold text-sm md:text-base mt-4">消音设计,为游戏活动带来安静与和谐:</p> <!-- Adjusted text size -->
-                       <ul class="list-disc list-inside text-gray-300 space-y-1 text-xs md:text-sm mt-1"> <!-- Adjusted text size -->
-                          <li>相较同类产品 减少噪音</li><li>剧烈晃动时的声音强度 (图示)</li>
-                      </ul>
-                 </div>
-                  <!-- Section 14 content -->
-                 <div class="theme-card p-6" data-aos="fade-left" data-aos-delay="500">
-                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-hand-holding-heart mr-2 text-tesla-red"></i>防滑与安全触感</h3>
-                       <div class="image-container mb-4"><img src="https://via.placeholder.com/600x400?text=Anti-slip+Tactile+Diagram" alt="Anti-slip Tactile Diagram"></div>
-                       <p class="text-white font-bold text-sm md:text-base">凸点设计 防滑防污耐脏</p> <!-- Adjusted text size -->
-                       <p class="text-white font-bold text-sm md:text-base mt-2">软性包胶面 婴儿肌肤般触感和安全防撞</p> <!-- Adjusted text size -->
-                       <p class="text-gray-300 text-xs md:text-sm mt-2">360° 凸点均匀分布</p> <!-- Adjusted text size -->
-                        <p class="text-gray-300 text-xs md:text-sm">60° 倾斜不滑落</p> <!-- Adjusted text size -->
-                 </div>
-            </div>
-         </div>
-     </section>
-
-    <!-- Section 15: Color Systems -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white text-center w-full">产品工效与核心优势</h2>
-            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">四大色系--让每一份选择都称心如意</p> <!-- Adjusted text size -->
-             <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"> <!-- Changed to grid-cols-1 sm:grid-cols-2 -->
-                 <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="200">
-                      <h3 class="text-white font-bold text-base md:text-xl mb-2">小王子</h3> <!-- Adjusted text size -->
-                      <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Little+Prince+Palette" alt="Little Prince Palette"></div>
-                       <p class="text-gray-300 text-xs md:text-sm mt-2">也许世界上也有五千朵和你一模一样的花,但只有你是 我独一无二的玫瑰!</p> <!-- Adjusted text size -->
-                       <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Little+Prince+Build" alt="Little Prince Build"></div>
-                 </div>
-                  <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="300">
-                      <h3 class="text-white font-bold text-base md:text-xl mb-2">小精灵</h3> <!-- Adjusted text size -->
-                       <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Little+Elf+Palette" alt="Little Elf Palette"></div>
-                       <p class="text-gray-300 text-xs md:text-sm mt-2">传说精灵的眼泪只有一滴,它很美,闪着蓝色的光。来自森林的精 灵,在遥远的深处守护着你。</p> <!-- Adjusted text size -->
-                       <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Little+Elf+Build" alt="Little Elf Build"></div>
-                 </div>
-                  <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="400">
-                      <h3 class="text-white font-bold text-base md:text-xl mb-2">梦幻王国</h3> <!-- Adjusted text size -->
-                       <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Dream+Kingdom+Palette" alt="Dream Kingdom Palette"></div>
-                       <p class="text-gray-300 text-xs md:text-sm mt-2">它是梦想与奇迹的化身,每一位路过的人都会不由自主地停下脚 步,被它的美丽深深地打动。</p> <!-- Adjusted text size -->
-                       <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Dream+Kingdom+Build" alt="Dream Kingdom Build"></div>
-                 </div>
-                  <div class="theme-card p-4 text-center" data-aos="zoom-in" data-aos-delay="500">
-                      <h3 class="text-white font-bold text-base md:text-xl mb-2">宋韵青花</h3> <!-- Adjusted text size -->
-                       <div class="image-container"><img src="https://via.placeholder.com/300x200?text=Song+Celadon+Palette" alt="Song Celadon Palette"></div>
-                       <p class="text-gray-300 text-xs md:text-sm mt-2">宋朝的艺术成就和审美风格独特且影响深远。宋代的绘画、书法、瓷 器等艺术形式既有对自然美景的描绘,也有对个人心境的表达。</p> <!-- Adjusted text size -->
-                       <div class="image-container mt-4"><img src="https://via.placeholder.com/300x300?text=Song+Celadon+Build" alt="Song Celadon Build"></div>
-                 </div>
-             </div>
-         </div>
-     </section>
-
-    <!-- Section 16: Ecosystem -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white text-center w-full">产品工效与核心优势</h2>
-            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">无缝连接中号、大号产品,共创完美生态体验</p> <!-- Adjusted text size -->
-             <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"> <!-- Changed to grid-cols-1 sm:grid-cols-2 -->
-                 <!-- Placeholder images of larger builds -->
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="200"><img src="https://via.placeholder.com/400x300?text=Build+Example+1" alt="Build Example 1"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="300"><img src="https://via.placeholder.com/400x300?text=Build+Example+2" alt="Build Example 2"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="400"><img src="https://via.placeholder.com/400x300?text=Build+Example+3" alt="Build Example 3"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="500"><img src="https://via.placeholder.com/400x300?text=Build+Example+4" alt="Build Example 4"></div>
-             </div>
-         </div>
-     </section>
-
-    <!-- Section 17: Free Play Kit -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10 text-center">
-            <h2 class="section-title text-white inline-block w-full">三元大世界自主游戏套装</h2>
-            <div class="theme-card p-6 md:p-8 mt-8" data-aos="fade-up" data-aos-delay="200"> <!-- Adjusted padding -->
-                 <h3 class="text-white font-bold text-xl md:text-2xl mb-4"><i class="fas fa-heart mr-2 text-tesla-red"></i>趣动童心 教学体系</h3> <!-- Adjusted text size -->
-                 <div class="image-container mt-4"><img src="https://via.placeholder.com/800x500?text=Teaching+System+Diagram" alt="Teaching System Diagram"></div>
-            </div>
          </div>
     </section>
 
-    <!-- Section 18: Teaching Materials -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">教辅材料</h2>
-             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-                 <div data-aos="fade-right" data-aos-delay="200">
-                     <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-book-open mr-2 text-tesla-red"></i>教师指导手册 (通用3册)</h3>
-                      <div class="image-container mb-6"><img src="https://via.placeholder.com/600x400?text=Teacher+Guidebooks" alt="Teacher Guidebooks"></div>
-                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cards mr-2 text-tesla-red"></i>游戏图卡</h3>
-                       <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base"> <!-- Adjusted text size -->
-                           <li>基础游戏图卡72张</li>
-                           <li>运动游戏图卡36张</li>
-                           <li>主题游戏图卡12张</li>
-                       </ul>
-                 </div>
-                  <div data-aos="fade-left" data-aos-delay="400">
-                      <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-images mr-2 text-tesla-red"></i>游戏图卡示例</h3>
-                      <div class="image-container"><img src="https://via.placeholder.com/600x800?text=Game+Card+Examples" alt="Game Card Examples"></div>
-                  </div>
+    <!-- Project Showcase Section -->
+     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="section-title text-right">企业项目展示</h2>
+
+         <!-- Project 1 -->
+         <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
+             <div class="image-block"><img src="https://via.placeholder.com/600x400?text=Project+School1" alt="北山镇蒿塘中学项目"></div>
+             <div class="text-block">
+                 <h3>北山镇蒿塘中学改扩建项目</h3>
+                 <p>本项目为北山镇蒿塘中学改扩建项目，主要建设内容为综合楼主体建设、给排水、电气等配套性工程建设。</p>
              </div>
-              <div class="theme-card p-6 mt-8" data-aos="fade-up" data-aos-delay="600">
-                  <p class="text-gray-300 text-sm md:text-base"> <!-- Adjusted text size -->
-                      游戏图卡分层分级,基础游戏、趣味运动游戏、主题游戏,<span class="text-tesla-red font-bold">多种维度、多种形式、多样玩法</span>,全面支持和满足幼儿游戏水平、游戏经验的提 升与发展,多角度支持幼儿游戏需求。
-                  </p>
+         </div>
+
+         <!-- Project 2 -->
+          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
+              <div class="image-block"><img src="https://via.placeholder.com/600x400?text=Project+SportsField" alt="郴州市骆仙中学运动场项目"></div>
+              <div class="text-block">
+                  <h3>郴州市骆仙中学运动场看台工程</h3>
+                  <p>工程地点：郴州市北湖区华府路北侧</p>
+                  <p>工程范围：主要包括400m运动场（含垫层、基础、塑胶跑道、人工草皮、排水系统）和看台。</p>
               </div>
-         </div>
-     </section>
+          </div>
 
-    <!-- Section 19: Application Cases -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">应用案例</h2>
-             <div class="bento-grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-                 <!-- Placeholder images of children playing -->
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="200"><img src="https://via.placeholder.com/400x600?text=Application+Case+1" alt="Application Case 1"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="300"><img src="https://via.placeholder.com/400x600?text=Application+Case+2" alt="Application Case 2"></div>
-                 <div class="image-container" data-aos="zoom-in" data-aos-delay="400"><img src="https://via.placeholder.com/400x600?text=Application+Case+3" alt="Application Case 3"></div>
-             </div>
-         </div>
+         <!-- Project 3 (Image Grid) -->
+          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/400x300?text=Project+Liuzhou" alt="柳州项目">
+                  <img src="https://via.placeholder.com/400x300?text=Project+ChangshaGov" alt="长沙县政府项目">
+                  <img src="https://via.placeholder.com/400x300?text=Project+LiuzhouWater" alt="柳州亲水平台">
+              </div>
+               <div class="text-block">
+                   <h3>其他项目实例</h3>
+                    <p>柳州项目亲水平台</p>
+                    <p>长沙县县政府提质改造</p>
+               </div>
+          </div>
+
+         <!-- Project 4 (Image Grid) -->
+          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/400x300?text=Project+Bank1" alt="开慧农商银行项目1">
+                  <img src="https://via.placeholder.com/400x300?text=Project+Bank2" alt="开慧农商银行项目2">
+              </div>
+              <div class="text-block">
+                  <h3>开慧农商银行项目</h3>
+                  <p>施工区域：零吉施工</p>
+                   <p>拍摄时间：2021.12.24 星期五 13:43</p>
+                   <p>地点：长沙县、联桥东路</p>
+              </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=Project+HubMeeting" alt="青山铺交通枢纽项目会议">
+                  <img src="https://via.placeholder.com/600x400?text=Project+HubConstruction" alt="青山铺交通枢纽项目施工">
+              </div>
+               <div class="text-block">
+                   <h3>青山铺交通枢纽站项目</h3>
+                   <p>巡检内容：安全警示教育会议</p>
+                    <p>拍摄时间：2021.12.18 11:46</p>
+                    <p>地点：长沙县、中国石油福临加油站</p>
+               </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=Project+TeachingBuilding1" alt="蒿塘中学新建教学楼1">
+                  <img src="https://via.placeholder.com/600x400?text=Project+TeachingBuilding2" alt="蒿塘中学新建教学楼2">
+              </div>
+              <div class="text-block">
+                  <h3>蒿塘中学新建教学楼项目</h3>
+              </div>
+          </div>
+
     </section>
 
-    <!-- Section 20: Tagline -->
-     <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
+    <!-- Social Responsibility Section -->
+     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="section-title">社会公益</h2>
+         <div class="bento-card" data-aos="fade-right" data-aos-delay="200">
+             <h3>践行社会责任</h3>
+             <p class="profile-text">
+                 湖南东晖耀建设有限公司自成立以来，始终坚持“感恩 创新”的核心价值观，积极履行社会责任，累计捐款捐物数百万元，赢得了社会各界和各级政府的广泛认可，先后获得“爱心抗疫企业”、“扶贫助学爱心企业”、“爱心慈善企业”等荣誉称号。一路追梦几十载，我公司始终坚持“以人为本”，以实际行动回馈社会，未来还将持续深耕慈善公益事业，积极主动回馈社会，以实际行动履行社会责任，彰显企业担当！
+             </p>
          </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="relative z-10 max-w-screen-xl mx-auto">
-            <p class="text-white font-bold text-3xl md:text-6xl leading-tight" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
-                不是要比别人好,<br>是自己要做的更好
-            </p>
-         </div>
-    </section>
 
-    <!-- Section 21: Empty (Transition) -->
-    <section class="h-16 md:h-32 relative"></section> <!-- Adjusted height -->
+         <!-- Social Good 1 -->
+          <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+              <div class="text-block">
+                  <h3>抗击疫情爱心捐赠</h3>
+                  <p>2020年春节前夕，长沙县住房和城乡建设局倡议企业勇担社会责任，积极参与抗击疫情爱心捐赠。公司在新冠肺炎疫情期间积极参与“爱心抗疫企业”及“企业心连心、手牵手、结对帮扶抗击疫情”公益活动。</p>
+              </div>
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/400x600?text=AntiEpidemicDoc1" alt="抗疫文件">
+                  <img src="https://via.placeholder.com/400x600?text=AntiEpidemicDoc2" alt="抗疫文件">
+              </div>
+          </div>
+          <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=AntiEpidemicCert1" alt="抗疫爱心企业证书">
+                  <img src="https://via.placeholder.com/600x400?text=AntiEpidemicCert2" alt="抗疫爱心捐赠证书">
+              </div>
+               <div class="text-block">
+                    <h3>新冠肺炎疫情期间</h3>
+                     <p>“爱心抗疫企业”及“企业心连心、手牵手、结对帮扶抗击疫情”爱心捐赠。</p>
+               </div>
+          </div>
+           <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+              <div class="text-block">
+                  <h3>抗击新冠肺炎疫情捐款</h3>
+                  <p>2020年3月，公司积极参与响应湖南省慈善总会“抗击新冠肺炎疫情”捐款公益活动。</p>
+              </div>
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=CharityDoc1" alt="慈善总会文件">
+                   <img src="https://via.placeholder.com/600x400?text=CharityDoc2" alt="慈善总会感谢信">
+               </div>
+           </div>
+            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=CharityCert1" alt="慈善捐赠证书">
+                   <img src="https://via.placeholder.com/600x400?text=CharityReceipt1" alt="慈善捐赠票据">
+               </div>
+                <div class="text-block">
+                     <h3>“抗击新冠肺炎疫情”爱心捐赠</h3>
+                </div>
+           </div>
 
-    <!-- Section 22: How to Do Good Education 1 -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">如何做好教育</h2>
-             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 items-center">
-                 <div data-aos="fade-right" data-aos-delay="200">
-                      <div class="theme-card p-6 mb-6">
-                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-flask mr-2 text-tesla-red"></i>博士后工作站:</h3>
-                          <div class="image-container float-none md:float-right ml-0 md:ml-4 mb-4 w-24 h-24 md:w-32 md:h-32 mx-auto md:mx-0"><img src="https://via.placeholder.com/128x128?text=Postdoc+Logo" alt="Postdoc Logo"></div> <!-- Adjusted image size and centering -->
-                           <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base clear-both"> <!-- Adjusted text size, added clear-both -->
-                               <li>教育部产学研协同育人项目</li>
-                               <li>专家智库引领</li>
-                               <li>国家课题研究</li>
-                               <li>校企产教融合</li>
-                           </ul>
-                      </div>
-                      <div class="theme-card p-6">
-                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-university mr-2 text-tesla-red"></i>教育研究院:</h3>
-                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=Research+Process" alt="Research Process Diagram"></div>
-                      </div>
-                 </div>
-                 <div data-aos="fade-left" data-aos-delay="400">
-                     <div class="theme-card p-6">
-                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-chart-area mr-2 text-tesla-red"></i>基础研究:</h3>
-                           <div class="image-container mt-4"><img src="https://via.placeholder.com/600x600?text=Research+Area+Diagram" alt="Research Area Diagram"></div>
-                      </div>
-                 </div>
-             </div>
-         </div>
-     </section>
+          <!-- Social Good 2 -->
+           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>扶贫助学公益活动</h3>
+                   <p>2020年9月，由湖南省水利工程协会与湖南水利水电职业技术学院联合开展“扶贫助学”公益活动。公司积极参与，支持“扶贫助学”公益活动。</p>
+               </div>
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=PovertyReliefDoc1" alt="扶贫助学文件">
+                    <img src="https://via.placeholder.com/600x400?text=PovertyReliefDoc2" alt="扶贫助学说明">
+               </div>
+           </div>
+           <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=PovertyReliefCert1" alt="扶贫助学捐赠证书">
+                   <img src="https://via.placeholder.com/600x400?text=PovertyReliefList1" alt="扶贫助学名单">
+               </div>
+                <div class="text-block">
+                     <h3>“扶贫助学”公益活动爱心捐赠证书</h3>
+                </div>
+           </div>
 
-     <!-- Section 23: University-Industry-Research -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10 text-center">
-            <h2 class="section-title text-white inline-block w-full">校企产学研合作, 赋能高质量发展</h2>
-            <div class="bento-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"> <!-- Changed to grid-cols-1 sm:grid-cols-2 -->
-                 <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="200">
-                     <p class="text-white font-bold text-4xl md:text-6xl leading-tight">20<span class="text-tesla-red">+</span></p> <!-- Adjusted text size -->
-                     <p class="text-white font-bold text-base md:text-xl mt-2">家校企合作高校</p> <!-- Adjusted text size -->
-                     <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=University+Logos+Grid" alt="University Logos Grid"></div>
-                 </div>
-                  <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="300">
-                      <p class="text-white font-bold text-4xl md:text-6xl leading-tight">8<span class="text-tesla-red">项</span></p> <!-- Adjusted text size -->
-                      <p class="text-white font-bold text-base md:text-xl mt-2">国家级省级课题研究</p> <!-- Adjusted text size -->
-                       <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=Project+Certificates" alt="Project Certificates"></div>
-                  </div>
-                   <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="400">
-                      <p class="text-white font-bold text-4xl md:text-6xl leading-tight">78<span class="text-tesla-red">家</span></p> <!-- Adjusted text size -->
-                      <p class="text-white font-bold text-base md:text-xl mt-2">课题实践基地</p> <!-- Adjusted text size -->
-                       <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=Practice+Base+Image" alt="Practice Base Image"></div>
-                  </div>
-                   <div class="theme-card p-6" data-aos="zoom-in" data-aos-delay="500">
-                      <p class="text-white font-bold text-4xl md:text-6xl leading-tight">20<span class="text-tesla-red">家</span></p> <!-- Adjusted text size -->
-                      <p class="text-white font-bold text-base md:text-xl mt-2">博士后工作站<br>区域服务中心</p> <!-- Adjusted text size -->
-                       <div class="image-container mt-4"><img src="https://via.placeholder.com/300x200?text=Postdoc+Station+Image" alt="Postdoc Station Image"></div>
-                  </div>
+          <!-- Social Good 3 -->
+           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>爱心捐款联合国儿童基金会</h3>
+                   <p>2021年3月，为用心呵护未成年人健康成长，公司通过联合国儿童基金会驻华办事处，帮助中国偏远地区困境中的儿童，并为他们爱心捐款。</p>
+               </div>
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=UNICEFLetter" alt="联合国儿童基金会感谢信">
+               </div>
+           </div>
+            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=UNICEFReceipt" alt="联合国儿童基金会捐赠票据">
+               </div>
+                <div class="text-block">
+                     <h3>联合国儿童基金会爱心捐款</h3>
+                </div>
+           </div>
+
+          <!-- Social Good 4 -->
+           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>支持河南抗洪救灾</h3>
+                   <p>2021年7月，为支持河南抗洪救灾，帮助受灾同胞早日度过难关，长沙县建筑行业协会发起"抗洪救灾，你我同行”爱心捐助倡议，公司积极响应，伸出博爱之手，用爱心点燃希望，用真情为灾区同胞撑起一片蓝天。</p>
+               </div>
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=FloodReliefCert" alt="河南抗洪救灾捐赠证书">
+               </div>
+           </div>
+
+          <!-- Social Good 5 -->
+           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>乡村振兴对口帮扶</h3>
+                   <p>2022年1月，公司参加由县委统战部、县工商联组织的爱心企业家赴桑植县、龙山县水田坝镇开展乡村振兴对口帮扶公益活动。</p>
+               </div>
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=RuralRevitalisationDoc" alt="乡村振兴帮扶文件">
+               </div>
+           </div>
+
+          <!-- Social Good 6 -->
+           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>助推乡村振兴，水利行业在行动</h3>
+                   <p>2022年2月，为推进乡村振兴，2022年2月，省水利协会联合各单位开展“助推乡村振兴，水利行业在行动”公益项目，在排灌渠道改造、村民饮用水水井整修、基础设施等方面建设一批民生工程。公司积极参与，继续支持我省乡村振兴建设，投身公益事业，为巩固拓展脱贫攻坚贡献一份力量。</p>
+               </div>
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=RuralRevitalisationDoc2" alt="助推乡村振兴文件">
+               </div>
+           </div>
+            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=RuralRevitalisationCert" alt="助推乡村振兴捐赠证书">
+               </div>
+                <div class="text-block">
+                     <h3>“助推乡村振兴，水利行业在行动”公益项目捐赠证书</h3>
+                </div>
+           </div>
+
+          <!-- Social Good 7 -->
+           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>结对共建 困难慰问</h3>
+                   <p>2022年2月，为贯彻落实“党建聚合力”方案，公司积极参加“结对共建困难慰问”活动，为困难人群带去关怀与温暖。</p>
+               </div>
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=PartyBuildingDoc" alt="结对共建文件">
+               </div>
+           </div>
+            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=PartyBuildingActivity" alt="结对共建活动照片">
+               </div>
+                <div class="text-block">
+                     <h3>“党建聚合力”慰问困难党员活动</h3>
+                </div>
+           </div>
+
+           <!-- Social Good 8 -->
+           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>抗洪抢险</h3>
+                   <p>2019年8月，我公司承建工程所在项目部组织多个队伍道现场进行抢险。积极配合参与抗洪、抢险工作，冒雨参与防汛物资运输及管涌除险处置，避免了防洪堤安全事故的发生，受到了汨罗市水利局的高度评价。</p>
+               </div>
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=FloodRescueDoc" alt="抗洪抢险说明">
+               </div>
+           </div>
+            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=FloodRescueCert" alt="抗洪抢险荣誉证书">
+               </div>
+                <div class="text-block">
+                     <h3>防汛抗洪表现突出</h3>
+                     <p>受到了汨罗市防汛抗旱指挥部的高度评价。</p>
+                </div>
+           </div>
+
+           <!-- Social Good 9 -->
+            <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>关爱脑瘫患儿</h3>
+                   <p>给脑瘫患儿送关怀。</p>
+               </div>
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=CerebralPalsyKids" alt="关爱脑瘫患儿照片1">
+                    <img src="https://via.placeholder.com/600x400?text=CerebralPalsyKids2" alt="关爱脑瘫患儿照片2">
+               </div>
+           </div>
+            <div class="bento-card mt-8" data-aos="fade-up" data-aos-delay="300">
+                 <p class="profile-text text-center">
+                      通过开展本次关爱慰问特殊儿童的公益活动，更多地了解和关注社会弱势群体，进一步增强了社会责任感。公司将继续向社会传递正能量，用实际行动为需要帮助的人送去关爱和温暖。
+                 </p>
             </div>
-         </div>
+
+           <!-- Social Good 10 -->
+            <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+               <div class="text-block">
+                   <h3>铲雪除冰</h3>
+                   <p>2022年2月，长沙县湘龙街道湘润社区启动铲雪除冰预案，公司得知消息立即组织参与铲雪活动，对辖区的主要道路及周边学校人行道的积雪进行铲除，保证社区道路通畅和居民出行安全。</p>
+               </div>
+               <div class="image-block image-grid">
+                   <img src="https://via.placeholder.com/600x400?text=SnowRemovalPhoto" alt="铲雪除冰照片">
+                   <img src="https://via.placeholder.com/600x400?text=SnowRemovalCert" alt="铲雪除冰证明">
+               </div>
+           </div>
+
+            <!-- Social Good 11 (Anti-epidemic volunteer again) -->
+             <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
+                 <div class="text-block">
+                     <h3>抗疫志愿者活动</h3>
+                     <p>自2022年3月，疫情形势严竣，公司人员积极报名参与周边小区及各社会团体组织的抗疫志愿者活动。</p>
+                 </div>
+                  <div class="image-block image-grid">
+                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer1" alt="抗疫志愿者照片1">
+                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer2" alt="抗疫志愿者照片2">
+                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer3" alt="抗疫志愿者照片3">
+                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer4" alt="抗疫志愿者照片4">
+                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer5" alt="抗疫志愿者照片5">
+                  </div>
+             </div>
      </section>
 
-    <!-- Section 24: Teacher & Research Support -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white">专项支持园所师资与教科研提升</h2>
-             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 items-center">
-                 <div data-aos="fade-right" data-aos-delay="200">
-                     <div class="theme-card p-6 mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-chalkboard-teacher mr-2 text-tesla-red"></i>专业化培训 / 赋能师资团队建设</h3>
-                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x300?text=Teacher+Training+Image" alt="Teacher Training Image"></div>
-                     </div>
-                      <div class="theme-card p-6 mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-book-reader mr-2 text-tesla-red"></i>专注于学前教育领域 创新和发展的学术会议</h3>
-                         <div class="image-container mt-4"><img src="https://via.placeholder.com/600x300?text=Academic+Conference+Image" alt="Academic Conference Image"></div>
-                     </div>
-                      <div class="theme-card p-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-file-alt mr-2 text-tesla-red"></i>园所内涵建设与教科研提升 的学术研究成果服务</h3>
-                          <div class="image-container mt-4"><img src="https://via.placeholder.com/600x300?text=Research+Papers+Image" alt="Research Papers Image"></div>
-                     </div>
-                 </div>
-                 <div data-aos="fade-left" data-aos-delay="400">
-                     <div class="theme-card p-6 mb-6">
-                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cloud mr-2 text-tesla-red"></i>数字化工具 / 万能有云</h3>
-                           <div class="image-container mt-4"><img src="https://via.placeholder.com/600x600?text=Digital+Platform+UI" alt="Digital Platform UI"></div>
-                      </div>
-                      <p class="text-center text-white font-bold text-base md:text-xl mt-4" data-aos="fade-up" data-aos-delay="600">万能有云, 赋能高质量办园</p> <!-- Adjusted text size -->
-                 </div>
+    <!-- Company Culture Section -->
+     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="section-title">企业文化</h2>
+
+         <!-- Culture 1 -->
+         <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
+             <div class="image-block image-grid">
+                 <img src="https://via.placeholder.com/600x400?text=CultureYangKaihui1" alt="参观杨开慧故居1">
+                 <img src="https://via.placeholder.com/600x400?text=CultureYangKaihui2" alt="参观杨开慧故居2">
+             </div>
+             <div class="text-block">
+                 <h3>瞻仰革命先烈</h3>
+                 <p>2020年6月，公司组织全体员工参观杨开慧故居，瞻仰革命烈士，学习杨开慧烈士忠于党、忠于人民、坚贞不屈的革命精神。</p>
              </div>
          </div>
+
+         <!-- Culture 2 -->
+          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=CultureThreeGorges1" alt="参观三峡大坝1">
+                  <img src="https://via.placeholder.com/600x400?text=CultureThreeGorges2" alt="参观三峡大坝2">
+              </div>
+               <div class="text-block">
+                   <h3>参观三峡大坝</h3>
+                   <p>2021年4月，公司组织全体员工抵达三峡大坝旅游区，参观三峡工程，俯瞰双线五级船闸，切身感受祖国的繁荣强盛。</p>
+               </div>
+           </div>
+
+         <!-- Culture 3 -->
+          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=CultureAnnualDinner" alt="新年团拜活动">
+              </div>
+              <div class="text-block">
+                   <h3>新年团拜活动</h3>
+                  <p>2022年春节前夕，公司举办新年团拜活动，感谢大家一年来的辛勤付出，大家欢聚一堂，共度新春佳节。</p>
+              </div>
+          </div>
+
+         <!-- Culture 4 -->
+          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=CultureHengshan1" alt="祈福南岳衡山1">
+              </div>
+              <div class="text-block">
+                  <h3>团队建设：祈福南岳衡山</h3>
+                  <p>2023年2月15日，为进一步加强企业文化建设，拓展工作思路、改进工作方法和提高工作效率,增强员工交流与凝聚力。公司组织全体员工开展为期2天的“祈福南岳衡山、追寻伟人故里”团队建设活动。</p>
+              </div>
+          </div>
+          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
+               <div class="image-block image-grid">
+                    <img src="https://via.placeholder.com/600x400?text=CultureHengshan2" alt="祈福南岳衡山2">
+               </div>
+                <div class="text-block">
+                     <h3>“累并快乐着”</h3>
+                     <p>“累并快乐着”是大家一致的感受，在紧张的工作之余,体验了“会当凌绝顶,一览众山小”的人生登高境界，这种愉悦与享受更是畅快人生、意气风发。</p>
+                </div>
+           </div>
+
+         <!-- Culture 5 -->
+          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=CultureShaoshan" alt="赴韶山毛泽东故居">
+              </div>
+              <div class="text-block">
+                  <h3>不忘初心中国梦，伟人故里韶山行</h3>
+                  <p>2023年2月16日早，公司全体员工以饱满的精神面貌和热情赴韶山毛泽东同志故居开展“不忘初心中国梦，伟人故里韶山行”主题活动。</p>
+              </div>
+          </div>
+
+          <!-- Culture 6 -->
+           <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
+              <div class="image-block image-grid">
+                  <img src="https://via.placeholder.com/600x400?text=CultureRedFootprint" alt="追寻红色足迹">
+              </div>
+              <div class="text-block">
+                   <h3>追寻红色足迹 重温党史记忆</h3>
+                  <p>2023年6月10日，公司组织全体工作人员前往缪伯英、陈树湘故居开展“追寻红色足迹重温党史记忆”教育活动，学习和弘扬革命先辈的崇高风范和宝贵精神。</p>
+              </div>
+          </div>
+
      </section>
 
-    <!-- Section 25: Digital Platform Architecture -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white text-center w-full">数字化服务平台--万能有云</h2>
-            <p class="text-center text-gray-300 text-base md:text-lg mt-4" data-aos="fade-up" data-aos-delay="100">万能有云平台系统架构图</p> <!-- Adjusted text size -->
-             <div class="image-container mt-8" data-aos="fade-up" data-aos-delay="200">
-                 <!-- Placeholder for Architecture Diagram -->
-                 <img src="https://via.placeholder.com/1000x800?text=Platform+Architecture+Diagram" alt="Platform Architecture Diagram">
+
+    <!-- Thank You / Contact Section -->
+     <section class="bento-section" data-aos="fade-in" data-aos-duration="1000">
+        <div class="contact-info">
+            <h3 class="text-orange-logo" data-aos="fade-up" data-aos-delay="200">感谢您的聆听</h3>
+            <h3 class="text-white" data-aos="fade-up" data-aos-delay="300">湖南东晖耀建设有限公司</h3>
+             <div class="contact-details mt-8" data-aos="fade-up" data-aos-delay="400">
+                  <p><i class="fas fa-map-marker-alt"></i> 地址：长沙市星沙经开区湘龙街道龙塘小区B23栋9楼</p>
+                  <p><i class="fas fa-phone"></i> 电话：0731-84091758</p>
              </div>
-         </div>
-     </section>
-
-     <!-- Section 26: Digital Platform Data -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10">
-            <h2 class="section-title text-white text-center w-full">数字化服务平台--万能有云</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-                 <div data-aos="fade-right" data-aos-delay="200">
-                     <div class="theme-card p-6 mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-chart-bar mr-2 text-tesla-red"></i>营销系统</h3>
-                         <p class="text-gray-300 text-sm md:text-base">平台操作智能化 / 内容体系标准化 / 营销数据可视化</p> <!-- Adjusted text size -->
-                         <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=Marketing+Dashboard" alt="Marketing Dashboard"></div>
-                     </div>
-                      <div class="theme-card p-6 mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-cogs mr-2 text-tesla-red"></i>决策系统</h3>
-                         <p class="text-gray-300 text-sm md:text-base">决策分析数字化 / 管理数据可视化</p> <!-- Adjusted text size -->
-                      </div>
-                      <div class="image-container mt-8"><img src="https://via.placeholder.com/600x300?text=Business+Flow+Diagram" alt="Business Flow Diagram"></div>
-                 </div>
-                 <div data-aos="fade-left" data-aos-delay="400">
-                      <div class="theme-card p-6 mb-6">
-                         <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-headset mr-2 text-tesla-red"></i>服务系统</h3>
-                         <p class="text-gray-300 text-sm md:text-base">培训服务线上化 / 用户操作智能化 / 培训管理轻松化</p> <!-- Adjusted text size -->
-                      </div>
-                       <div class="theme-card p-6">
-                          <h3 class="text-white font-bold text-xl mb-4"><i class="fas fa-line-chart mr-2 text-tesla-red"></i>关键数据</h3>
-                          <p class="text-gray-300 text-center text-sm md:text-base"> <!-- Adjusted text size -->
-                              总访问量达到<span class="text-tesla-red font-bold text-xl md:text-2xl mx-1">22万次</span>,<br>整体增长率: <span class="text-tesla-red font-bold text-xl md:text-2xl mx-1">323%</span>
-                          </p>
-                           <div class="image-container mt-4"><img src="https://via.placeholder.com/600x400?text=Visit+Growth+Chart" alt="Visit Growth Chart"></div>
-                      </div>
-                 </div>
-            </div>
-         </div>
-     </section>
-
-    <!-- Section 27: Title Repetition -->
-    <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
-         <!-- Logo Top Left -->
-         <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <!-- Tri Logo Top Right -->
-         <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="relative z-10 max-w-screen-xl mx-auto">
-             <h2 class="text-white font-bold text-4xl md:text-7xl leading-tight" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
-                 好产品 好教育 好服务
-             </h2>
-         </div>
-    </section>
-
-    <!-- Section 28: Call to Action -->
-     <section class="relative min-h-[80vh] flex items-center justify-center text-center px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="relative z-10 max-w-screen-xl mx-auto flex flex-col items-center">
-            <p class="text-white font-bold text-3xl md:text-6xl leading-tight mb-8" data-aos="zoom-in" data-aos-delay="200"> <!-- Adjusted text size -->
-                2025我们团结一起,<br>克服困难
-            </p>
-             <div class="image-container w-32 h-32 md:w-48 md:h-48 rounded-lg bg-white p-4 flex items-center justify-center mb-8" data-aos="zoom-in" data-aos-delay="400"> <!-- Adjusted size -->
-                 <!-- QR Code Placeholder -->
-                 <img src="https://via.placeholder.com/150x150?text=QR+Code" alt="WeChat QR Code">
+             <div class="contact-qr" data-aos="zoom-in" data-aos-delay="500">
+                  <!-- Placeholder for Company QR Code -->
+                  <img src="https://via.placeholder.com/150x150?text=Company+QR" alt="公司二维码">
              </div>
-             <p class="text-white font-bold text-3xl md:text-6xl leading-tight" data-aos="zoom-in" data-aos-delay="600"> <!-- Adjusted text size -->
-                共同为中国教育的<br>高质量发展贡献力量
-            </p>
-         </div>
-     </section>
-
-     <!-- Section 29: Summary -->
-     <section class="bento-section relative px-4" data-aos="fade-up">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="max-w-screen-xl mx-auto relative z-10 text-center">
-             <h2 class="section-title text-white inline-block w-full">核心总结</h2>
-             <div class="bento-grid summary-grid gap-4 md:gap-8 mt-8"> <!-- Adjusted gap -->
-                 <div class="summary-item" data-aos="zoom-in" data-aos-delay="200">
-                     <div class="number">69800</div>
-                     <p class="text-label">市场价</p>
-                 </div>
-                 <div class="summary-item" data-aos="zoom-in" data-aos-delay="300">
-                     <div class="number">668</div>
-                     <p class="text-label">零件数量</p>
-                 </div>
-                 <div class="summary-item" data-aos="zoom-in" data-aos-delay="400">
-                     <div class="large-icon"><i class="fas fa-cube"></i></div>
-                     <p class="text-label">主体材质</p>
-                     <ul class="material-list">
-                         <li>PP</li>
-                         <li>ABS</li>
-                         <li>TPE</li>
-                     </ul>
-                 </div>
-                 <div class="summary-item col-span-full sm:col-span-1" data-aos="zoom-in" data-aos-delay="500">
-                      <div class="large-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                      <p class="text-label">应用场景</p>
-                      <ul class="material-list">
-                         <li>户外游戏区</li>
-                         <li>室内公共区域</li>
-                         <li>功能室</li>
-                     </ul>
-                 </div>
-                  <div class="summary-item col-span-full sm:col-span-1" data-aos="zoom-in" data-aos-delay="600">
-                      <div class="large-icon"><i class="fas fa-puzzle-piece"></i></div>
-                      <p class="text-label">产品体系</p>
-                       <ul class="material-list">
-                         <li>游戏材料</li>
-                         <li>教辅资料</li>
-                         <li>师训服务</li>
-                     </ul>
-                 </div>
-             </div>
-         </div>
-     </section>
-
-
-    <!-- Section 30: Thank You -->
-     <section class="relative min-h-[80vh] flex items-center justify-center text-center px-4" data-aos="fade-in" data-aos-duration="1500">
-          <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
-             <img src="https://via.placeholder.com/120x60?text=BEIMA+LOGO" alt="贝玛教育 Logo" class="logo">
-         </div>
-          <div class="absolute top-4 right-4 z-20 md:top-8 md:right-8">
-             <img src="https://via.placeholder.com/150x80?text=Tri+Logo" alt="三元大世界 Logo" class="tri-logo">
-         </div>
-         <div class="relative z-10 max-w-screen-xl mx-auto flex flex-col items-center">
-             <h2 class="text-white font-bold text-5xl md:text-8xl mb-8" data-aos="fade-up" data-aos-delay="200">感谢聆听!</h2> <!-- Adjusted text size -->
-             <div class="image-container max-w-xs md:max-w-lg mt-8" data-aos="fade-up" data-aos-delay="400"> <!-- Adjusted max-width -->
-                 <!-- Placeholder image of the toy scene -->
-                 <img src="https://via.placeholder.com/800x600?text=Thank+You+Scene" alt="Thank You Scene">
-             </div>
-         </div>
+        </div>
      </section>
 
 
@@ -1176,29 +865,43 @@
     <!-- p5.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
 
-    <!-- Adapted p5.js Sketch for Particle Background -->
+    <!-- Your p5.js Sketch for Particle Background (Adapted) -->
     <script>
         let particles = [];
-        const NUM_PARTICLES = 200; // Adjust particle count
-        const MAX_DIST = 150; // Max distance for lines
-        const PARTICLE_SIZE = 2; // Particle size
+        const numParticles = 180; // Particle density
+        const maxDist = 150; // Max distance for lines
+        let mouseParticle; // Particle that follows the mouse
 
         class Particle {
-            constructor() {
-                // Start particles randomly across the entire *document* height initially
-                this.pos = createVector(random(width), random(height));
-                this.vel = createVector(random(-0.3, 0.3), random(-0.3, 0.3)); // Slower movement
-                // Orange/Reddish transparent particles
-                this.color = color(random(220, 255), random(50, 150), 0, random(50, 150)); // More orange/reddish
+            constructor(isMouse = false) {
+                this.isMouse = isMouse;
+                if (isMouse) {
+                    this.pos = createVector(mouseX, mouseY);
+                } else {
+                    this.pos = createVector(random(width), random(height));
+                    this.vel = p5.Vector.random2D().mult(random(0.4, 1.8)); // Speed for motion
+                    this.acc = createVector();
+                }
+                this.size = random(1.5, 3.5); // Random size
             }
 
             update() {
-                this.pos.add(this.vel);
-                this.edges();
+                if (this.isMouse) {
+                    this.pos.x = mouseX;
+                    this.pos.y = mouseY;
+                } else {
+                     // Add some random movement/noise
+                     this.vel.add(p5.Vector.random2D().mult(0.08)); // Subtle random force
+                     this.vel.limit(1.8); // Limit max speed
+
+                    this.pos.add(this.vel);
+                    this.acc.mult(0);
+                    this.edges();
+                }
             }
 
             edges() {
-                // Wrap around edges of the *canvas* (which covers the document)
+                // Wrap particles around the screen edges
                 if (this.pos.x < 0) this.pos.x = width;
                 if (this.pos.x > width) this.pos.x = 0;
                 if (this.pos.y < 0) this.pos.y = height;
@@ -1207,100 +910,82 @@
 
             display() {
                 noStroke();
-                fill(this.color);
-                ellipse(this.pos.x, this.pos.y, PARTICLE_SIZE);
+                // Subtle white or light yellowish particles
+                 fill(250, 240, 200, this.isMouse ? 220 : 120); // Semi-transparent light yellow
+                ellipse(this.pos.x, this.pos.y, this.size);
             }
 
             connect(other) {
                 const d = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
-                if (d < MAX_DIST) {
-                     // Line color blending between Tesla Red and a more orange hue, with fading transparency
-                     const c1 = color(227, 25, 55, map(d, 0, MAX_DIST, 150, 0)); // Tesla Red, fading alpha
-                     const c2 = color(255, 100, 0, map(d, 0, MAX_DIST, 100, 0)); // Orange, fading alpha
-                     const lineColor = lerpColor(c1, c2, d / MAX_DIST); // Blend based on distance
+                if (d < maxDist) {
+                    const alpha = map(d, 0, maxDist, 160, 0); // Fade out lines
+                    let lineColor;
 
-                     stroke(lineColor);
-                     strokeWeight(0.5);
-                     line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
+                    if (this.isMouse || other.isMouse) {
+                         // Tesla Red lines near mouse
+                         lineColor = color(227, 25, 55, alpha);
+                    } else {
+                         // Lines between regular particles - Blend of orange/yellow/red
+                          let highlightColors = [
+                              color(255, 165, 0, alpha), // Orange
+                              color(255, 215, 0, alpha), // Yellow
+                              color(227, 25, 55, alpha * 0.8) // Tesla Red (slightly less opaque)
+                          ];
+                          // Simple way to pick a color based on distance or particle index
+                          let colorIndex = floor(map(d, 0, maxDist, 0, highlightColors.length));
+                          lineColor = highlightColors[min(colorIndex, highlightColors.length - 1)];
+                    }
+
+                    stroke(lineColor);
+                    strokeWeight(0.6); // Thin lines
+                    line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
                 }
             }
         }
 
-        // p5.js setup function
         function setup() {
-            // Create canvas covering the entire *document* width and height
-            // Use window.innerWidth for width as it handles horizontal responsiveness
-            // Use document.body.offsetHeight for the full scrollable height
-            let canvas = createCanvas(window.innerWidth, document.body.offsetHeight);
-
-            // Position canvas absolutely at the top-left of the body
+            let canvas = createCanvas(windowWidth, windowHeight);
             canvas.position(0, 0);
-            canvas.style('z-index', '-1'); // Send canvas to the background
-            canvas.style('pointer-events', 'none'); // Allow mouse events to pass through canvas
-            // Ensure the canvas element itself has the correct dimensions set by p5.js
-            // (The CSS width/height 100% on #canvas-container is helpful but p5 also sets inline styles)
+            canvas.style('z-index', '-1');
+            canvas.style('pointer-events', 'none');
 
-            background(0); // Initial black background
-
-            // Create particles distributed across the initial full document size
-            for (let i = 0; i < NUM_PARTICLES; i++) {
+            for (let i = 0; i < numParticles; i++) {
                 particles.push(new Particle());
             }
-
-             // Optional: Add a small delay before initial draw to ensure DOM is settled
-             // This might help document.body.offsetHeight be more accurate initially
-             // setTimeout(() => {
-             //    resizeCanvas(window.innerWidth, document.body.offsetHeight);
-             //    background(0); // Redraw background after resize
-             //     particles = []; // Re-distribute particles
-             //     for (let i = 0; i < NUM_PARTICLES; i++) {
-             //        particles.push(new Particle());
-             //    }
-             // }, 100); // 100ms delay
+            mouseParticle = new Particle(true);
+            particles.push(mouseParticle); // Add mouse particle to the list
         }
 
-        // p5.js draw function
         function draw() {
-            // Use a slightly transparent background to create subtle trails and blend with CSS gradient
-            // A low alpha black works well for dark backgrounds
-            background(0, 0, 0, 20); // Or rgba(0, 0, 0, 0.05) depending on desired trail length
+            background(26, 26, 26, 60); // Semi-transparent dark background clear (subtle trails)
 
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].display();
+            // Update particles (mouse particle update handled automatically by tracking mouseX/mouseY)
+             for (let i = particles.length -1; i >= 0; i--) {
+                 particles[i].update();
+             }
 
+            // Connect and display particles
+             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     particles[i].connect(particles[j]);
                 }
             }
-        }
-
-        // p5.js windowResized function - called when the *viewport* is resized
-        function windowResized() {
-             // Resize the canvas to new window dimensions and the current document height
-             // Note: document.body.offsetHeight might not update instantly if resize reflows content significantly,
-             // but it's the best we can do with just p5 and plain JS on static content.
-             resizeCanvas(window.innerWidth, document.body.offsetHeight);
-             background(0); // Clear canvas and redraw background on resize
-             // For simplicity with static content, we won't re-distribute particles on every viewport resize.
-             // If content height changed dynamically after load, you'd need a MutationObserver or similar
-             // to trigger a canvas resize and potentially particle re-distribution.
-        }
-
-        // Basic attempt to handle initial load height and potential late content rendering
-        window.addEventListener('load', () => {
-             if (typeof setup === 'function') {
-                 // Ensure canvas is sized correctly after all content is loaded
-                 resizeCanvas(window.innerWidth, document.body.offsetHeight);
-                 background(0); // Redraw background
-                  // Optional: Re-distribute particles if needed
-                  // particles = [];
-                  // for (let i = 0; i < NUM_PARTICLES; i++) {
-                  //    particles.push(new Particle());
-                  // }
+            for (let i = particles.length - 1; i >= 0; i--) {
+                 particles[i].display();
              }
-        });
+        }
 
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+
+        function mouseMoved() {
+             if (mouseParticle) {
+                mouseParticle.pos.x = mouseX;
+                mouseParticle.pos.y = mouseY;
+             }
+             return false; // Prevent default scroll/touch behavior
+        }
 
     </script>
 
