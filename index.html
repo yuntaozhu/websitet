@@ -118,6 +118,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <!-- Framer Motion UMD Bundle (for conceptual use with pure JS) -->
     <script src="https://unpkg.com/framer-motion@latest/dist/framer-motion.umd.js"></script>
+    <!-- ECharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
 </head>
 <body>
     <canvas id="particleCanvas" class="particle-canvas"></canvas>
@@ -280,19 +282,13 @@
                 </div>
             </section>
 
-            <!-- Placeholder for Chart Component (Illustrative) -->
+            <!-- Radar Chart Component -->
             <section class="bento-grid-item lg:col-span-1 flex flex-col justify-center items-center p-8" data-animated-section>
                 <h3 class="text-2xl font-bold text-white mb-4 text-center">
                     <i class="fas fa-chart-area text-tesla-red mr-2 opacity-70"></i> 智能雷达图概览
                     <span class="block subtitle text-base">Intelligence Radar Chart Overview</span>
                 </h3>
-                <div class="w-full h-64 bg-gradient-to-br from-gray-700 to-gray-900 rounded-lg flex items-center justify-center text-gray-400 text-lg">
-                    <p class="text-center">
-                        [此处可集成在线图表组件，如ECharts/Chart.js]<br>
-                        <i class="fas fa-cogs animate-spin text-4xl mt-4"></i><br>
-                        Developing Interactive Chart...
-                    </p>
-                </div>
+                <div id="radar-chart-container" class="w-full h-64"></div>
             </section>
 
 
@@ -455,6 +451,10 @@
 
         function windowResized() {
             resizeCanvas(windowWidth, windowHeight);
+            // Resize ECharts chart when window is resized
+            if (radarChart) {
+                radarChart.resize();
+            }
         }
 
         class Particle {
@@ -486,8 +486,10 @@
         }
     </script>
 
-    <!-- Framer Motion / Intersection Observer for scroll animations -->
+    <!-- ECharts Initialization and Framer Motion / Intersection Observer for scroll animations -->
     <script>
+        let radarChart; // Declare radarChart in a wider scope
+
         document.addEventListener('DOMContentLoaded', () => {
             const animatedSections = document.querySelectorAll('[data-animated-section]');
             const initialElements = document.querySelectorAll('.animated-fade-in');
@@ -510,6 +512,10 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animated');
+                        // Special handling for radar chart to initialize it when it comes into view
+                        if (entry.target.querySelector('#radar-chart-container')) {
+                            initRadarChart();
+                        }
                         observer.unobserve(entry.target); // Stop observing once animated
                     }
                 });
@@ -519,6 +525,132 @@
                 observer.observe(section);
             });
         });
+
+        // Function to initialize the radar chart
+        function initRadarChart() {
+            const chartDom = document.getElementById('radar-chart-container');
+            if (!chartDom) return; // Exit if container not found
+
+            radarChart = echarts.init(chartDom, null, {
+                renderer: 'canvas', // Use canvas renderer for better performance
+                use  dirtyRect: false // Disable dirty rect for smoother animations
+            });
+
+            const option = {
+                backgroundColor: 'transparent', // Match bento grid item background
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    borderColor: '#E31937',
+                    borderWidth: 1,
+                    textStyle: {
+                        color: '#fff'
+                    },
+                    formatter: function(params) {
+                        let result = `<div style="padding: 5px;">${params.name}</div>`;
+                        params.data.value.forEach((val, index) => {
+                            result += `<div style="display: flex; justify-content: space-between; align-items: center; padding: 2px 0;">
+                                            <span style="display:inline-block; margin-right:5px; border-radius:10px; width:9px; height:9px; background-color:${params.color};"></span>
+                                            <span style="min-width: 80px;">${option.radar.indicator[index].name}:</span>
+                                            <span style="font-weight: bold; margin-left: 10px;">${val}</span>
+                                        </div>`;
+                        });
+                        return result;
+                    }
+                },
+                radar: {
+                    indicator: [
+                        { name: '语言文字智能 / Linguistic', max: 140 },
+                        { name: '数学逻辑智能 / Logical-Mathematical', max: 140 },
+                        { name: '音乐旋律智能 / Musical', max: 140 },
+                        { name: '人际关系智能 / Interpersonal', max: 140 },
+                        { name: '身体运动智能 / Bodily-Kinesthetic', max: 140 },
+                        { name: '视觉空间智能 / Spatial', max: 140 },
+                        { name: '个人内省智能 / Intrapersonal', max: 140 },
+                        { name: '自然观察智能 / Naturalistic', max: 140 }
+                    ],
+                    radius: '65%',
+                    center: ['50%', '50%'],
+                    shape: 'polygon',
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)' // Axis line color
+                        }
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: [
+                                'rgba(255, 255, 255, 0.1)',
+                                'rgba(255, 255, 255, 0.2)',
+                                'rgba(255, 255, 255, 0.3)',
+                                'rgba(255, 255, 255, 0.4)',
+                                'rgba(255, 255, 255, 0.5)'
+                            ] // Gradient for split lines
+                        }
+                    },
+                    splitArea: {
+                        areaStyle: {
+                            color: [
+                                'rgba(255, 255, 255, 0.02)',
+                                'rgba(255, 255, 255, 0.04)'
+                            ].reverse() // Alternating transparent areas
+                        }
+                    },
+                    axisName: {
+                        color: '#FFFFFF', // Label color
+                        fontSize: 12,
+                        fontWeight: 'bold',
+                        formatter: function (value, indicator) {
+                            // Split multi-language labels for readability
+                            const parts = value.split(' / ');
+                            return parts[0] + '\n' + '{english|' + parts[1] + '}';
+                        },
+                        rich: {
+                            english: {
+                                fontSize: 10,
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: '张三智能商数',
+                        type: 'radar',
+                        data: [
+                            {
+                                value: [91, 103, 79, 114, 126, 103, 91, 103],
+                                name: '张三',
+                                label: {
+                                    show: true,
+                                    formatter: function(params) {
+                                        return params.value;
+                                    },
+                                    color: '#E31937', // Label color for data point
+                                    fontSize: 12,
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        ],
+                        itemStyle: {
+                            color: '#E31937' // Point color
+                        },
+                        lineStyle: {
+                            color: '#E31937', // Line color
+                            width: 2
+                        },
+                        areaStyle: {
+                            opacity: 0.6,
+                            color: 'rgba(227, 25, 55, 0.4)' // Area fill color (Tesla red transparent)
+                        },
+                        symbol: 'circle', // Point symbol
+                        symbolSize: 8, // Point size
+                    }
+                ]
+            };
+
+            radarChart.setOption(option);
+        }
     </script>
 </body>
 </html>
