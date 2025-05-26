@@ -111,13 +111,26 @@
                 padding: 24px;
             }
         }
+        .dashed-border {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .table-striped-custom tbody tr:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        .table-striped-custom tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.01);
+        }
     </style>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- p5.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <!-- Framer Motion UMD Bundle (for conceptual use with pure JS) -->
-    <!-- Corrected Framer Motion CDN link -->
     <script src="https://unpkg.com/framer-motion@11.2.10/dist/framer-motion.umd.js"></script>
     <!-- ECharts CDN -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
@@ -259,6 +272,151 @@
                 </div>
             </section>
 
+            <!-- Personal File / Individual Profile Diagram Data -->
+            <section class="bento-grid-item lg:col-span-3" data-animated-section>
+                <h2 class="section-title">
+                    <i class="fas fa-user-circle text-tesla-red mr-4 opacity-70"></i> 个人档案概览
+                    <span class="block subtitle">Personal Profile Overview</span>
+                </h2>
+                <div class="mt-8 text-lg leading-relaxed text-white text-opacity-90 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-4 bg-white bg-opacity-5 rounded-lg border border-white border-opacity-10">
+                        <h3 class="text-xl font-bold text-tesla-red mb-2"><i class="fas fa-brain mr-2"></i> 大脑功能区域 Brain Regions</h3>
+                        <p><strong>前额叶 / Frontal Lobe:</strong></p>
+                        <ul class="list-none space-y-1 ml-4">
+                            <li>逻辑推理 / Logical Reasoning: 17佳 (Excellent)</li>
+                            <li>沟通管理 / Communication Management: 18R (Reinforced)</li>
+                            <li>计划判断 / Planning & Judgment: 19优 (Outstanding)</li>
+                        </ul>
+                        <p class="mt-2"><strong>顶叶 / Parietal Lobe:</strong></p>
+                        <ul class="list-none space-y-1 ml-4">
+                            <li>体觉辨识 / Somatosensory Recognition: 11补 (Needs Supplement)</li>
+                            <li>操作理解 / Operational Understanding: 16佳 (Excellent)</li>
+                        </ul>
+                        <p class="mt-2"><strong>颞叶 / Temporal Lobe:</strong></p>
+                        <ul class="list-none space-y-1 ml-4">
+                            <li>听觉辨识 / Auditory Recognition: 16佳 (Excellent)</li>
+                            <li>语言理解 / Language Comprehension: 23W优 (Outstanding)</li>
+                        </ul>
+                        <p class="mt-2"><strong>枕叶 / Occipital Lobe:</strong></p>
+                        <ul class="list-none space-y-1 ml-4">
+                            <li>视觉辨识 / Visual Recognition: 14佳 (Excellent)</li>
+                            <li>观察理解 / Observation & Comprehension: 18W佳 (Excellent)</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-white bg-opacity-5 rounded-lg border border-white border-opacity-10">
+                        <h3 class="text-xl font-bold text-tesla-red mb-2"><i class="fas fa-child-reaching mr-2"></i> 核心特质与潜能 Core Traits & Potential</h3>
+                        <p><strong>先天性格 / Innate Personality:</strong> 逆思型 (Reversal Thinker)</p>
+                        <p><strong>性格色彩 / Personality Color:</strong> 力量型(黄色) (Powerful/Yellow)</p>
+                        <p><strong>辅助性格 / Auxiliary Personality:</strong> 创意型 (Creative)</p>
+                        <p><strong>坚持指数 / Persistence Index:</strong> 1.80</p>
+                        <p><strong>先天学习敏锐度 / Innate Learning Acuity:</strong> 30</p>
+                        <p><strong>人格特质 / Personality Trait:</strong> 刺猬型 (Hedgehog)</p>
+                        <p><strong>体育潜能 / Athletic Potential:</strong> <span class="large-number text-5xl">81</span></p>
+                        <p><strong>左右脑功能分布 / Left/Right Brain Function Distribution:</strong> 右脑型 (Right-Brained)</p>
+                    </div>
+
+                    <div class="p-4 bg-white bg-opacity-5 rounded-lg border border-white border-opacity-10">
+                        <h3 class="text-xl font-bold text-tesla-red mb-2"><i class="fas fa-running mr-2"></i> 五大体能素质 Five Physical Qualities</h3>
+                        <ul class="list-none space-y-2">
+                            <li>爆发力 / Explosive Power: 63 (均值60)</li>
+                            <li>柔韧性 / Flexibility: 58 (均值60)</li>
+                            <li>耐力 / Endurance: 68 (均值60)</li>
+                            <li>速度 / Speed: 64 (均值60)</li>
+                            <li>灵敏度 / Agility: 74 (均值60)</li>
+                        </ul>
+                        <h3 class="text-xl font-bold text-tesla-red mb-2 mt-4"><i class="fas fa-palette mr-2"></i> 艺术与音乐天赋 Artistic & Musical Talent</h3>
+                        <ul class="list-none space-y-2">
+                            <li>音乐天赋 / Musical Talent: <span class="large-number text-5xl">17</span> (基准值10)</li>
+                            <li>艺术天赋 / Artistic Talent: <span class="large-number text-5xl">14</span> (基准值10)</li>
+                            <li>舞蹈潜能 / Dance Potential: <span class="large-number text-5xl">12</span> (基准值10)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 dashed-border">
+                    <i class="fas fa-info-circle text-tesla-red text-2xl mb-2"></i><br>
+                    此图是模拟您提及的“个人档案示意图”的核心数据展现。它旨在全面解读张三的先天特质、大脑优势区、体能状况及艺术潜能，为个性化教育提供详尽基础。
+                </div>
+            </section>
+
+            <!-- Detailed Assessment Data Tables -->
+            <section class="bento-grid-item lg:col-span-3" data-animated-section>
+                <h2 class="section-title">
+                    <i class="fas fa-database text-tesla-red mr-4 opacity-70"></i> 详细测评数据
+                    <span class="block subtitle">Detailed Assessment Data</span>
+                </h2>
+                <div class="mt-8 text-lg leading-relaxed text-white text-opacity-90">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-tesla-red mb-4"><i class="fas fa-chart-bar mr-2"></i> 综合概览 / General Overview</h3>
+                            <table class="w-full text-left text-sm table-custom table-striped-custom mb-6">
+                                <tbody>
+                                    <tr><td>学习潜能量 / Learning Potential Energy</td><td><span class="font-bold text-tesla-red text-lg">188</span></td></tr>
+                                    <tr><td>左右脑功能分布 / Left/Right Brain Function Distribution</td><td>左脑比例 <span class="font-bold">53%</span>, 右脑比例 <span class="font-bold">47%</span></td></tr>
+                                    <tr><td>行为动机 / Behavioral Motivation</td><td><span class="font-bold">动机型</span></td></tr>
+                                    <tr><td>优势学习管道 / Dominant Learning Channel</td><td><span class="font-bold">认知型</span></td></tr>
+                                    <tr><td>学习操作敏锐度 / Learning Operation Acuity</td><td><span class="font-bold">较敏感</span></td></tr>
+                                    <tr><td>个性特质 / Personality Traits</td><td>七、固执指数 <span class="font-bold">1.50</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-tesla-red mb-4"><i class="fas fa-brain mr-2"></i> 大脑功能数据 / Brain Function Data</h3>
+                            <table class="w-full text-left text-sm table-custom table-striped-custom">
+                                <thead>
+                                    <tr><th>功能类型</th><th>数值</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>精神功能 / Mental Function</td><td>46</td></tr>
+                                    <tr><td>体觉功能 / Somatic Function</td><td>37</td></tr>
+                                    <tr><td>听觉功能 / Auditory Function</td><td>34</td></tr>
+                                    <tr><td>视觉功能 / Visual Function</td><td>34</td></tr>
+                                </tbody>
+                            </table>
+                            <div class="mt-6">
+                                <h3 class="text-xl font-bold text-tesla-red mb-2"><i class="fas fa-level-up-alt mr-2"></i> 发展评价标准 / Development Criteria</h3>
+                                <ul class="list-none space-y-1 ml-4">
+                                    <li>90以下: 中下 (Below average)</li>
+                                    <li>90~110: 中等 (Average)</li>
+                                    <li>110~120: 中上 (Above average)</li>
+                                    <li>120~140: 优秀 (Excellent)</li>
+                                    <li>140以上: 超常 (Exceptional)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-tesla-red mt-8 mb-4"><i class="fas fa-graduation-cap mr-2"></i> 八大智能与潜质排序 / Eight Intelligences & Potential Ranking</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm table-custom table-striped-custom">
+                            <thead>
+                                <tr>
+                                    <th class="py-3 px-4">八大智能</th>
+                                    <th class="py-3 px-4">数值</th>
+                                    <th class="py-3 px-4">潜质排序</th>
+                                    <th class="py-3 px-4">沟通模式</th>
+                                    <th class="py-3 px-4">职业发展</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>人际智能 / Interpersonal</td><td>19</td><td>2</td><td>T</td><td>人文与社会(文)</td></tr>
+                                <tr><td>内省智能 / Intrapersonal</td><td>27</td><td>1</td><td>T</td><td>心理与社会(文)</td></tr>
+                                <tr><td>语言智能 / Linguistic</td><td>19</td><td>L</td><td>表达/沟通/拟想</td><td>语文、外语(文)</td></tr>
+                                <tr><td>数学逻辑智能 / Logical-Mathematical</td><td>18</td><td>L</td><td>推理/分析</td><td>数理化(理)</td></tr>
+                                <tr><td>音乐智能 / Musical</td><td>17</td><td>7</td><td>▼</td><td>音乐、舞蹈</td></tr>
+                                <tr><td>空间智能 / Spatial</td><td>19</td><td>L</td><td>视觉/空间</td><td></td></tr>
+                                <tr><td>身体运动智能 / Bodily-Kinesthetic</td><td>17</td><td>L</td><td>体育、工艺</td></tr>
+                                <tr><td>自然观察智能 / Naturalistic</td><td>19</td><td>3</td><td>W</td><td>科学、物理、化学</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div class="mt-8 dashed-border">
+                        <i class="fas fa-chart-line text-tesla-red text-2xl mb-2"></i><br>
+                        以上表格展示了张三在各项智能和大脑功能上的具体数据，以及基于此的潜质排序和沟通模式。这些细致的数据为更精准的教育干预提供了量化依据。
+                    </div>
+                </div>
+            </section>
+
             <!-- Opportunity Gaps -->
             <section class="bento-grid-item lg:col-span-2" data-animated-section>
                 <h2 class="section-title">
@@ -396,6 +554,21 @@
                                 </td>
                                 <td class="py-4 px-4">中 / Medium (需专业工具)</td>
                                 <td class="py-4 px-4">儿童发展是动态过程，定期评估有助于及时调整策略。</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold">高 / High</td>
+                                <td class="py-4 px-4" colspan="4">
+                                    <strong class="text-tesla-red">高考专业选择建议（原则性指导）:</strong><br>
+                                    基于多元智能评估，结合张三的优势智能（身体运动、人际关系），未来在高中及大学阶段可重点关注以下学科方向，并为其未来的职业发展提供初步指引：
+                                    <ul>
+                                        <li>**体育艺术类**: 结合其卓越的身体运动智能和音乐/舞蹈天赋，未来可考虑体育教育、体育管理、舞蹈表演、音乐教育、艺术设计（如雕塑、工业设计等需要精细动作和空间感的领域）。</li>
+                                        <li>**人文社科类**: 凭借出色的人际关系智能，她将在心理学、社会学、教育学、法学、新闻传播、人力资源等需要高情商和沟通能力的领域展现优势。</li>
+                                        <li>**交叉学科/应用型专业**: 鼓励选择将优势智能与其它学科结合的专业，例如体育康复、运动心理学、艺术治疗、儿童发展与教育等，这些领域能让她多方面发挥潜能。</li>
+                                    </ul>
+                                    <p class="text-sm italic mt-2 text-white text-opacity-70">
+                                        *注：此处为基于早期智能评估的原则性建议，具体的专业选择需随着孩子的成长和兴趣的进一步发展进行动态调整和细化。未提供具体的学科细分数据，因此侧重于宏观方向的指导。
+                                    </p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -552,7 +725,7 @@
                         params.data.value.forEach((val, index) => {
                             result += `<div style="display: flex; justify-content: space-between; align-items: center; padding: 2px 0;">
                                             <span style="display:inline-block; margin-right:5px; border-radius:10px; width:9px; height:9px; background-color:${params.color};"></span>
-                                            <span style="min-width: 80px;">${option.radar.indicator[index].name}:</span>
+                                            <span style="min-width: 80px;">${option.radar.indicator[index].name.split(' / ')[0]}:</span>
                                             <span style="font-weight: bold; margin-left: 10px;">${val}</span>
                                         </div>`;
                         });
@@ -620,29 +793,23 @@
                         type: 'radar',
                         data: [
                             {
-                                value: [91, 103, 79, 114, 126, 103, 91, 103], // Data for the intelligence scores
+                                value: [91, 103, 79, 114, 126, 103, 91, 103], // Data for the intelligence scores (IQ equivalent)
                                 name: '张三',
                                 label: {
-                                    show: true,
-                                    formatter: function(params) {
-                                        return params.value;
-                                    },
-                                    color: '#E31937', // Label color for data point
-                                    fontSize: 12,
-                                    fontWeight: 'bold'
+                                    show: false, // Hide labels directly on points to keep it clean
                                 }
                             }
                         ],
                         itemStyle: {
-                            color: '#E31937' // Point color
+                            color: '#E31937' // Point color (Tesla Red)
                         },
                         lineStyle: {
-                            color: '#E31937', // Line color
+                            color: '#E31937', // Line color (Tesla Red)
                             width: 2
                         },
                         areaStyle: {
                             opacity: 0.6,
-                            color: 'rgba(227, 25, 55, 0.4)' // Area fill color (Tesla red transparent)
+                            color: 'rgba(227, 25, 55, 0.4)' // Area fill color (Tesla Red transparent)
                         },
                         symbol: 'circle', // Point symbol
                         symbolSize: 8, // Point size
