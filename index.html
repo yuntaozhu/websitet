@@ -3,991 +3,522 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>湖南东晖耀建设有限公司</title>
+    <title>多元智能研究报告 - 张三</title>
     <!-- Tailwind CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- AOS CSS CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --tesla-red: #E31937;
-            --orange-logo: #FFA500; /* Orange from the logo */
-            --yellow-logo: #FFD700; /* Yellow from the logo */
-            --dark-bg: #1a1a1a; /* Dark background */
-            --card-bg: rgba(255, 165, 0, 0.05); /* Subtle orange transparent background for cards */
-            --card-border: rgba(255, 165, 0, 0.3); /* Semi-transparent orange border */
-            --text-light: #e5e7eb; /* Light gray text */
-            --text-dark: #1a1a1a; /* Dark text for contrasting backgrounds */
-        }
+        /* Custom styles for gradients and specific colors */
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            font-family: sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll caused by animations */
-            position: relative; /* Needed for z-index context */
-            min-height: 100vh; /* Ensure body covers at least viewport height */
-            padding-bottom: 4rem; /* Add space at the bottom */
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #fff; /* White headings */
+            background: linear-gradient(to bottom right, #FFA726, #FF7043, #E31937); /* Gradient: Orange to Red */
+            font-family: 'PingFang SC', 'Helvetica Neue', 'Arial', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            color: #FFFFFF; /* Default text color */
         }
         .text-tesla-red {
-            color: var(--tesla-red);
+            color: #E31937;
         }
-        .text-orange-logo {
-            color: var(--orange-logo);
+        .highlight-gradient {
+            background: linear-gradient(to right, rgba(227, 25, 55, 0.2), rgba(227, 25, 55, 0)); /* Transparent Tesla Red for highlights */
         }
-         .text-yellow-logo {
-            color: var(--yellow-logo);
-         }
-
-
-        /* General Section Styling */
-        section {
-            padding: 3rem 1rem;
-            max-width: 1200px; /* Limit content width */
-            margin: 0 auto;
+        .bento-grid-item {
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white for items */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             position: relative;
-            z-index: 10; /* Ensure content is above particles */
+            overflow: hidden;
+            /* Initial state for Framer Motion / Intersection Observer */
+            opacity: 0;
+            transform: translateY(50px);
         }
-
-        /* Hero/Welcome Section */
-        .hero-section {
-            min-height: 80vh; /* Make hero section tall */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        .bento-grid-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .hero-title {
-             font-size: clamp(3rem, 10vw, 6rem); /* Very large title */
-             font-weight: bold;
-             line-height: 1.1;
-             color: #fff;
-             margin-bottom: 1.5rem;
-        }
-        .hero-subtitle {
-            font-size: clamp(1.5rem, 5vw, 3rem);
-             color: var(--orange-logo);
-             font-weight: bold;
-             margin-bottom: 2rem;
-        }
-         .hero-logo img {
-             width: clamp(150px, 40vw, 300px); /* Responsive logo size */
-             height: auto;
-             margin-bottom: 2rem;
-             filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.5)); /* Subtle glow */
-         }
-
-        /* Section Title Styling */
-         .section-title {
-             font-size: clamp(2.5rem, 7vw, 5rem); /* Large section title */
-             font-weight: bold;
-             margin-bottom: 2rem;
-             position: relative;
-             display: inline-block; /* Allows ::after positioning */
-             color: #fff;
-         }
-         .section-title::after {
-             content: '';
-             display: block;
-             width: 60%; /* Highlight line under title */
-             height: 6px;
-             background: linear-gradient(to right, var(--tesla-red), rgba(227, 25, 55, 0.3)); /* Transparent gradient red line */
-             margin-top: 0.5rem;
-             opacity: 0.8;
-         }
-         .section-title.text-right::after {
-              margin-left: auto; /* Align line to the right */
-         }
-
-
-        /* Bento Card/Block Styling */
-        .bento-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-             backdrop-filter: blur(3px); /* Subtle blur */
-        }
-         .bento-card:hover {
-             transform: translateY(-4px);
-             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-         }
-         .bento-card h3 {
-             color: var(--yellow-logo); /* Yellow heading */
-             font-size: 1.8rem;
-             font-weight: bold;
-             margin-bottom: 1rem;
-         }
-
-        /* Specific Section Styles */
-         .profile-text {
-             font-size: 1.1rem;
-             line-height: 1.8;
-             color: var(--text-light);
-         }
-         .motto-list {
-             display: flex;
-             flex-wrap: wrap;
-             gap: 1.5rem;
-             margin-top: 2rem;
-         }
-         .motto-item {
-             font-size: 1.2rem;
-             font-weight: bold;
-             color: var(--orange-logo);
-             display: flex;
-             align-items: center;
-             gap: 0.5rem;
-         }
-         .motto-item i {
-             color: var(--tesla-red);
-             font-size: 1.5rem;
-         }
-
-        /* Certifications/Images Grid */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-         .cert-grid img {
-             display: block;
-             width: 100%;
-             height: auto;
-             border: 1px solid rgba(255, 255, 255, 0.1);
-             border-radius: 4px;
-             transition: transform 0.3s ease;
-         }
-         .cert-grid img:hover {
-             transform: scale(1.03);
-         }
-
-        /* Qualifications List */
-        .qualifications-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-         .qualification-item {
-             background-color: rgba(255, 165, 0, 0.1); /* Subtle orange */
-             border-left: 4px solid var(--orange-logo);
-             padding: 1rem;
-             font-size: 1rem;
-             color: var(--text-light);
-         }
-         .qualification-item strong {
-             color: #fff;
-         }
-
-        /* Branch Offices */
-         .branch-grid {
-             display: grid;
-             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-             gap: 1rem;
-         }
-         .branch-item {
-              background: linear-gradient(to right, rgba(255, 165, 0, 0.8), rgba(255, 165, 0, 0.5)); /* Orange gradient button */
-              color: var(--text-dark);
-              font-weight: bold;
-              padding: 1rem;
-              border-radius: 25px; /* Pill shape */
-              text-align: center;
-              transition: transform 0.2s ease;
-         }
-         .branch-item:hover {
-             transform: scale(1.05);
-         }
-         .branch-item i {
-             margin-right: 0.5rem;
-             color: rgba(0,0,0,0.3); /* Dark icon */
-         }
-
-        /* Project/Social/Culture Item Layouts */
-        .item-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-         @media (min-width: 768px) {
-             .item-layout {
-                 flex-direction: row;
-                 align-items: center;
-             }
-              .item-layout.reverse {
-                  flex-direction: row-reverse;
-              }
-             .item-layout .image-block {
-                 flex: 1;
-             }
-             .item-layout .text-block {
-                 flex: 1;
-             }
-         }
-         .item-layout .image-block img {
-             display: block;
-             width: 100%;
-             height: auto;
-             border-radius: 8px;
-              border: 1px solid rgba(255, 165, 0, 0.2);
-         }
-         .item-layout .text-block {
-             background-color: var(--card-bg);
-             border: 1px solid var(--card-border);
-             border-radius: 8px;
-             padding: 1.5rem;
-         }
-         .item-layout .text-block h3 {
-             margin-top: 0; /* Remove top margin */
-         }
-         .item-layout .text-block p {
-             font-size: 1rem;
-             line-height: 1.7;
-             color: var(--text-light);
-         }
-         .item-layout .image-grid {
-             display: grid;
-             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-             gap: 1rem;
-         }
-         .item-layout .image-grid img {
-              display: block;
-              width: 100%;
-              height: auto;
-              border-radius: 4px;
-               border: 1px solid rgba(255, 255, 255, 0.1);
-         }
-
-        /* Footer Contact Info */
-        .contact-info {
-             max-width: 600px;
-             margin: 0 auto;
-             text-align: center;
-             margin-top: 3rem;
-             padding-top: 2rem;
-             border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator line */
-        }
-         .contact-info h3 {
-             font-size: 2rem;
-             color: #fff;
-             margin-bottom: 1.5rem;
-         }
-         .contact-details {
-             font-size: 1.1rem;
-             line-height: 1.7;
-             color: var(--text-light);
-         }
-         .contact-details p {
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             gap: 0.8rem;
-             margin-bottom: 0.5rem;
-         }
-         .contact-details i {
-             color: var(--tesla-red);
-         }
-         .contact-qr img {
-             width: 120px;
-             height: 120px;
-             margin: 1.5rem auto 0;
-             border-radius: 4px;
-             border: 2px solid rgba(255, 255, 255, 0.3);
-         }
-
-
-         /* p5.js canvas styling */
-        canvas {
-            display: block;
-            position: fixed; /* Covers the entire viewport */
+        .particle-canvas {
+            position: fixed;
             top: 0;
             left: 0;
-            z-index: -1; /* Put behind other content */
-            pointer-events: none; /* Allow mouse events to pass through canvas */
             width: 100vw;
             height: 100vh;
+            z-index: -1;
         }
-
+        .section-title {
+            font-size: 3.5rem; /* Large font size for main titles */
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: white; /* Default title color */
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 8px;
+        }
+        .large-number {
+            font-size: 6rem; /* Ultra large for emphasis */
+            font-weight: 900;
+            color: #E31937;
+            text-shadow: 0 0 20px rgba(227, 25, 55, 0.5);
+            line-height: 1;
+        }
+        .data-point {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        .table-custom th, .table-custom td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .table-custom th {
+            background-color: rgba(227, 25, 55, 0.2); /* Tesla red transparent background */
+            color: white;
+            font-weight: 600;
+        }
+        .table-custom tr:last-child td {
+            border-bottom: none;
+        }
+        .table-custom ul {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+        }
+        .table-custom ul li::before {
+            content: "\f00c"; /* Font Awesome check icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #E31937;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            margin-right: 0.5em;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            .large-number {
+                font-size: 4rem;
+            }
+            .bento-grid-item {
+                padding: 24px;
+            }
+        }
     </style>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- p5.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <!-- Framer Motion UMD Bundle (for conceptual use with pure JS) -->
+    <script src="https://unpkg.com/framer-motion@latest/dist/framer-motion.umd.js"></script>
 </head>
 <body>
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
 
-    <!-- p5.js Canvas (will be created by the script) -->
-    <div id="p5-canvas-container"></div>
-
-    <!-- Hero/Welcome Section -->
-    <section class="hero-section" data-aos="fade-in" data-aos-duration="1500">
-        <div class="hero-logo" data-aos="fade-down" data-aos-delay="500">
-             <!-- Placeholder for Company Logo -->
-             <img src="https://via.placeholder.com/300x300?text=Company+Logo" alt="湖南东晖耀建设有限公司 Logo">
-        </div>
-        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="700">热烈欢迎</h1>
-        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="900">各位领导莅临指导</p>
-    </section>
-
-    <!-- Company Profile Section -->
-    <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="section-title">公司简介</h2>
-        <div class="bento-card" data-aos="fade-right" data-aos-delay="200">
-            <h3 class="text-orange-logo">湖南东晖耀建设有限公司</h3>
-            <p class="profile-text">
-                湖南东晖耀建设有限公司（原“湖南省东晖园林工程有限公司”成立于2014年11
-                月），具有“建筑工程施工总承包贰级”、“建筑装修装饰工程专业承包贰级”；“公
-                路工程施工总承包叁级”、“水利水电工程施工总承包叁级”、“市政公用工程施工总
-                承包叁级”；“桥梁工程专业承包叁级”、“隧道工程工程专业承包叁级”、“钢结构工程
-                专业承包叁级”、“公路路面工程专业承包叁级”、“公路路基工程专业承包叁级”、
-                “河湖整治工程专业承包叁级”、“环保工程专业承包叁级”、“施工劳务不分等级”
-                等资质。服务范围涵盖：建筑、装饰装修、公路、水利、市政、桥梁、隧道、钢结构、
-                公路路基路面、河湖整治、环保、施工劳务等领域。
+    <div class="relative z-10 min-h-screen py-16 px-8 lg:px-24">
+        <!-- Main Title Section -->
+        <section class="text-center mb-24 animated-fade-in">
+            <h1 class="text-7xl lg:text-8xl font-black mb-4 tracking-tight leading-tight">
+                <span class="text-tesla-red">多元智能</span>研究报告
+            </h1>
+            <p class="text-3xl lg:text-4xl font-light text-white text-opacity-80">
+                Multidimensional Intelligence Research Report
             </p>
-        </div>
-         <div class="bento-card mt-8" data-aos="fade-left" data-aos-delay="300">
-             <p class="profile-text">
-                 湖南东晖耀建设有限公司管理人员及在建项目参保人员近百人。专业各类人才包括
-                 一级造价工程师、二级造价工程师、一级建造师、二级建造师、高级工程师、中级工
-                 程师、建筑安管人员、水利三类人员、交安三类人员、建筑九大员、水利五大员等。
-                 公司连年被评为“中国水利工程协会AAA级信用单位”、“湖南省水利工程施工AAA
-                 级信用单位”、“湖南省水利协会信用A+企业”、“湖南省守合同重信用企业”、
-                 “长沙市守合同重信用企业”、“长沙县建筑业协会常务理事单位”、通过“质量管
-                 理、职业健康管理、环境管理”三大体系认证、通过“市级安全质量标准化认证”、
-                 荣获“水利安全生产标准化二级”、连续多年荣获税务评价A级、荣获多项商标专利软
-                 著等、承建项目荣获“优秀施工单位”等荣誉称号。
-             </p>
-             <div class="motto-list">
-                  <div class="motto-item"><i class="fas fa-check-circle"></i> 诚信</div>
-                  <div class="motto-item"><i class="fas fa-check-circle"></i> 务实</div>
-                  <div class="motto-item"><i class="fas fa-check-circle"></i> 凝聚</div>
-                  <div class="motto-item"><i class="fas fa-check-circle"></i> 高效</div>
-             </div>
-              <p class="profile-text mt-4">
-                 公司一直秉持“诚信、务实、凝聚、高效”的企业宗旨，发挥好企业特色，立足湖南，面向全国高质量发展。
-              </p>
-         </div>
-    </section>
-
-    <!-- Certifications & Awards Section -->
-     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="section-title text-right">企业荣誉与资质</h2>
-         <div class="bento-card" data-aos="fade-left" data-aos-delay="200">
-            <h3>主要资质与荣誉</h3>
-             <div class="qualifications-list">
-                 <div class="qualification-item">建筑工程总包二级</div>
-                 <div class="qualification-item">装修装饰专业二级</div>
-                 <div class="qualification-item">市政工程总包三级</div>
-                 <div class="qualification-item">水利水电总包三级</div>
-                 <div class="qualification-item">公路工程总包三级</div>
-                 <div class="qualification-item">钢构工程专业三级</div>
-                 <div class="qualification-item">环保工程专业三级</div>
-                 <div class="qualification-item">公路路基专业三级</div>
-                 <div class="qualification-item">公路路面专业三级</div>
-                 <div class="qualification-item">桥梁工程专业三级</div>
-                 <div class="qualification-item">隧道工程专业三级</div>
-                 <div class="qualification-item">河湖整治专业三级</div>
-                 <div class="qualification-item">施工劳务资质</div>
-             </div>
-             <p class="profile-text mt-6">公司荣获多项国家及省级荣誉、体系认证和专利。</p>
-
-             <div class="cert-grid mt-8">
-                 <!-- Add placeholders for certification/award images -->
-                 <img src="https://via.placeholder.com/300x400?text=资质证书1" alt="资质证书">
-                 <img src="https://via.placeholder.com/300x400?text=资质证书2" alt="资质证书">
-                  <img src="https://via.placeholder.com/400x300?text=营业执照" alt="营业执照">
-                  <img src="https://via.placeholder.com/400x300?text=生产许可证" alt="生产许可证">
-                  <img src="https://via.placeholder.com/400x300?text=AAA信用评价" alt="AAA信用评价">
-                  <img src="https://via.placeholder.com/400x300?text=AAA信用评价2" alt="AAA信用评价">
-                  <img src="https://via.placeholder.com/400x300?text=守合同重信用1" alt="守合同重信用证书">
-                   <img src="https://via.placeholder.com/400x300?text=守合同重信用2" alt="守合同重信用证书">
-                  <img src="https://via.placeholder.com/400x300?text=守合同重信用3" alt="守合同重信用证书">
-                  <img src="https://via.placeholder.com/300x400?text=标准化二级" alt="安全生产标准化二级">
-                  <img src="https://via.placeholder.com/800x400?text=标准化网上公示" alt="安全生产标准化公示">
-                   <img src="https://via.placeholder.com/400x600?text=质量管理体系" alt="质量管理体系认证">
-                  <img src="https://via.placeholder.com/400x600?text=职健环管理体系" alt="职健环管理体系认证">
-                   <img src="https://via.placeholder.com/400x600?text=环境管理体系" alt="环境管理体系认证">
-                  <img src="https://via.placeholder.com/300x400?text=专利1" alt="实用新型专利证书">
-                   <img src="https://via.placeholder.com/300x400?text=专利2" alt="实用新型专利证书">
-                  <img src="https://via.placeholder.com/300x400?text=专利3" alt="实用新型专利证书">
-                  <img src="https://via.placeholder.com/800x500?text=优秀施工单位" alt="优秀施工单位奖牌">
-             </div>
-         </div>
-    </section>
-
-    <!-- Branch Offices Section -->
-     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="section-title">公司分支机构 / 经营范围</h2>
-         <div class="bento-card" data-aos="fade-right" data-aos-delay="200">
-            <h3>经营范围区域</h3>
-             <!-- Placeholder for the map graphic -->
-             <div class="image-block mb-8">
-                 <img src="https://via.placeholder.com/600x400?text=Region+Map" alt="经营范围地图">
-             </div>
-             <div class="branch-grid">
-                 <!-- Add branches from the list -->
-                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>云南分公司</div>
-                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>西藏分公司</div>
-                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>江西分公司</div>
-                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>新疆分公司</div>
-                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>福建分公司</div>
-                 <div class="branch-item"><i class="fas fa-map-marker-alt"></i>四川分公司</div>
-             </div>
-         </div>
-          <div class="bento-card mt-8" data-aos="fade-left" data-aos-delay="300">
-             <h3>更多分支机构</h3>
-             <div class="branch-grid">
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>岳阳县分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>双牌分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>洞口分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>长沙县开慧分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>桑植分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>会同分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>益阳桃江县分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>隆回分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>宁远分公司</div>
-                  <div class="branch-item"><i class="fas fa-broadcast-tower"></i>新田分公司</div>
-             </div>
-         </div>
-    </section>
-
-    <!-- Project Showcase Section -->
-     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="section-title text-right">企业项目展示</h2>
-
-         <!-- Project 1 -->
-         <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
-             <div class="image-block"><img src="https://via.placeholder.com/600x400?text=Project+School1" alt="北山镇蒿塘中学项目"></div>
-             <div class="text-block">
-                 <h3>北山镇蒿塘中学改扩建项目</h3>
-                 <p>本项目为北山镇蒿塘中学改扩建项目，主要建设内容为综合楼主体建设、给排水、电气等配套性工程建设。</p>
-             </div>
-         </div>
-
-         <!-- Project 2 -->
-          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
-              <div class="image-block"><img src="https://via.placeholder.com/600x400?text=Project+SportsField" alt="郴州市骆仙中学运动场项目"></div>
-              <div class="text-block">
-                  <h3>郴州市骆仙中学运动场看台工程</h3>
-                  <p>工程地点：郴州市北湖区华府路北侧</p>
-                  <p>工程范围：主要包括400m运动场（含垫层、基础、塑胶跑道、人工草皮、排水系统）和看台。</p>
-              </div>
-          </div>
-
-         <!-- Project 3 (Image Grid) -->
-          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/400x300?text=Project+Liuzhou" alt="柳州项目">
-                  <img src="https://via.placeholder.com/400x300?text=Project+ChangshaGov" alt="长沙县政府项目">
-                  <img src="https://via.placeholder.com/400x300?text=Project+LiuzhouWater" alt="柳州亲水平台">
-              </div>
-               <div class="text-block">
-                   <h3>其他项目实例</h3>
-                    <p>柳州项目亲水平台</p>
-                    <p>长沙县县政府提质改造</p>
-               </div>
-          </div>
-
-         <!-- Project 4 (Image Grid) -->
-          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/400x300?text=Project+Bank1" alt="开慧农商银行项目1">
-                  <img src="https://via.placeholder.com/400x300?text=Project+Bank2" alt="开慧农商银行项目2">
-              </div>
-              <div class="text-block">
-                  <h3>开慧农商银行项目</h3>
-                  <p>施工区域：零吉施工</p>
-                   <p>拍摄时间：2021.12.24 星期五 13:43</p>
-                   <p>地点：长沙县、联桥东路</p>
-              </div>
-          </div>
-
-          <!-- Project 5 -->
-          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=Project+HubMeeting" alt="青山铺交通枢纽项目会议">
-                  <img src="https://via.placeholder.com/600x400?text=Project+HubConstruction" alt="青山铺交通枢纽项目施工">
-              </div>
-               <div class="text-block">
-                   <h3>青山铺交通枢纽站项目</h3>
-                   <p>巡检内容：安全警示教育会议</p>
-                    <p>拍摄时间：2021.12.18 11:46</p>
-                    <p>地点：长沙县、中国石油福临加油站</p>
-               </div>
-          </div>
-
-          <!-- Project 6 -->
-          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=Project+TeachingBuilding1" alt="蒿塘中学新建教学楼1">
-                  <img src="https://via.placeholder.com/600x400?text=Project+TeachingBuilding2" alt="蒿塘中学新建教学楼2">
-              </div>
-              <div class="text-block">
-                  <h3>蒿塘中学新建教学楼项目</h3>
-              </div>
-          </div>
-
-    </section>
-
-    <!-- Social Responsibility Section -->
-     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="section-title">社会公益</h2>
-         <div class="bento-card" data-aos="fade-right" data-aos-delay="200">
-             <h3>践行社会责任</h3>
-             <p class="profile-text">
-                 湖南东晖耀建设有限公司自成立以来，始终坚持“感恩 创新”的核心价值观，积极履行社会责任，累计捐款捐物数百万元，赢得了社会各界和各级政府的广泛认可，先后获得“爱心抗疫企业”、“扶贫助学爱心企业”、“爱心慈善企业”等荣誉称号。一路追梦几十载，我公司始终坚持“以人为本”，以实际行动回馈社会，未来还将持续深耕慈善公益事业，积极主动回馈社会，以实际行动履行社会责任，彰显企业担当！
-             </p>
-         </div>
-
-         <!-- Social Good 1 -->
-          <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-              <div class="text-block">
-                  <h3>抗击疫情爱心捐赠</h3>
-                  <p>2020年春节前夕，长沙县住房和城乡建设局倡议企业勇担社会责任，积极参与抗击疫情爱心捐赠。公司在新冠肺炎疫情期间积极参与“爱心抗疫企业”及“企业心连心、手牵手、结对帮扶抗击疫情”公益活动。</p>
-              </div>
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/400x600?text=AntiEpidemicDoc1" alt="抗疫文件">
-                  <img src="https://via.placeholder.com/400x600?text=AntiEpidemicDoc2" alt="抗疫文件">
-              </div>
-          </div>
-          <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=AntiEpidemicCert1" alt="抗疫爱心企业证书">
-                  <img src="https://via.placeholder.com/600x400?text=AntiEpidemicCert2" alt="抗疫爱心捐赠证书">
-              </div>
-               <div class="text-block">
-                    <h3>新冠肺炎疫情期间</h3>
-                     <p>“爱心抗疫企业”及“企业心连心、手牵手、结对帮扶抗击疫情”爱心捐赠。</p>
-               </div>
-          </div>
-           <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-              <div class="text-block">
-                  <h3>抗击新冠肺炎疫情捐款</h3>
-                  <p>2020年3月，公司积极参与响应湖南省慈善总会“抗击新冠肺炎疫情”捐款公益活动。</p>
-              </div>
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=CharityDoc1" alt="慈善总会文件">
-                   <img src="https://via.placeholder.com/600x400?text=CharityDoc2" alt="慈善总会感谢信">
-               </div>
-           </div>
-            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=CharityCert1" alt="慈善捐赠证书">
-                   <img src="https://via.placeholder.com/600x400?text=CharityReceipt1" alt="慈善捐赠票据">
-               </div>
-                <div class="text-block">
-                     <h3>“抗击新冠肺炎疫情”爱心捐赠</h3>
+            <p class="text-xl lg:text-2xl mt-4 max-w-3xl mx-auto text-white text-opacity-70">
+                针对张三小朋友的5.5-6岁多元智能发展评估分析
+                <br>Analysis of Zhang San's Multidimensional Intelligence Development (5.5-6 years old)
+            </p>
+            <div class="mt-16 flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-12">
+                <div class="bento-grid-item flex flex-col items-center justify-center p-8 animated-fade-in">
+                    <i class="fas fa-child text-5xl text-tesla-red mb-4 opacity-70"></i>
+                    <p class="text-lg uppercase text-white text-opacity-70">被评估幼儿</p>
+                    <p class="large-number mt-2">张三</p>
                 </div>
-           </div>
-
-          <!-- Social Good 2 -->
-           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>扶贫助学公益活动</h3>
-                   <p>2020年9月，由湖南省水利工程协会与湖南水利水电职业技术学院联合开展“扶贫助学”公益活动。公司积极参与，支持“扶贫助学”公益活动。</p>
-               </div>
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=PovertyReliefDoc1" alt="扶贫助学文件">
-                    <img src="https://via.placeholder.com/600x400?text=PovertyReliefDoc2" alt="扶贫助学说明">
-               </div>
-           </div>
-           <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=PovertyReliefCert1" alt="扶贫助学捐赠证书">
-                   <img src="https://via.placeholder.com/600x400?text=PovertyReliefList1" alt="扶贫助学名单">
-               </div>
-                <div class="text-block">
-                     <h3>“扶贫助学”公益活动爱心捐赠证书</h3>
+                <div class="bento-grid-item flex flex-col items-center justify-center p-8 animated-fade-in delay-200">
+                    <i class="fas fa-birthday-cake text-5xl text-tesla-red mb-4 opacity-70"></i>
+                    <p class="text-lg uppercase text-white text-opacity-70">年龄</p>
+                    <p class="large-number mt-2">5.1</p>
+                    <p class="text-xl text-white text-opacity-70">岁 / Years</p>
                 </div>
-           </div>
-
-          <!-- Social Good 3 -->
-           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>爱心捐款联合国儿童基金会</h3>
-                   <p>2021年3月，为用心呵护未成年人健康成长，公司通过联合国儿童基金会驻华办事处，帮助中国偏远地区困境中的儿童，并为他们爱心捐款。</p>
-               </div>
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=UNICEFLetter" alt="联合国儿童基金会感谢信">
-               </div>
-           </div>
-            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=UNICEFReceipt" alt="联合国儿童基金会捐赠票据">
-               </div>
-                <div class="text-block">
-                     <h3>联合国儿童基金会爱心捐款</h3>
-                </div>
-           </div>
-
-          <!-- Social Good 4 -->
-           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>支持河南抗洪救灾</h3>
-                   <p>2021年7月，为支持河南抗洪救灾，帮助受灾同胞早日度过难关，长沙县建筑行业协会发起"抗洪救灾，你我同行”爱心捐助倡议，公司积极响应，伸出博爱之手，用爱心点燃希望，用真情为灾区同胞撑起一片蓝天。</p>
-               </div>
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=FloodReliefCert" alt="河南抗洪救灾捐赠证书">
-               </div>
-           </div>
-
-          <!-- Social Good 5 -->
-           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>乡村振兴对口帮扶</h3>
-                   <p>2022年1月，公司参加由县委统战部、县工商联组织的爱心企业家赴桑植县、龙山县水田坝镇开展乡村振兴对口帮扶公益活动。</p>
-               </div>
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=RuralRevitalisationDoc" alt="乡村振兴帮扶文件">
-               </div>
-           </div>
-
-          <!-- Social Good 6 -->
-           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>助推乡村振兴，水利行业在行动</h3>
-                   <p>2022年2月，为推进乡村振兴，2022年2月，省水利协会联合各单位开展“助推乡村振兴，水利行业在行动”公益项目，在排灌渠道改造、村民饮用水水井整修、基础设施等方面建设一批民生工程。公司积极参与，继续支持我省乡村振兴建设，投身公益事业，为巩固拓展脱贫攻坚贡献一份力量。</p>
-               </div>
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=RuralRevitalisationDoc2" alt="助推乡村振兴文件">
-               </div>
-           </div>
-            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=RuralRevitalisationCert" alt="助推乡村振兴捐赠证书">
-               </div>
-                <div class="text-block">
-                     <h3>“助推乡村振兴，水利行业在行动”公益项目捐赠证书</h3>
-                </div>
-           </div>
-
-          <!-- Social Good 7 -->
-           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>结对共建 困难慰问</h3>
-                   <p>2022年2月，为贯彻落实“党建聚合力”方案，公司积极参加“结对共建困难慰问”活动，为困难人群带去关怀与温暖。</p>
-               </div>
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=PartyBuildingDoc" alt="结对共建文件">
-               </div>
-           </div>
-            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=PartyBuildingActivity" alt="结对共建活动照片">
-               </div>
-                <div class="text-block">
-                     <h3>“党建聚合力”慰问困难党员活动</h3>
-                </div>
-           </div>
-
-           <!-- Social Good 8 -->
-           <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>抗洪抢险</h3>
-                   <p>2019年8月，我公司承建工程所在项目部组织多个队伍道现场进行抢险。积极配合参与抗洪、抢险工作，冒雨参与防汛物资运输及管涌除险处置，避免了防洪堤安全事故的发生，受到了汨罗市水利局的高度评价。</p>
-               </div>
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=FloodRescueDoc" alt="抗洪抢险说明">
-               </div>
-           </div>
-            <div class="item-layout" data-aos="fade-up" data-aos-delay="200">
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=FloodRescueCert" alt="抗洪抢险荣誉证书">
-               </div>
-                <div class="text-block">
-                     <h3>防汛抗洪表现突出</h3>
-                     <p>受到了汨罗市防汛抗旱指挥部的高度评价。</p>
-                </div>
-           </div>
-
-           <!-- Social Good 9 -->
-            <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>关爱脑瘫患儿</h3>
-                   <p>给脑瘫患儿送关怀。</p>
-               </div>
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=CerebralPalsyKids" alt="关爱脑瘫患儿照片1">
-                    <img src="https://via.placeholder.com/600x400?text=CerebralPalsyKids2" alt="关爱脑瘫患儿照片2">
-               </div>
-           </div>
-            <div class="bento-card mt-8" data-aos="fade-up" data-aos-delay="300">
-                 <p class="profile-text text-center">
-                      通过开展本次关爱慰问特殊儿童的公益活动，更多地了解和关注社会弱势群体，进一步增强了社会责任感。公司将继续向社会传递正能量，用实际行动为需要帮助的人送去关爱和温暖。
-                 </p>
             </div>
+        </section>
 
-           <!-- Social Good 10 -->
-            <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-               <div class="text-block">
-                   <h3>铲雪除冰</h3>
-                   <p>2022年2月，长沙县湘龙街道湘润社区启动铲雪除冰预案，公司得知消息立即组织参与铲雪活动，对辖区的主要道路及周边学校人行道的积雪进行铲除，保证社区道路通畅和居民出行安全。</p>
-               </div>
-               <div class="image-block image-grid">
-                   <img src="https://via.placeholder.com/600x400?text=SnowRemovalPhoto" alt="铲雪除冰照片">
-                   <img src="https://via.placeholder.com/600x400?text=SnowRemovalCert" alt="铲雪除冰证明">
-               </div>
-           </div>
+        <!-- Bento Grid Layout for sections -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
 
-            <!-- Social Good 11 (Anti-epidemic volunteer again) -->
-             <div class="item-layout mt-8" data-aos="fade-up" data-aos-delay="200">
-                 <div class="text-block">
-                     <h3>抗疫志愿者活动</h3>
-                     <p>自2022年3月，疫情形势严竣，公司人员积极报名参与周边小区及各社会团体组织的抗疫志愿者活动。</p>
-                 </div>
-                  <div class="image-block image-grid">
-                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer1" alt="抗疫志愿者照片1">
-                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer2" alt="抗疫志愿者照片2">
-                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer3" alt="抗疫志愿者照片3">
-                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer4" alt="抗疫志愿者照片4">
-                     <img src="https://via.placeholder.com/600x400?text=AntiEpidemicVolunteer5" alt="抗疫志愿者照片5">
-                  </div>
-             </div>
-     </section>
-
-    <!-- Company Culture Section -->
-     <section class="bento-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="section-title">企业文化</h2>
-
-         <!-- Culture 1 -->
-         <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
-             <div class="image-block image-grid">
-                 <img src="https://via.placeholder.com/600x400?text=CultureYangKaihui1" alt="参观杨开慧故居1">
-                 <img src="https://via.placeholder.com/600x400?text=CultureYangKaihui2" alt="参观杨开慧故居2">
-             </div>
-             <div class="text-block">
-                 <h3>瞻仰革命先烈</h3>
-                 <p>2020年6月，公司组织全体员工参观杨开慧故居，瞻仰革命烈士，学习杨开慧烈士忠于党、忠于人民、坚贞不屈的革命精神。</p>
-             </div>
-         </div>
-
-         <!-- Culture 2 -->
-          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=CultureThreeGorges1" alt="参观三峡大坝1">
-                  <img src="https://via.placeholder.com/600x400?text=CultureThreeGorges2" alt="参观三峡大坝2">
-              </div>
-               <div class="text-block">
-                   <h3>参观三峡大坝</h3>
-                   <p>2021年4月，公司组织全体员工抵达三峡大坝旅游区，参观三峡工程，俯瞰双线五级船闸，切身感受祖国的繁荣强盛。</p>
-               </div>
-           </div>
-
-         <!-- Culture 3 -->
-          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=CultureAnnualDinner" alt="新年团拜活动">
-              </div>
-              <div class="text-block">
-                   <h3>新年团拜活动</h3>
-                  <p>2022年春节前夕，公司举办新年团拜活动，感谢大家一年来的辛勤付出，大家欢聚一堂，共度新春佳节。</p>
-              </div>
-          </div>
-
-         <!-- Culture 4 -->
-          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=CultureHengshan1" alt="祈福南岳衡山1">
-              </div>
-              <div class="text-block">
-                  <h3>团队建设：祈福南岳衡山</h3>
-                  <p>2023年2月15日，为进一步加强企业文化建设，拓展工作思路、改进工作方法和提高工作效率,增强员工交流与凝聚力。公司组织全体员工开展为期2天的“祈福南岳衡山、追寻伟人故里”团队建设活动。</p>
-              </div>
-          </div>
-          <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
-               <div class="image-block image-grid">
-                    <img src="https://via.placeholder.com/600x400?text=CultureHengshan2" alt="祈福南岳衡山2">
-               </div>
-                <div class="text-block">
-                     <h3>“累并快乐着”</h3>
-                     <p>“累并快乐着”是大家一致的感受，在紧张的工作之余,体验了“会当凌绝顶,一览众山小”的人生登高境界，这种愉悦与享受更是畅快人生、意气风发。</p>
+            <!-- Competitive Landscape -->
+            <section class="bento-grid-item lg:col-span-2" data-animated-section>
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line text-tesla-red mr-4 opacity-70"></i> 竞争格局分析
+                    <span class="block subtitle">Competitive Landscape Analysis</span>
+                </h2>
+                <div class="mt-8 text-lg leading-relaxed text-white text-opacity-90">
+                    <ul class="list-none space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-tesla-red text-2xl mr-3 mt-1 opacity-70"></i>
+                            <div>
+                                <strong class="text-xl">多元智能力量，儿童成长，儿童心理:</strong>
+                                传统教育模式往往过度侧重于语言和逻辑数学智能的发展，而忽视了儿童在其他智能领域的独特潜力。多元智能理论（MI theory）为儿童发展提供了更全面的视角，强调每个孩子都是独一无二的，拥有不同的优势智能组合。
+                                对张三的评估正体现了这种理念，揭示了她在身体运动和人际关系智能上的显著优势，以及在音乐旋律智能上的发展空间。
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-tesla-red text-2xl mr-3 mt-1 opacity-70"></i>
+                            <div>
+                                <strong class="text-xl">关键信息:</strong>
+                                幼儿期的多元智能评估能帮助家长和教育者及早识别孩子的优势与弱项，从而制定个性化的教育方案，避免“一把尺子量所有孩子”的单一评价模式。
+                                这种早期干预和引导对于激发孩子内在学习动力、培养全面能力、甚至规划未来职业方向都具有深远意义。
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-           </div>
+            </section>
 
-         <!-- Culture 5 -->
-          <div class="item-layout reverse" data-aos="fade-left" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=CultureShaoshan" alt="赴韶山毛泽东故居">
-              </div>
-              <div class="text-block">
-                  <h3>不忘初心中国梦，伟人故里韶山行</h3>
-                  <p>2023年2月16日早，公司全体员工以饱满的精神面貌和热情赴韶山毛泽东同志故居开展“不忘初心中国梦，伟人故里韶山行”主题活动。</p>
-              </div>
-          </div>
+            <!-- Basic Score Information -->
+            <section class="bento-grid-item lg:col-span-1" data-animated-section>
+                <h2 class="section-title text-3xl">
+                    <i class="fas fa-star text-tesla-red mr-3 opacity-70"></i> 基本得分信息
+                    <span class="block subtitle text-base">Basic Score Information</span>
+                </h2>
+                <div class="mt-8">
+                    <table class="w-full text-left text-sm table-custom">
+                        <thead>
+                            <tr>
+                                <th class="rounded-tl-lg">智能领域</th>
+                                <th>智能月龄</th>
+                                <th>智商</th>
+                                <th class="rounded-tr-lg">评价</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>语言文字智能</td><td>47月</td><td>91</td><td>中等</td></tr>
+                            <tr><td>数学逻辑智能</td><td>53月</td><td>103</td><td>中等</td></tr>
+                            <tr class="highlight-gradient"><td><strong class="text-tesla-red">音乐旋律智能</strong></td><td><strong class="text-tesla-red">41月</strong></td><td><strong class="text-tesla-red">79</strong></td><td><strong class="text-tesla-red">中下</strong></td></tr>
+                            <tr><td>人际关系智能</td><td>65月</td><td>114</td><td>中上</td></tr>
+                            <tr><td>身体运动智能</td><td>59月</td><td>126</td><td>优秀</td></tr>
+                            <tr><td>视觉空间智能</td><td>53月</td><td>103</td><td>中等</td></tr>
+                            <tr><td>个人内省智能</td><td>47月</td><td>91</td><td>中等</td></tr>
+                            <tr><td>自然观察智能</td><td>53月</td><td>103</td><td>中等</td></tr>
+                            <tr class="font-bold text-lg text-tesla-red"><td>总评</td><td>52.3月</td><td>101</td><td>中等</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-          <!-- Culture 6 -->
-           <div class="item-layout" data-aos="fade-right" data-aos-delay="200">
-              <div class="image-block image-grid">
-                  <img src="https://via.placeholder.com/600x400?text=CultureRedFootprint" alt="追寻红色足迹">
-              </div>
-              <div class="text-block">
-                   <h3>追寻红色足迹 重温党史记忆</h3>
-                  <p>2023年6月10日，公司组织全体工作人员前往缪伯英、陈树湘故居开展“追寻红色足迹重温党史记忆”教育活动，学习和弘扬革命先辈的崇高风范和宝贵精神。</p>
-              </div>
-          </div>
+            <!-- Score Analysis and Summary -->
+            <section class="bento-grid-item lg:col-span-3" data-animated-section>
+                <h2 class="section-title">
+                    <i class="fas fa-chart-pie text-tesla-red mr-4 opacity-70"></i> 得分情况分析
+                    <span class="block subtitle">Score Analysis & Summary</span>
+                </h2>
+                <div class="mt-8 text-lg leading-relaxed text-white text-opacity-90">
+                    <p class="mb-4">
+                        从本次多元智能评估结果来看，张三小朋友的总体智能发展水平处于
+                        <strong class="text-tesla-red text-2xl">“中等”</strong>范畴，总智能商数为
+                        <span class="data-point">101</span>。在各项智能中，张三表现出明显的
+                        <span class="text-tesla-red">优势领域</span>和需要<span class="text-tesla-red">关注的领域</span>。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-trophy text-yellow-400 mr-2"></i> 优势领域 / Strengths</h3>
+                            <ul class="list-disc list-inside space-y-3">
+                                <li>
+                                    <strong class="text-tesla-red">身体运动智能</strong>：得分最高，达到<span class="text-yellow-300">“优秀”</span>水平（智能商数<span class="large-number text-5xl inline-block align-middle">126</span>）。
+                                    表明张三在肢体协调、精细动作和运动技能方面表现卓越。
+                                </li>
+                                <li>
+                                    <strong class="text-tesla-red">人际关系智能</strong>：表现为<span class="text-yellow-300">“中上”</span>水平（智能商数<span class="large-number text-5xl inline-block align-middle">114</span>）。
+                                    说明张三具备较强的社交能力，乐于与人交往、富有同情心，并能理解并遵守规则，善于合作。
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-exclamation-triangle text-red-400 mr-2"></i> 需关注领域 / Areas for Growth</h3>
+                            <ul class="list-disc list-inside space-y-3">
+                                <li>
+                                    <strong class="text-tesla-red">音乐旋律智能</strong>：表现为<span class="text-red-300">“中下”</span>水平（智能商数<span class="large-number text-5xl inline-block align-middle">79</span>），是本次评估中得分最低的领域。
+                                    提示张三在模仿节奏、保持音高、理解音调以及记忆旋律方面可能需要更多的引导和练习。
+                                </li>
+                            </ul>
+                            <h3 class="text-2xl font-bold text-white mb-4 mt-6"><i class="fas fa-balance-scale text-blue-400 mr-2"></i> 中等水平领域 / Average Performance</h3>
+                            <ul class="list-disc list-inside space-y-3">
+                                <li>语言文字、数学逻辑、视觉空间、个人内省和自然观察智能均处于“中等”水平，仍有提升空间。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-     </section>
+            <!-- Opportunity Gaps -->
+            <section class="bento-grid-item lg:col-span-2" data-animated-section>
+                <h2 class="section-title">
+                    <i class="fas fa-lightbulb text-tesla-red mr-4 opacity-70"></i> 机会空白点
+                    <span class="block subtitle">Opportunity Gaps</span>
+                </h2>
+                <div class="mt-8 text-lg leading-relaxed text-white text-opacity-90">
+                    <ol class="list-decimal list-inside space-y-4">
+                        <li>
+                            <strong class="text-tesla-red">音乐智能提升:</strong> 张三的音乐旋律智能得分最低，这是她当前发展中的一个“薄弱点”。然而，这也构成了重要的“增长杠杆”，因为它意味着存在显著的提升空间。通过有针对性的训练和兴趣培养，可以有效弥补这一不足。
+                        </li>
+                        <li>
+                            <strong class="text-tesla-red">个性化教学策略缺失:</strong> 传统的批量化教育可能未能充分利用张三在身体运动和人际关系方面的突出优势。若能将这些优势融入到其他智能的学习中（“以优带劣”），将极大地提升她的学习兴趣和效率。
+                        </li>
+                        <li>
+                            <strong class="text-tesla-red">未来发展潜力未充分发掘:</strong> 评估结果为张三的未来职业和兴趣发展提供了宝贵线索。若不尽早进行引导和规划，这些天赋可能会得不到充分培养和展现，错失其潜能转化为长期优势的机会。
+                        </li>
+                        <li>
+                            <strong class="text-tesla-red">家园共育衔接不足:</strong> 缺乏一个系统、具体的指导方案，将评估结果转化为家庭和幼儿园层面可操作的教育实践，导致评估的价值无法最大化。
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Placeholder for Chart Component (Illustrative) -->
+            <section class="bento-grid-item lg:col-span-1 flex flex-col justify-center items-center p-8" data-animated-section>
+                <h3 class="text-2xl font-bold text-white mb-4 text-center">
+                    <i class="fas fa-chart-area text-tesla-red mr-2 opacity-70"></i> 智能雷达图概览
+                    <span class="block subtitle text-base">Intelligence Radar Chart Overview</span>
+                </h3>
+                <div class="w-full h-64 bg-gradient-to-br from-gray-700 to-gray-900 rounded-lg flex items-center justify-center text-gray-400 text-lg">
+                    <p class="text-center">
+                        [此处可集成在线图表组件，如ECharts/Chart.js]<br>
+                        <i class="fas fa-cogs animate-spin text-4xl mt-4"></i><br>
+                        Developing Interactive Chart...
+                    </p>
+                </div>
+            </section>
 
 
-    <!-- Thank You / Contact Section -->
-     <section class="bento-section" data-aos="fade-in" data-aos-duration="1000">
-        <div class="contact-info">
-            <h3 class="text-orange-logo" data-aos="fade-up" data-aos-delay="200">感谢您的聆听</h3>
-            <h3 class="text-white" data-aos="fade-up" data-aos-delay="300">湖南东晖耀建设有限公司</h3>
-             <div class="contact-details mt-8" data-aos="fade-up" data-aos-delay="400">
-                  <p><i class="fas fa-map-marker-alt"></i> 地址：长沙市星沙经开区湘龙街道龙塘小区B23栋9楼</p>
-                  <p><i class="fas fa-phone"></i> 电话：0731-84091758</p>
-             </div>
-             <div class="contact-qr" data-aos="zoom-in" data-aos-delay="500">
-                  <!-- Placeholder for Company QR Code -->
-                  <img src="https://via.placeholder.com/150x150?text=Company+QR" alt="公司二维码">
-             </div>
+            <!-- Prioritized Actions -->
+            <section class="bento-grid-item lg:col-span-3" data-animated-section>
+                <h2 class="section-title">
+                    <i class="fas fa-cogs text-tesla-red mr-4 opacity-70"></i> 优先行动方案
+                    <span class="block subtitle">Prioritized Action Plan</span>
+                </h2>
+                <div class="mt-8 overflow-x-auto">
+                    <table class="w-full text-left table-custom rounded-lg overflow-hidden">
+                        <thead>
+                            <tr>
+                                <th class="py-3 px-4 rounded-tl-lg">优先级 / Priority</th>
+                                <th class="py-3 px-4">建议动作 / Recommended Action</th>
+                                <th class="py-3 px-4">影响力 / Impact</th>
+                                <th class="py-3 px-4">可行性 / Feasibility</th>
+                                <th class="py-3 px-4 rounded-tr-lg">理由 / Rationale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-4 px-4 font-bold">高 / High</td>
+                                <td class="py-4 px-4">
+                                    <strong class="text-tesla-red">针对性培养优势智能:</strong> 为张三提供更多身体运动和人际交往的机会。
+                                    <ul>
+                                        <li>**运动**: 报读足球、舞蹈、游泳等兴趣班，鼓励户外活动。</li>
+                                        <li>**社交**: 引导参与集体游戏、团队合作项目，承担小领导角色。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <ul>
+                                        <li>**激发潜能**: 最大化优势领域的发展。</li>
+                                        <li>**自信提升**: 通过成功体验增强自尊心。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">高 / High (资源丰富)</td>
+                                <td class="py-4 px-4">孩子在优势领域学习兴趣浓厚，易出成果，可作为“以优带劣”的基础。</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold">高 / High</td>
+                                <td class="py-4 px-4">
+                                    <strong class="text-tesla-red">“以优带劣”提升音乐智能:</strong>
+                                    <ul>
+                                        <li>**律动与音乐**: 结合舞蹈、肢体表演学习节奏和旋律。</li>
+                                        <li>**集体音乐**: 鼓励参与合唱、小组打击乐，利用人际关系优势。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <ul>
+                                        <li>**弥补短板**: 提升薄弱领域能力。</li>
+                                        <li>**交叉学习**: 培养跨领域综合能力。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">中 / Medium (需专业指导)</td>
+                                <td class="py-4 px-4">有效利用已有优势，降低学习阻力，提高音乐学习积极性。</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold">中 / Medium</td>
+                                <td class="py-4 px-4">
+                                    <strong class="text-tesla-red">未来职业与兴趣初步探索:</strong>
+                                    <ul>
+                                        <li>**运动/艺术**: 参观体育场馆、艺术展览，接触相关职业。</li>
+                                        <li>**人际**: 通过绘本、故事了解教师、心理师等角色。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <ul>
+                                        <li>**长远规划**: 为未来发展打基础。</li>
+                                        <li>**学习动力**: 激发内在兴趣和目标感。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">中 / Medium (需家长引导)</td>
+                                <td class="py-4 px-4">早期接触能帮助孩子发现兴趣，明确发展方向。</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold">中 / Medium</td>
+                                <td class="py-4 px-4">
+                                    <strong class="text-tesla-red">家园协同教育:</strong>
+                                    <ul>
+                                        <li>**定期沟通**: 家长与幼儿园教师定期交流孩子发展情况。</li>
+                                        <li>**统一策略**: 共同制定并实施个性化教育计划。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <ul>
+                                        <li>**教育一致性**: 避免教育冲突。</li>
+                                        <li>**持续支持**: 确保孩子得到全方位关爱。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">高 / High (需双方意愿)</td>
+                                <td class="py-4 px-4">家园合力能形成更强大的教育合力，促进孩子全面发展。</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold">低 / Low</td>
+                                <td class="py-4 px-4">
+                                    <strong class="text-tesla-red">数据化跟踪与调整:</strong> 定期（如每半年）再次评估，对比数据，调整教育策略。
+                                </td>
+                                <td class="py-4 px-4">
+                                    <ul>
+                                        <li>**精确指导**: 确保策略的有效性。</li>
+                                        <li>**适应成长**: 随孩子发展动态调整。</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4">中 / Medium (需专业工具)</td>
+                                <td class="py-4 px-4">儿童发展是动态过程，定期评估有助于及时调整策略。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sources -->
+            <section class="bento-grid-item lg:col-span-3" data-animated-section>
+                <h2 class="section-title">
+                    <i class="fas fa-book-open text-tesla-red mr-4 opacity-70"></i> 资料来源
+                    <span class="block subtitle">Sources</span>
+                </h2>
+                <div class="mt-8 text-lg leading-relaxed text-white text-opacity-90">
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li>《66-72个月幼儿多元智能发展评估表.pdf》 (OCR数据)</li>
+                        <li>《2-7岁多元智能测评软件生成事项.pdf》 (OCR数据 - 包含打分规则与报告结构指引)</li>
+                    </ol>
+                </div>
+            </section>
+
         </div>
-     </section>
+    </div>
 
-
-    <!-- AOS Initialization Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 800, // values from 0 to 3000, with step 50ms
-        easing: 'ease-in-out', // default easing for AOS animations
-        once: true, // whether animation should happen only once - while scrolling down
-        mirror: false, // whether elements should animate out while scrolling past them
-      });
-    </script>
-
-    <!-- p5.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-
-    <!-- Your p5.js Sketch for Particle Background (Adapted) -->
+    <!-- P5.js sketch for background particles -->
     <script>
         let particles = [];
-        const numParticles = 180; // Particle density
-        const maxDist = 150; // Max distance for lines
-        let mouseParticle; // Particle that follows the mouse
-
-        class Particle {
-            constructor(isMouse = false) {
-                this.isMouse = isMouse;
-                if (isMouse) {
-                    this.pos = createVector(mouseX, mouseY);
-                } else {
-                    this.pos = createVector(random(width), random(height));
-                    this.vel = p5.Vector.random2D().mult(random(0.4, 1.8)); // Speed for motion
-                    this.acc = createVector();
-                }
-                this.size = random(1.5, 3.5); // Random size
-            }
-
-            update() {
-                if (this.isMouse) {
-                    this.pos.x = mouseX;
-                    this.pos.y = mouseY;
-                } else {
-                     // Add some random movement/noise
-                     this.vel.add(p5.Vector.random2D().mult(0.08)); // Subtle random force
-                     this.vel.limit(1.8); // Limit max speed
-
-                    this.pos.add(this.vel);
-                    this.acc.mult(0);
-                    this.edges();
-                }
-            }
-
-            edges() {
-                // Wrap particles around the screen edges
-                if (this.pos.x < 0) this.pos.x = width;
-                if (this.pos.x > width) this.pos.x = 0;
-                if (this.pos.y < 0) this.pos.y = height;
-                if (this.pos.y > height) this.pos.y = 0;
-            }
-
-            display() {
-                noStroke();
-                // Subtle white or light yellowish particles
-                 fill(250, 240, 200, this.isMouse ? 220 : 120); // Semi-transparent light yellow
-                ellipse(this.pos.x, this.pos.y, this.size);
-            }
-
-            connect(other) {
-                const d = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
-                if (d < maxDist) {
-                    const alpha = map(d, 0, maxDist, 160, 0); // Fade out lines
-                    let lineColor;
-
-                    if (this.isMouse || other.isMouse) {
-                         // Tesla Red lines near mouse
-                         lineColor = color(227, 25, 55, alpha);
-                    } else {
-                         // Lines between regular particles - Blend of orange/yellow/red
-                          let highlightColors = [
-                              color(255, 165, 0, alpha), // Orange
-                              color(255, 215, 0, alpha), // Yellow
-                              color(227, 25, 55, alpha * 0.8) // Tesla Red (slightly less opaque)
-                          ];
-                          // Simple way to pick a color based on distance or particle index
-                          let colorIndex = floor(map(d, 0, maxDist, 0, highlightColors.length));
-                          lineColor = highlightColors[min(colorIndex, highlightColors.length - 1)];
-                    }
-
-                    stroke(lineColor);
-                    strokeWeight(0.6); // Thin lines
-                    line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
-                }
-            }
-        }
+        const numParticles = 80; // Fewer particles for performance
+        const connectionDistance = 150; // Distance to draw lines
 
         function setup() {
             let canvas = createCanvas(windowWidth, windowHeight);
-            canvas.position(0, 0);
-            canvas.style('z-index', '-1');
-            canvas.style('pointer-events', 'none');
-
+            canvas.parent('particleCanvas');
+            // Ensure particles are generated immediately
             for (let i = 0; i < numParticles; i++) {
                 particles.push(new Particle());
             }
-            mouseParticle = new Particle(true);
-            particles.push(mouseParticle); // Add mouse particle to the list
         }
 
         function draw() {
-            background(26, 26, 26, 60); // Semi-transparent dark background clear (subtle trails)
-
-            // Update particles (mouse particle update handled automatically by tracking mouseX/mouseY)
-             for (let i = particles.length -1; i >= 0; i--) {
-                 particles[i].update();
-             }
-
-            // Connect and display particles
-             for (let i = 0; i < particles.length; i++) {
+            clear(); // Clear canvas each frame to prevent trails
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].display();
                 for (let j = i + 1; j < particles.length; j++) {
-                    particles[i].connect(particles[j]);
+                    let d = dist(particles[i].pos.x, particles[i].pos.y, particles[j].pos.x, particles[j].pos.y);
+                    if (d < connectionDistance) {
+                        stroke(255, 255, 255, map(d, 0, connectionDistance, 100, 0)); // Fading white lines
+                        strokeWeight(1);
+                        line(particles[i].pos.x, particles[i].pos.y, particles[j].pos.x, particles[j].pos.y);
+                    }
                 }
             }
-            for (let i = particles.length - 1; i >= 0; i--) {
-                 particles[i].display();
-             }
         }
 
         function windowResized() {
             resizeCanvas(windowWidth, windowHeight);
         }
 
-        function mouseMoved() {
-             if (mouseParticle) {
-                mouseParticle.pos.x = mouseX;
-                mouseParticle.pos.y = mouseY;
-             }
-             return false; // Prevent default scroll/touch behavior
-        }
+        class Particle {
+            constructor() {
+                this.pos = createVector(random(width), random(height));
+                this.vel = p5.Vector.random2D();
+                this.vel.mult(random(0.5, 1.5)); // Slower particles
+                this.radius = random(2, 5); // Smaller particles
+                this.color = color(255, 255, 255, random(80, 150)); // Semi-transparent white
+            }
 
+            update() {
+                this.pos.add(this.vel);
+                this.edges();
+            }
+
+            display() {
+                noStroke();
+                fill(this.color);
+                ellipse(this.pos.x, this.pos.y, this.radius * 2);
+            }
+
+            edges() {
+                if (this.pos.x < 0) this.pos.x = width;
+                if (this.pos.x > width) this.pos.x = 0;
+                if (this.pos.y < 0) this.pos.y = height;
+                if (this.pos.y > height) this.pos.y = 0;
+            }
+        }
     </script>
 
+    <!-- Framer Motion / Intersection Observer for scroll animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedSections = document.querySelectorAll('[data-animated-section]');
+            const initialElements = document.querySelectorAll('.animated-fade-in');
+
+            // Animate initial elements
+            initialElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('animated');
+                }, 100 * index); // Stagger initial animations
+            });
+
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // When 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            animatedSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
