@@ -117,7 +117,8 @@
     <!-- p5.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <!-- Framer Motion UMD Bundle (for conceptual use with pure JS) -->
-    <script src="https://unpkg.com/framer-motion@latest/dist/framer-motion.umd.js"></script>
+    <!-- Corrected Framer Motion CDN link -->
+    <script src="https://unpkg.com/framer-motion@11.2.10/dist/framer-motion.umd.js"></script>
     <!-- ECharts CDN -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
 </head>
@@ -533,7 +534,7 @@
 
             radarChart = echarts.init(chartDom, null, {
                 renderer: 'canvas', // Use canvas renderer for better performance
-                use  dirtyRect: false // Disable dirty rect for smoother animations
+                useDirtyRect: false // Disable dirty rect for smoother animations
             });
 
             const option = {
@@ -619,7 +620,7 @@
                         type: 'radar',
                         data: [
                             {
-                                value: [91, 103, 79, 114, 126, 103, 91, 103],
+                                value: [91, 103, 79, 114, 126, 103, 91, 103], // Data for the intelligence scores
                                 name: '张三',
                                 label: {
                                     show: true,
