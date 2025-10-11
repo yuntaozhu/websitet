@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI赋能 · 重塑未来 | 您的首席AI转型共创伙伴 V2.0</title>
+    <title>AI赋能 · 重塑未来 | 您的首席AI转型共创伙伴 V2.1</title>
     
     <!-- TailwindCSS 3.4.1 via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +23,7 @@
 
     <!-- Google Fonts for a modern, bold look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700;900&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -53,7 +53,8 @@
 
         .reveal .slides section {
             box-sizing: border-box;
-            padding: 2rem !important;
+            padding: 2rem 4rem !important; /* Increased horizontal padding */
+            text-align: left; /* Default to left align for easier control */
         }
         
         .reveal h1, .reveal h2, .reveal h3 {
@@ -129,9 +130,9 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .line-art { stroke: rgba(255,255,255,0.8); stroke-width: 1; fill: transparent; }
+        .line-art { stroke: rgba(255,255,255,0.8); stroke-width: 1.5; fill: none; }
         .tech-glow { box-shadow: 0 0 15px 5px rgba(227, 25, 55, 0.3), 0 0 30px 10px rgba(227, 25, 55, 0.2); }
-        .case-study { border-left: 4px solid var(--highlight-color); padding-left: 1rem; margin-top: 1.5rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1rem; }
+        .case-study { border-left: 4px solid var(--highlight-color); padding: 1rem; margin-top: 1.5rem; background: rgba(0,0,0,0.2); border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -142,22 +143,24 @@
             
             <!-- SLIDE 0: Bento Grid Landing Page -->
             <section data-transition="zoom">
-                <h1 class="text-5xl mb-2"><strong>AI赋能 · 重塑未来</strong></h1>
-                <p class="text-lg text-gray-300 mb-8">Your Co-Pilot in AI-Powered Business Transformation</p>
+                <div class="text-center">
+                    <h1 class="text-5xl mb-2"><strong>AI赋能 · 重塑未来</strong></h1>
+                    <p class="text-lg text-gray-300 mb-8">Your Co-Pilot in AI-Powered Business Transformation</p>
+                </div>
                 <div class="bento-grid">
-                    <a href="#/6" class="bento-item item-1">
+                    <a href="#/5" class="bento-item item-1">
                         <div><h3><strong>AI电商重构</strong></h3><p>E-commerce Reinvented</p></div><i class="fas fa-store icon"></i>
                     </a>
-                    <a href="#/10" class="bento-item item-2">
+                    <a href="#/9" class="bento-item item-2">
                         <div><h3><strong>Agent赋能组织</strong></h3><p>Agent Empowerment</p></div><i class="fas fa-users-cog icon"></i>
                     </a>
                     <a href="#/2" class="bento-item item-3">
                         <div><h3><strong>AI战略咨询</strong></h3><p>Strategic Advisory</p></div><i class="fas fa-lightbulb icon"></i>
                     </a>
-                    <a href="#/11" class="bento-item item-4">
+                    <a href="#/10" class="bento-item item-4">
                         <div><h3><strong>遗留代码重构</strong></h3><p>Legacy Code Refactoring</p></div><i class="fas fa-code-branch icon"></i>
                     </a>
-                    <a href="#/12" class="bento-item item-5">
+                    <a href="#/11" class="bento-item item-5">
                         <div><h3><strong>AI数据智能</strong></h3><p>AI-Powered Data Analytics</p></div><i class="fas fa-chart-pie icon"></i>
                     </a>
                     <a href="#/1" class="bento-item item-6">
@@ -176,9 +179,9 @@
             <!-- SLIDE 1: New Business Models -->
             <section>
                 <h2 class="text-5xl mb-12 text-center">超越传统咨询: <strong class="highlight">AI时代的业务新范式</strong></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                     <div class="fragment" data-fragment-index="1">
-                        <h3 class="text-3xl mb-4"><strong>传统模式</strong> Traditional Model</h3>
+                        <h3 class="text-3xl mb-4 text-gray-400"><strong>传统模式</strong> Traditional Model</h3>
                         <ul class="list-disc list-inside space-y-2 text-lg opacity-70">
                             <li>项目制收费 Project-Based Fees</li>
                             <li>交付静态报告 Deliver Static Reports</li>
@@ -189,10 +192,10 @@
                     <div class="fragment" data-fragment-index="2">
                         <h3 class="text-3xl mb-4"><strong class="highlight">我们的创新模式</strong> Our Innovative Model</h3>
                         <ul class="list-disc list-inside space-y-2 text-lg">
-                            <li><strong class="highlight">价值共创 & 成果共享</strong> Value Co-creation & Outcome-Sharing</li>
-                            <li><strong class="highlight">能力建设即服务</strong> Capability as a Service (CaaS)</li>
-                            <li><strong class="highlight">订阅制AI战略陪跑</strong> Subscription-based Strategic Partnership</li>
-                            <li><strong class="highlight">成为内嵌的转型伙伴</strong> Become an Embedded Transformation Partner</li>
+                            <li><strong class="highlight">价值共创 & 成果共享</strong><br><span class="text-sm opacity-80">Value Co-creation & Outcome-Sharing</span></li>
+                            <li><strong class="highlight">能力建设即服务</strong><br><span class="text-sm opacity-80">Capability as a Service (CaaS)</span></li>
+                            <li><strong class="highlight">订阅制AI战略陪跑</strong><br><span class="text-sm opacity-80">Subscription-based Strategic Partnership</span></li>
+                            <li><strong class="highlight">成为内嵌的转型伙伴</strong><br><span class="text-sm opacity-80">Become an Embedded Transformation Partner</span></li>
                         </ul>
                     </div>
                 </div>
@@ -200,7 +203,7 @@
             </section>
             
             <!-- METHODOLOGY INTRO -->
-            <section data-transition="fade-in zoom-out">
+            <section data-transition="fade-in zoom-out" class="text-center">
                 <h2 class="text-6xl">我们的“三阶段”咨询方法论</h2>
                 <p class="text-2xl highlight">A Three-Phase Journey to AI Transformation</p>
             </section>
@@ -263,111 +266,133 @@
             </section>
 
             <!-- SLIDE 5: E-commerce Intro -->
-            <section data-transition="zoom">
+            <section data-transition="zoom" class="text-center">
                  <h2 class="text-5xl mb-4"><strong class="highlight">AI驱动的</strong>全链路电商革新</h2>
                  <p class="text-xl max-w-4xl mx-auto">我们将通过三个层面，系统性地重构您的电商业务，实现从流量到利润的全面跃迁。</p>
             </section>
 
-            <!-- SLIDE 6: E-commerce Part 1: Personalization -->
+            <!-- SLIDE 6: E-commerce Part 1: Personalization (REDESIGNED) -->
             <section>
-                 <h3 class="text-4xl mb-6">超个性化: 从“千人一面”到<strong class="highlight">“一人一世界”</strong></h3>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="text-left space-y-4">
-                        <p>利用AI深度理解每个用户的隐性需求，提供独一无二的购物旅程。</p>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>AI推荐引擎:</strong> 超越“购买历史”，预测用户未来兴趣。</li>
-                            <li><strong>GenAI内容工厂:</strong> 动态生成个性化商品描述、广告素材与营销邮件。</li>
-                            <li><strong>虚拟试穿/试用:</strong> AR与AI结合，提升转化率，降低退货率。</li>
+                <h2 class="text-4xl mb-6">超个性化: 从“千人一面”到<strong class="highlight">“一人一世界”</strong></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+                    <div class="space-y-4">
+                        <p class="text-lg">利用AI深度理解每个用户的隐性需求，提供独一无二的购物旅程。</p>
+                        <ul class="list-none space-y-3">
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>AI推荐引擎: </strong>超越“购买历史”，预测用户未来兴趣。</div></li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>GenAI内容工厂: </strong>动态生成个性化商品描述、广告素材与营销邮件。</div></li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>虚拟试穿/试用: </strong>AR与AI结合，提升转化率，降低退货率。</div></li>
                         </ul>
-                        <div class="case-study fragment">
+                        <div class="case-study fragment" data-fragment-index="1">
                            <h4 class="font-bold text-lg"><i class="fas fa-star highlight mr-2"></i>案例: Stitch Fix</h4>
-                           <p class="text-sm">通过AI造型师算法，为每位用户精准匹配并邮寄个性化服饰盒子，创造了全新的订阅式电商模式。</p>
+                           <p class="text-sm opacity-90">通过AI造型师算法，为每位用户精准匹配并邮寄个性化服饰盒子，创造了颠覆性的订阅式电商模式。</p>
                         </div>
                     </div>
-                    <div class="fragment">
-                        <i class="fas fa-user-astronaut text-9xl text-gray-700"></i>
-                        <i class="fas fa-long-arrow-alt-right text-5xl mx-4 highlight"></i>
-                        <i class="fas fa-globe-americas text-9xl text-gray-700"></i>
-                        <p class="mt-4">From a single user to a personalized universe.</p>
+                    <div class="flex items-center justify-center">
+                        <svg viewBox="0 0 200 200" class="w-full max-w-sm h-auto">
+                            <defs>
+                                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <circle cx="100" cy="100" r="25" fill="#E31937" filter="url(#glow)"/>
+                            <text x="100" y="105" text-anchor="middle" fill="white" font-size="12" font-family="FontAwesome"></text>
+                            <g class="fragment" data-fragment-index="2">
+                                <circle cx="100" cy="20" r="10" class="line-art" stroke="white"/>
+                                <line x1="100" y1="45" x2="100" y2="75" class="line-art" stroke="rgba(255,255,255,0.5)"/>
+                            </g>
+                            <g class="fragment" data-fragment-index="3">
+                                <circle cx="180" cy="100" r="10" class="line-art" stroke="white"/>
+                                <line x1="125" y1="100" x2="170" y2="100" class="line-art" stroke="rgba(255,255,255,0.5)"/>
+                            </g>
+                             <g class="fragment" data-fragment-index="4">
+                                <circle cx="20" cy="100" r="10" class="line-art" stroke="white"/>
+                                <line x1="45" y1="100" x2="75" y2="100" class="line-art" stroke="rgba(255,255,255,0.5)"/>
+                             </g>
+                        </svg>
                     </div>
-                 </div>
+                </div>
             </section>
 
-            <!-- SLIDE 7: E-commerce Part 2: Operations -->
+            <!-- SLIDE 7: E-commerce Part 2: Operations (REDESIGNED) -->
             <section>
-                <h3 class="text-4xl mb-6">智慧运营: 打通效率的<strong class="highlight">“任督二脉”</strong></h3>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="text-left space-y-4">
-                        <p>将AI注入运营的毛细血管，实现成本、效率和客户满意度的极致平衡。</p>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>智能供应链:</strong> AI精准预测销量，实现动态库存管理与智能补货。</li>
-                            <li><strong>动态定价策略:</strong> 根据市场需求、竞品价格和用户行为，实时优化商品定价。</li>
-                            <li><strong>自动化仓储:</strong> 机器人分拣、打包，结合AI路径规划，提升仓库流转效率。</li>
+                <h2 class="text-4xl mb-6">智慧运营: 打通效率的<strong class="highlight">“任督二脉”</strong></h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+                    <div class="flex items-center justify-center">
+                        <svg viewBox="0 0 200 200" class="w-full max-w-sm h-auto">
+                            <path id="circlePath" fill="none" d="M 100, 100 m -80, 0 a 80,80 0 1,0 160,0 a 80,80 0 1,0 -160,0"/>
+                            <path class="line-art" stroke-dasharray="5 5" stroke="#E31937" d="M 100, 100 m -80, 0 a 80,80 0 1,0 160,0 a 80,80 0 1,0 -160,0">
+                                <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="20s" repeatCount="indefinite"/>
+                            </path>
+                            <text fill="white" font-size="10"><textPath href="#circlePath">预测销量 · 动态库存 · 智能补货 · 动态定价 · 自动仓储 ·</textPath></text>
+                            <i class="fas fa-cogs text-6xl text-white" style="transform: translate(75px, 70px);"></i>
+                        </svg>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-lg">将AI注入运营的毛细血管，实现成本、效率和客户满意度的极致平衡。</p>
+                        <ul class="list-none space-y-3">
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>智能供应链: </strong>AI精准预测销量，实现动态库存管理与智能补货。</div></li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>动态定价策略: </strong>根据市场需求、竞品价格和用户行为，实时优化商品定价。</div></li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>自动化仓储: </strong>机器人分拣打包，结合AI路径规划，提升仓库流转效率。</div></li>
                         </ul>
-                         <div class="case-study fragment">
+                        <div class="case-study fragment" data-fragment-index="1">
                            <h4 class="font-bold text-lg"><i class="fas fa-star highlight mr-2"></i>案例: 亚马逊 & 阿里巴巴</h4>
-                           <p class="text-sm">利用AI驱动的“预测性发货”和菜鸟网络的智能物流，将包裹送达时间缩短至小时级，极大提升了用户体验。</p>
+                           <p class="text-sm opacity-90">利用AI驱动的“预测性发货”和菜鸟网络的智能物流，将包裹送达时间缩短至小时级，极大提升了用户体验。</p>
                         </div>
-                    </div>
-                    <div class="fragment">
-                         <svg viewBox="0 0 200 100" class="w-full h-auto">
-                            <path d="M 10 50 L 190 50" class="line-art" stroke-dasharray="2" />
-                            <circle cx="30" cy="50" r="10" class="line-art highlight-bg" />
-                            <circle cx="80" cy="50" r="10" class="line-art highlight-bg" />
-                            <circle cx="130" cy="50" r="10" class="line-art highlight-bg" />
-                            <circle cx="180" cy="50" r="10" class="line-art highlight-bg" />
-                         </svg>
-                         <p class="mt-4">AI optimizes every node in the supply chain.</p>
                     </div>
                  </div>
             </section>
 
-            <!-- SLIDE 8: E-commerce Part 3: Conversational Commerce -->
+            <!-- SLIDE 8: E-commerce Part 3: Conversational Commerce (REDESIGNED) -->
             <section>
-                <h3 class="text-4xl mb-6">对话式商务: 重塑客户交互的<strong class="highlight">“最后一米”</strong></h3>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="text-left space-y-4">
-                        <p>让每一次客户交互都成为品牌价值的放大器，而不仅仅是成本中心。</p>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>7x24小时AI客服:</strong> 自动化处理超过90%的常规查询，无缝转接人工。</li>
-                            <li><strong>情感分析与舆情监控:</strong> AI自动分析商品评论和社交媒体，洞察用户情绪，预警危机。</li>
-                            <li><strong>主动式客户关怀:</strong> AI根据用户行为，主动发起服务或挽回流失客户。</li>
+                <h2 class="text-4xl mb-6">对话式商务: 重塑客户交互的<strong class="highlight">“最后一米”</strong></h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+                    <div class="space-y-4">
+                        <p class="text-lg">让每一次客户交互都成为品牌价值的放大器，而不仅仅是成本中心。</p>
+                        <ul class="list-none space-y-3">
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>7x24小时AI客服: </strong>自动化处理超过90%的常规查询，无缝转接人工。</div></li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>情感分析与舆情监控: </strong>AI自动分析商品评论和社交媒体，洞察用户情绪，预警危机。</div></li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-lg highlight mr-3 mt-1"></i><div><strong>主动式客户关怀: </strong>AI根据用户行为，主动发起服务或挽回流失客户。</div></li>
                         </ul>
-                         <div class="case-study fragment">
+                         <div class="case-study fragment" data-fragment-index="1">
                            <h4 class="font-bold text-lg"><i class="fas fa-star highlight mr-2"></i>案例: 阿里巴巴-阿里小蜜</h4>
-                           <p class="text-sm">在“双11”等高峰期，AI客服机器人处理亿级会话量，确保了流畅的购物咨询体验，并能智能引导销售。</p>
+                           <p class="text-sm opacity-90">在“双11”等高峰期，AI客服机器人处理亿级会话量，确保了流畅的购物咨询体验，并能智能引导销售。</p>
                         </div>
                     </div>
-                    <div class="fragment">
-                        <div class="ultralarge-text text-center">90%+</div>
-                        <p class="text-center text-2xl mt-[-2rem]">Queries Automated</p>
+                    <div class="fragment text-center">
+                        <div class="ultralarge-text">90%</div>
+                        <p class="text-2xl mt-[-2rem]"><strong class="highlight">以上</strong>的常规查询自动化</p>
+                        <p class="text-sm opacity-80">Of Routine Queries Automated</p>
                     </div>
                  </div>
             </section>
-
+            
             <!-- SLIDE 9: AI Agent Army Use Cases -->
-            <section>
-                <h2 class="text-5xl text-center mb-10">AI员工军团: <strong class="highlight">各部门应用场景实例</strong></h2>
+            <section class="text-center">
+                <h2 class="text-5xl mb-10">AI员工军团: <strong class="highlight">各部门应用场景实例</strong></h2>
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-left">
                     <div class="bento-item !cursor-default fragment">
                         <div class="mb-4"><i class="fas fa-bullhorn text-3xl highlight"></i><h3 class="text-2xl mt-2"><strong>市场 Marketing</strong></h3></div>
-                        <p class="text-sm"><strong>应用场景:</strong> GenAI生成社交文案、自动化投放广告、分析营销活动效果。</p>
-                        <p class="text-sm mt-2"><strong>核心价值:</strong> 提升内容创作效率，实现精准营销，快速迭代优化。</p>
+                        <p class="text-sm"><strong>场景:</strong> GenAI生成社交文案、自动化投放广告、分析营销活动效果。</p>
+                        <p class="text-sm mt-2"><strong>价值:</strong> 提升内容创作效率，实现精准营销，快速迭代优化。</p>
                     </div>
                      <div class="bento-item !cursor-default fragment">
                         <div class="mb-4"><i class="fas fa-chart-line text-3xl highlight"></i><h3 class="text-2xl mt-2"><strong>销售 Sales</strong></h3></div>
-                        <p class="text-sm"><strong>应用场景:</strong> 自动挖掘潜在客户、生成定制化销售方案、智能跟进提醒。</p>
-                        <p class="text-sm mt-2"><strong>核心价值:</strong> 提高线索转化率，缩短销售周期，解放销售人力。</p>
+                        <p class="text-sm"><strong>场景:</strong> 自动挖掘潜在客户、生成定制化销售方案、智能跟进提醒。</p>
+                        <p class="text-sm mt-2"><strong>价值:</strong> 提高线索转化率，缩短销售周期，解放销售人力。</p>
                     </div>
                      <div class="bento-item !cursor-default fragment">
                         <div class="mb-4"><i class="fas fa-users text-3xl highlight"></i><h3 class="text-2xl mt-2"><strong>人力 HR</strong></h3></div>
-                        <p class="text-sm"><strong>应用场景:</strong> AI筛选简历、智能安排面试、7x24小时员工问题应答。</p>
-                        <p class="text-sm mt-2"><strong>核心价值:</strong> 提升招聘效率，改善员工体验，降低事务性工作负担。</p>
+                        <p class="text-sm"><strong>场景:</strong> AI筛选简历、智能安排面试、7x24小时员工问题应答。</p>
+                        <p class="text-sm mt-2"><strong>价值:</strong> 提升招聘效率，改善员工体验，降低事务性工作负担。</p>
                     </div>
                      <div class="bento-item !cursor-default fragment">
                         <div class="mb-4"><i class="fas fa-cogs text-3xl highlight"></i><h3 class="text-2xl mt-2"><strong>运营 Operations</strong></h3></div>
-                        <p class="text-sm"><strong>应用场景:</strong> 监控生产线异常、预测设备维护需求、自动化处理订单。</p>
-                        <p class="text-sm mt-2"><strong>核心价值:</strong> 减少停机时间，保障生产稳定，提升订单处理效率。</p>
+                        <p class="text-sm"><strong>场景:</strong> 监控生产线异常、预测设备维护需求、自动化处理订单。</p>
+                        <p class="text-sm mt-2"><strong>价值:</strong> 减少停机时间，保障生产稳定，提升订单处理效率。</p>
                     </div>
                 </div>
             </section>
@@ -382,17 +407,17 @@
                            <br><em>We use AI to refactor millions of lines of legacy code, turning technical debt into a valuable asset.</em>
                         </p>
                     </div>
-                    <div>
-                        <div class="ultralarge-text text-center fragment tech-glow p-8 rounded-full">1M+</div>
-                        <p class="text-center text-2xl mt-[-2rem]">Lines of Code Refactored by AI</p>
+                    <div class="text-center">
+                        <div class="ultralarge-text fragment tech-glow p-8 rounded-full">1M+</div>
+                        <p class="text-2xl mt-[-2rem]">Lines of Code Refactored by AI</p>
                     </div>
                 </div>
             </section>
 
             <!-- SLIDE 11: AI-Powered Data Analytics -->
-            <section>
-                <h2 class="text-5xl text-center mb-12">数据到智慧的<strong class="highlight">最后一公里</strong></h2>
-                <p class="text-xl max-w-4xl mx-auto text-center mb-12">
+            <section class="text-center">
+                <h2 class="text-5xl mb-12">数据到智慧的<strong class="highlight">最后一公里</strong></h2>
+                <p class="text-xl max-w-4xl mx-auto mb-12">
                    我们构建的AI数据分析系统，不仅是BI报表。它能主动发现数据中的隐藏模式，进行精准的业务预测，甚至用自然语言生成深度分析报告，让每一位决策者都能轻松洞察数据背后的商业智慧。
                    <br><em>Our systems transform raw data into actionable wisdom through proactive, AI-driven insights.</em>
                 </p>
@@ -402,7 +427,7 @@
             </section>
             
             <!-- SLIDE 12: Philosophy/Contact -->
-            <section>
+            <section class="text-center">
                 <div class="text-center">
                     <h2 class="text-6xl">不止是顾问</h2>
                     <h3 class="text-4xl mt-4 mb-12">更是您的AI转型<strong class="highlight">共创伙伴</strong></h3>
@@ -427,7 +452,7 @@
         function setup(p) {
             let canvas = p.createCanvas(p.windowWidth, p.windowHeight);
             canvas.parent('p5-canvas');
-            let particleCount = p.windowWidth / 15; // Adjusted for density
+            let particleCount = p.windowWidth / 15;
             for(let i = 0; i<particleCount; i++){
                 particles.push(new Particle(p));
             }
@@ -442,7 +467,7 @@
                 particles.slice(i + 1).forEach(particle2 => {
                     const d = p.dist(particle.pos.x, particle.pos.y, particle2.pos.x, particle2.pos.y);
                     if (d < 120) {
-                        p.stroke(`rgba(227, 25, 55, ${p.map(d, 0, 120, 0.2, 0)})`); // Fading lines
+                        p.stroke(`rgba(227, 25, 55, ${p.map(d, 0, 120, 0.2, 0)})`);
                         p.line(particle.pos.x, particle.pos.y, particle2.pos.x, particle2.pos.y);
                     }
                 });
@@ -456,22 +481,14 @@
                 this.vel = p.createVector(p.random(-0.3, 0.3), p.random(-0.3, 0.3));
                 this.size = p.random(1, 3);
             }
-            update() {
-                this.pos.add(this.vel);
-                this.edges();
-            }
-            draw() {
-                this.p.noStroke();
-                this.p.fill('rgba(227, 25, 55, 0.4)'); // Highlight color particles
-                this.p.circle(this.pos.x, this.pos.y, this.size);
-            }
+            update() { this.pos.add(this.vel); this.edges(); }
+            draw() { this.p.noStroke(); this.p.fill('rgba(227, 25, 55, 0.4)'); this.p.circle(this.pos.x, this.pos.y, this.size); }
             edges() {
                 if (this.pos.x < 0 || this.pos.x > this.p.width) this.vel.x *= -1;
                 if (this.pos.y < 0 || this.pos.y > this.p.height) this.vel.y *= -1;
             }
         }
         new p5(p => { p.setup = () => setup(p); p.draw = () => draw(p); window.onresize = () => p.resizeCanvas(p.windowWidth, p.windowHeight); });
-
 
         // --- Reveal.js Initialization ---
         let deck = new Reveal({
@@ -488,7 +505,11 @@
         let analyticsChartInstance = null;
         deck.on('slidechanged', event => {
             const chartCanvas = event.currentSlide.querySelector('#analyticsChart');
-            if (chartCanvas && !analyticsChartInstance) {
+            if (chartCanvas) {
+                // Destroy previous instance if it exists
+                if (analyticsChartInstance) {
+                    analyticsChartInstance.destroy();
+                }
                 const ctx = chartCanvas.getContext('2d');
                 analyticsChartInstance = new Chart(ctx, {
                     type: 'line',
@@ -505,13 +526,14 @@
                             label: 'Traditional Forecast',
                             data: [10, 15, 13, 18, 22, 25],
                             borderColor: 'rgba(255, 255, 255, 0.3)',
-                             borderDash: [5, 5],
+                            borderDash: [5, 5],
                             fill: false,
                             tension: 0.4
                         }]
                     },
                     options: {
                         responsive: true,
+                        maintainAspectRatio: false,
                         scales: {
                             y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: 'white', font: { family: "'Montserrat', sans-serif" } } },
                             x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: 'white', font: { family: "'Montserrat', sans-serif" } } }
@@ -519,9 +541,6 @@
                         plugins: { legend: { labels: { color: 'white', font: { family: "'Montserrat', sans-serif" } } } }
                     }
                 });
-            } else if (!chartCanvas && analyticsChartInstance) {
-                analyticsChartInstance.destroy();
-                analyticsChartInstance = null;
             }
         });
     </script>
