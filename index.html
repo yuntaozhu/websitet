@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI战略咨询 | 您的首席转型伙伴 V2.2</title>
+    <title>AI战略咨询 | 您的首席转型伙伴 V2.3</title>
     
     <!-- TailwindCSS 3.4.1 via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,13 +24,14 @@
     <!-- Google Fonts for a modern, bold look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700;900&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700;900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --highlight-color: #E31937;
-            --background-start: #4a200d;
-            --background-end: #1d0d04;
+            --secondary-color: #3B82F6; /* Blue for "Traditional Model" */
+            --background-start: #231F20; /* Darker, more neutral start */
+            --background-end: #000000;
         }
 
         body {
@@ -57,7 +58,7 @@
             text-align: left;
         }
         
-        .reveal h1, .reveal h2, .reveal h3 {
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
             font-family: 'Noto Sans SC', sans-serif;
             font-weight: 900;
             text-shadow: 0 0 10px rgba(0,0,0,0.3);
@@ -133,6 +134,10 @@
         .line-art { stroke: rgba(255,255,255,0.8); stroke-width: 1.5; fill: none; }
         .tech-glow { box-shadow: 0 0 15px 5px rgba(227, 25, 55, 0.3), 0 0 30px 10px rgba(227, 25, 55, 0.2); }
         .case-study { border-left: 4px solid var(--highlight-color); padding: 1rem; margin-top: 1.5rem; background: rgba(0,0,0,0.2); border-radius: 8px; }
+        
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -148,7 +153,7 @@
                 <p class="text-xl highlight mt-8">Navigating the New Era of Intelligence</p>
             </section>
             
-            <!-- SLIDE 1: Service Overview (Old Landing Page content) -->
+            <!-- SLIDE 1: Service Overview -->
             <section>
                 <h2 class="text-4xl text-center mb-8">我们的核心服务领域</h2>
                  <div class="bento-grid">
@@ -180,30 +185,38 @@
                 </div>
             </section>
             
-            <!-- SLIDE 2: New Business Models (Title updated) -->
+            <!-- SLIDE 2: New Business Models (FULLY REDESIGNED AS PER IMAGE) -->
             <section>
-                <h2 class="text-5xl mb-12 text-center"><strong class="highlight">企业AI咨询</strong>的新范式</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-16">
+                    <!-- Traditional Model Column -->
                     <div class="fragment" data-fragment-index="1">
-                        <h3 class="text-3xl mb-4 text-gray-400"><strong>传统模式</strong> Traditional Model</h3>
-                        <ul class="list-disc list-inside space-y-2 text-lg opacity-70">
-                            <li>项目制收费 Project-Based Fees</li>
-                            <li>交付静态报告 Deliver Static Reports</li>
-                            <li>知识单向传递 One-way Knowledge Transfer</li>
-                            <li>扮演外部专家 Role of an External Expert</li>
+                        <div class="mb-6">
+                            <h3 class="inline-block text-3xl font-bold py-1 px-4 bg-[var(--secondary-color)] text-white mb-2">传统模式</h3>
+                            <p class="text-4xl font-black text-white tracking-wider font-montserrat">TRADITIONAL<br>MODEL</p>
+                        </div>
+                        <ul class="list-none space-y-4 text-lg">
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-500 rounded-full mr-4"></span><div>项目制收费 <span class="ml-2 opacity-70 text-sm">Project-Based Fees</span></div></li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-500 rounded-full mr-4"></span><div>交付静态报告 <span class="ml-2 opacity-70 text-sm">Deliver Static Reports</span></div></li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-500 rounded-full mr-4"></span><div>知识单向传递 <span class="ml-2 opacity-70 text-sm">One-way Knowledge Transfer</span></div></li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-500 rounded-full mr-4"></span><div>扮演外部专家 <span class="ml-2 opacity-70 text-sm">Role of an External Expert</span></div></li>
                         </ul>
                     </div>
+
+                    <!-- Innovative Model Column -->
                     <div class="fragment" data-fragment-index="2">
-                        <h3 class="text-3xl mb-4"><strong class="highlight">我们的创新模式</strong> Our Innovative Model</h3>
-                        <ul class="list-disc list-inside space-y-2 text-lg">
-                            <li><strong class="highlight">价值共创 & 成果共享</strong><br><span class="text-sm opacity-80">Value Co-creation & Outcome-Sharing</span></li>
-                            <li><strong class="highlight">能力建设即服务</strong><br><span class="text-sm opacity-80">Capability as a Service (CaaS)</span></li>
-                            <li><strong class="highlight">订阅制AI战略陪跑</strong><br><span class="text-sm opacity-80">Subscription-based Strategic Partnership</span></li>
-                            <li><strong class="highlight">成为内嵌的转型伙伴</strong><br><span class="text-sm opacity-80">Become an Embedded Transformation Partner</span></li>
+                        <div class="mb-6">
+                            <h3 class="inline-block text-3xl font-bold py-1 px-4 bg-[var(--highlight-color)] text-white mb-2">我们的创新模式</h3>
+                            <p class="text-4xl font-black text-white tracking-wider font-montserrat">OUR<br>INNOVATIVE<br>MODEL</p>
+                        </div>
+                        <ul class="list-none space-y-3 text-lg">
+                            <li class="flex items-start"><span class="w-2 h-2 bg-[var(--highlight-color)] rounded-full mr-4 mt-2"></span><div><span class="highlight">价值共创 & 成果共享</span><br><span class="opacity-70 text-sm">Value Co-creation & Outcome-Sharing</span></div></li>
+                            <li class="flex items-start"><span class="w-2 h-2 bg-[var(--highlight-color)] rounded-full mr-4 mt-2"></span><div><span class="highlight">能力建设即服务</span><br><span class="opacity-70 text-sm">Capability as a Service (CaaS)</span></div></li>
+                            <li class="flex items-start"><span class="w-2 h-2 bg-[var(--highlight-color)] rounded-full mr-4 mt-2"></span><div><span class="highlight">订阅制AI战略陪跑</span><br><span class="opacity-70 text-sm">Subscription-based Strategic Partnership</span></div></li>
+                            <li class="flex items-start"><span class="w-2 h-2 bg-[var(--highlight-color)] rounded-full mr-4 mt-2"></span><div><span class="highlight">成为内嵌的转型伙伴</span><br><span class="opacity-70 text-sm">Become an Embedded Transformation Partner</span></div></li>
                         </ul>
                     </div>
                 </div>
-                <p class="mt-12 text-center text-gray-400 fragment" data-fragment-index="3">我们不仅为您解决眼前的问题，更致力于将AI能力内化为您的组织基因。</p>
+                <p class="mt-12 text-center text-gray-400 text-lg fragment" data-fragment-index="3">我们不仅为您解决眼前的问题，更致力于将AI能力内化为您的组织基因。</p>
             </section>
             
             <!-- SLIDE 3: METHODOLOGY INTRO (Fonts updated) -->
@@ -275,9 +288,9 @@
                  <p class="text-xl max-w-4xl mx-auto">我们将通过三个层面，系统性地重构您的电商业务，实现从流量到利润的全面跃迁。</p>
             </section>
 
-            <!-- SLIDE 8: E-commerce Part 1: Personalization (FULLY REDESIGNED) -->
+            <!-- SLIDE 8: E-commerce Part 1: Personalization -->
             <section>
-                <h2 class="text-4xl mb-6">超个性化: 从“千人一面”到<strong class="highlight">“一人一世界”</strong></h2>
+                <h2 class="text-4xl text-center mb-6">超个性化: 从“千人一面”到<strong class="highlight">“一人一世界”</strong></h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
                     <div class="space-y-4">
                         <p class="text-lg">利用AI深度理解每个用户的隐性需求，提供独一无二的购物旅程。</p>
@@ -293,39 +306,40 @@
                     </div>
                     <div class="flex items-center justify-center">
                         <svg viewBox="0 0 200 200" class="w-full max-w-sm h-auto">
-                            <defs>
-                                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                </filter>
-                            </defs>
+                            <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
                             <circle cx="100" cy="100" r="25" fill="#E31937" filter="url(#glow)"/>
-                            <text x="100" y="105" text-anchor="middle" fill="white" font-size="12" font-family="FontAwesome"></text>
-                            <g class="fragment" data-fragment-index="2">
-                                <circle cx="100" cy="20" r="10" class="line-art" stroke="white"/><line x1="100" y1="45" x2="100" y2="75" class="line-art" stroke="rgba(255,255,255,0.5)"/>
-                                <text x="100" y="15" text-anchor="middle" font-size="6" fill="white">兴趣预测</text>
-                            </g>
-                            <g class="fragment" data-fragment-index="3">
-                                <circle cx="180" cy="100" r="10" class="line-art" stroke="white"/><line x1="125" y1="100" x2="170" y2="100" class="line-art" stroke="rgba(255,255,255,0.5)"/>
-                                <text x="180" y="90" text-anchor="middle" font-size="6" fill="white">内容生成</text>
-                            </g>
-                             <g class="fragment" data-fragment-index="4">
-                                <circle cx="20" cy="100" r="10" class="line-art" stroke="white"/><line x1="45" y1="100" x2="75" y2="100" class="line-art" stroke="rgba(255,255,255,0.5)"/>
-                                 <text x="20" y="90" text-anchor="middle" font-size="6" fill="white">虚拟试用</text>
-                             </g>
+                            <text x="100" y="105" text-anchor="middle" fill="white" font-size="12" class="fas"></text>
+                            <g class="fragment" data-fragment-index="2"><circle cx="100" cy="20" r="10" class="line-art" stroke="white"/><line x1="100" y1="45" x2="100" y2="75" class="line-art" stroke="rgba(255,255,255,0.5)"/><text x="100" y="15" text-anchor="middle" font-size="6" fill="white">兴趣预测</text></g>
+                            <g class="fragment" data-fragment-index="3"><circle cx="180" cy="100" r="10" class="line-art" stroke="white"/><line x1="125" y1="100" x2="170" y2="100" class="line-art" stroke="rgba(255,255,255,0.5)"/><text x="180" y="90" text-anchor="middle" font-size="6" fill="white">内容生成</text></g>
+                            <g class="fragment" data-fragment-index="4"><circle cx="20" cy="100" r="10" class="line-art" stroke="white"/><line x1="45" y1="100" x2="75" y2="100" class="line-art" stroke="rgba(255,255,255,0.5)"/><text x="20" y="90" text-anchor="middle" font-size="6" fill="white">虚拟试用</text></g>
                         </svg>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 9: E-commerce Part 2: Operations (FULLY REDESIGNED) -->
+            <!-- SLIDE 9: E-commerce Part 2: Operations (FULLY REDESIGNED WITH NEW SVG) -->
             <section>
-                <h2 class="text-4xl mb-6">智慧运营: 打通效率的<strong class="highlight">“任督二脉”</strong></h2>
+                <h2 class="text-4xl text-center mb-6">智慧运营: 打通效率的<strong class="highlight">“任督二脉”</strong></h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
                     <div class="flex items-center justify-center">
-                        <svg viewBox="0 0 200 200" class="w-full max-w-sm h-auto">
-                            <g class="fragment" data-fragment-index="2"><path d="M50 50 H 150 V 150 H 50 Z" class="line-art" stroke="rgba(255,255,255,0.3)"/><text x="100" y="45" font-size="8" text-anchor="middle" fill="white">仓库</text></g>
-                            <g class="fragment" data-fragment-index="3"><path d="M150 100 L 190 100" class="line-art" stroke-dasharray="2 2"><animate attributeName="stroke-dashoffset" from="4" to="0" dur="1s" repeatCount="indefinite"/></path><i class="fas fa-truck text-2xl text-white" style="transform: translate(155px, 88px);"></i></g>
-                            <g class="fragment" data-fragment-index="4"><circle cx="100" cy="100" r="20" class="line-art" stroke="#E31937" filter="url(#glow)"/><i class="fas fa-brain text-xl text-white" style="transform: translate(92px, 92px);"></i><text x="100" y="135" font-size="8" text-anchor="middle" fill="white">AI运营大脑</text></g>
+                        <svg viewBox="0 0 300 150" class="w-full max-w-md h-auto">
+                            <!-- Warehouse -->
+                            <g class="fragment" data-fragment-index="1">
+                                <rect x="10" y="25" width="100" height="100" class="line-art" stroke-width="1.5" />
+                                <text x="60" y="20" text-anchor="middle" font-size="10" fill="white">仓库</text>
+                            </g>
+                            <!-- Connection -->
+                            <g class="fragment" data-fragment-index="2">
+                                <line x1="110" y1="75" x2="190" y2="75" class="line-art" stroke-dasharray="3 3">
+                                    <animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.5s" repeatCount="indefinite"/>
+                                </line>
+                            </g>
+                            <!-- AI Brain -->
+                            <g class="fragment" data-fragment-index="3" transform="translate(240, 75)">
+                                <circle cx="0" cy="0" r="40" fill="rgba(227, 25, 55, 0.1)" stroke="var(--highlight-color)" filter="url(#glow)"/>
+                                <text x="0" y="8" text-anchor="middle" class="fas text-4xl" fill="white"></text> <!-- Brain icon -->
+                                <text x="0" y="70" text-anchor="middle" font-size="12" fill="white">AI运营大脑</text>
+                            </g>
                         </svg>
                     </div>
                     <div class="space-y-4">
@@ -343,9 +357,9 @@
                  </div>
             </section>
 
-            <!-- SLIDE 10: E-commerce Part 3: Conversational Commerce (FULLY REDESIGNED) -->
+            <!-- SLIDE 10: E-commerce Part 3: Conversational Commerce -->
             <section>
-                <h2 class="text-4xl mb-6">对话式商务: 重塑客户交互的<strong class="highlight">“最后一米”</strong></h2>
+                <h2 class="text-4xl text-center mb-6">对话式商务: 重塑客户交互的<strong class="highlight">“最后一米”</strong></h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
                     <div class="space-y-4">
                         <p class="text-lg">让每一次客户交互都成为品牌价值的放大器，而不仅仅是成本中心。</p>
