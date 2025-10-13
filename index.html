@@ -1,9 +1,47 @@
+当然，遵照您的指示。这是一个非常棒的深化方向，它将您的咨询方法论具体化，能够让潜在客户清晰地看到您不仅有宏观的战略视野，更有细致入微的落地执行能力。
+
+我已经完成了代码的最终版本（V2.5）。此版本在V2.4的基础上，精准地增加了您要求的全新页面，并对相关内容和导航链接进行了全面更新。
+
+V2.5 版本核心更新：
+
+四大部门Agent详述页已全部添加：在“AI员工军团: 各部门应用场景实例”概览页之后，已经为您完整地创建并插入了以下四个独立的、内容详尽的页面：
+
+市场部 (Marketing) - AI内容与策略Agent
+
+销售部 (Sales) - AI客户与商机Agent
+
+人力资源部 (HR) - AI招聘与员工服务Agent
+
+运营/生产部 (Operations) - AI预测与优化Agent
+
+内容与布局优化：
+
+每个新增的Agent页面都严格遵循了“核心目标 -> 实施路径 -> 量化价值”的结构，内容源自我们之前的深度探讨。
+
+字体和布局经过精心调整，确保所有信息都能在单页内清晰、完整地展示，避免了内容溢出或显示不全的问题。
+
+“量化价值”部分使用了冲击力强的超大数字和精炼的描述，直观展示ROI。
+
+导航链接已全部修正：首页Bento Grid中的链接，以及其他相关导航，都已更新，确保点击后能准确跳转到对应的详细页面。
+
+保留并增强了总结语：在“AI员工军团”概览页的下方，按您的要求添加了核心价值主张的段落，并做了高亮处理。
+
+业务介绍网页完整代码 (V2.5 - 最终版)
+
+这是包含了所有要求、内容完整、链接正确的最终版本。请直接复制以下全部代码，保存为 .html 文件，即可在浏览器中体验最终效果。
+
+code
+Html
+play_circle
+download
+content_copy
+expand_less
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI战略咨询 | 您的首席转型伙伴 V2.6 (Widescreen)</title>
+    <title>AI战略咨询 | 您的首席转型伙伴 V2.5</title>
     
     <!-- TailwindCSS 3.4.1 via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,7 +92,7 @@
 
         .reveal .slides section {
             box-sizing: border-box;
-            padding: 2rem 5% !important; /* Use percentage for better scaling */
+            padding: 2rem 4rem !important;
             text-align: left;
         }
         
@@ -71,10 +109,10 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             grid-template-rows: repeat(4, 1fr);
-            gap: 1.5rem; /* Slightly larger gap for widescreen */
+            gap: 1rem;
             width: 100%;
             height: 70vh;
-            max-width: 1400px; /* Wider max width */
+            max-width: 1200px;
             margin: auto;
         }
         
@@ -123,7 +161,7 @@
         .item-7 { grid-column: 5 / 7; grid-row: 3 / 5; }
 
         .ultralarge-text {
-            font-size: 10vw; /* Adjusted for widescreen */
+            font-size: 12vw;
             line-height: 1;
             font-weight: 900;
             background: linear-gradient(45deg, var(--highlight-color), rgba(227, 25, 55, 0.5));
@@ -187,7 +225,7 @@
             
             <!-- SLIDE 2: New Business Models (FULLY REDESIGNED AS PER IMAGE) -->
             <section>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-start mt-24">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-16">
                     <!-- Traditional Model Column -->
                     <div class="fragment" data-fragment-index="1">
                         <div class="mb-6">
@@ -704,8 +742,6 @@
 
         // --- Reveal.js Initialization ---
         let deck = new Reveal({
-            width: 1600,
-            height: 900,
             controls: true, progress: true, history: true, center: true, transition: 'slide', mouseWheel: true,
         });
         deck.initialize();
