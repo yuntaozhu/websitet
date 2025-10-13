@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI战略咨询 | 您的首席转型伙伴 V2.4</title>
+    <title>AI战略咨询 | 您的首席转型伙伴 V2.3</title>
     
     <!-- TailwindCSS 3.4.1 via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -138,34 +138,6 @@
         .font-montserrat {
             font-family: 'Montserrat', sans-serif;
         }
-        
-        /* Styles for the new methodology tabbed interface */
-        .tab-btn {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.7);
-            padding: 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            width: 100%;
-        }
-        .tab-btn:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--highlight-color);
-        }
-        .tab-btn.active {
-            background: var(--highlight-color);
-            color: white;
-            border-color: var(--highlight-color);
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -188,16 +160,16 @@
                     <a href="#/7" class="bento-item item-1">
                         <div><h3><strong>AI电商重构</strong></h3><p>E-commerce Reinvented</p></div><i class="fas fa-store icon"></i>
                     </a>
-                    <a href="#/11" class="bento-item item-2">
+                    <a href="#/15" class="bento-item item-2"> <!-- Link updated -->
                         <div><h3><strong>Agent赋能组织</strong></h3><p>Agent Empowerment</p></div><i class="fas fa-users-cog icon"></i>
                     </a>
                     <a href="#/4" class="bento-item item-3">
                         <div><h3><strong>AI战略咨询</strong></h3><p>Strategic Advisory</p></div><i class="fas fa-lightbulb icon"></i>
                     </a>
-                    <a href="#/13" class="bento-item item-4">
+                    <a href="#/17" class="bento-item item-4"> <!-- Link updated -->
                         <div><h3><strong>遗留代码重构</strong></h3><p>Legacy Code Refactoring</p></div><i class="fas fa-code-branch icon"></i>
                     </a>
-                    <a href="#/14" class="bento-item item-5">
+                    <a href="#/18" class="bento-item item-5"> <!-- Link updated -->
                         <div><h3><strong>AI数据智能</strong></h3><p>AI-Powered Data Analytics</p></div><i class="fas fa-chart-pie icon"></i>
                     </a>
                     <a href="#/2" class="bento-item item-6">
@@ -213,11 +185,15 @@
                 </div>
             </section>
             
-            <!-- SLIDE 2: New Business Models -->
+            <!-- SLIDE 2: New Business Models (FULLY REDESIGNED AS PER IMAGE) -->
             <section>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-16">
+                    <!-- Traditional Model Column -->
                     <div class="fragment" data-fragment-index="1">
-                        <div class="mb-6"><h3 class="inline-block text-3xl font-bold py-1 px-4 bg-[var(--secondary-color)] text-white mb-2">传统模式</h3><p class="text-4xl font-black text-white tracking-wider font-montserrat">TRADITIONAL<br>MODEL</p></div>
+                        <div class="mb-6">
+                            <h3 class="inline-block text-3xl font-bold py-1 px-4 bg-[var(--secondary-color)] text-white mb-2">传统模式</h3>
+                            <p class="text-4xl font-black text-white tracking-wider font-montserrat">TRADITIONAL<br>MODEL</p>
+                        </div>
                         <ul class="list-none space-y-4 text-lg">
                             <li class="flex items-center"><span class="w-2 h-2 bg-gray-500 rounded-full mr-4"></span><div>项目制收费 <span class="ml-2 opacity-70 text-sm">Project-Based Fees</span></div></li>
                             <li class="flex items-center"><span class="w-2 h-2 bg-gray-500 rounded-full mr-4"></span><div>交付静态报告 <span class="ml-2 opacity-70 text-sm">Deliver Static Reports</span></div></li>
@@ -225,8 +201,13 @@
                             <li class="flex items-center"><span class="w-2 h-2 bg-gray-500 rounded-full mr-4"></span><div>扮演外部专家 <span class="ml-2 opacity-70 text-sm">Role of an External Expert</span></div></li>
                         </ul>
                     </div>
+
+                    <!-- Innovative Model Column -->
                     <div class="fragment" data-fragment-index="2">
-                        <div class="mb-6"><h3 class="inline-block text-3xl font-bold py-1 px-4 bg-[var(--highlight-color)] text-white mb-2">我们的创新模式</h3><p class="text-4xl font-black text-white tracking-wider font-montserrat">OUR<br>INNOVATIVE<br>MODEL</p></div>
+                        <div class="mb-6">
+                            <h3 class="inline-block text-3xl font-bold py-1 px-4 bg-[var(--highlight-color)] text-white mb-2">我们的创新模式</h3>
+                            <p class="text-4xl font-black text-white tracking-wider font-montserrat">OUR<br>INNOVATIVE<br>MODEL</p>
+                        </div>
                         <ul class="list-none space-y-3 text-lg">
                             <li class="flex items-start"><span class="w-2 h-2 bg-[var(--highlight-color)] rounded-full mr-4 mt-2"></span><div><span class="highlight">价值共创 & 成果共享</span><br><span class="opacity-70 text-sm">Value Co-creation & Outcome-Sharing</span></div></li>
                             <li class="flex items-start"><span class="w-2 h-2 bg-[var(--highlight-color)] rounded-full mr-4 mt-2"></span><div><span class="highlight">能力建设即服务</span><br><span class="opacity-70 text-sm">Capability as a Service (CaaS)</span></div></li>
@@ -238,7 +219,7 @@
                 <p class="mt-12 text-center text-gray-400 text-lg fragment" data-fragment-index="3">我们不仅为您解决眼前的问题，更致力于将AI能力内化为您的组织基因。</p>
             </section>
             
-            <!-- SLIDE 3: METHODOLOGY INTRO -->
+            <!-- SLIDE 3: METHODOLOGY INTRO (Fonts updated) -->
             <section data-transition="fade-in zoom-out" class="text-center">
                 <h2 class="text-4xl">我们的“三阶段”咨询方法论</h2>
                 <p class="text-3xl highlight mt-4">A Three-Phase Journey to AI Transformation</p>
