@@ -18,9 +18,9 @@
                 extend: {
                     colors: {
                         brand: {
-                            emerald: '#0f766e',  // 翡翠色，代表沉稳与成长
-                            mint: '#14b8a6',     // 薄荷色，代表活力
-                            coral: '#f97316',    // 珊瑚橙，代表温暖鼓励
+                            emerald: '#0f766e',  // 翡翠色
+                            mint: '#14b8a6',     // 薄荷色
+                            coral: '#f97316',    // 珊瑚橙
                             slate: '#0f172a'     // 深灰蓝
                         }
                     }
@@ -34,11 +34,18 @@
             font-family: 'Noto Sans SC', sans-serif;
             background-color: #f8fafc;
         }
-        /* 针对PDF打印导出的特定排版约束 */
         .pdf-page-wrapper {
-            width: 800px; /* A4比率微调，保证导出无畸变 */
+            width: 800px; /* A4比率微调，保证导出无偏色和严重断页 */
             background: #ffffff;
             margin: 0 auto;
+        }
+        /* 自定义视频播放器容器微调 */
+        .video-container {
+            position: relative;
+            background-color: #000;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
     </style>
 </head>
@@ -57,7 +64,7 @@
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <span class="text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1.5 rounded-lg">测试档案: test2_20260703</span>
+                <span class="text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1.5 rounded-lg">视频档案: test2.mp4</span>
                 <button onclick="scrollToPrint()" class="bg-brand-emerald text-white px-5 py-2 rounded-xl text-sm font-semibold hover:bg-emerald-800 transition shadow-sm flex items-center space-x-1">
                     <i class="fa-solid fa-file-arrow-down"></i>
                     <span>下载成长报告 PDF</span>
@@ -68,7 +75,7 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         
-        <!-- ================= 第1部分：综合评价看盘 ================= -->
+        <!-- ================= 核心看盘：综合评价与多模态数据分析 ================= -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- 综合等级卡片 -->
             <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between relative overflow-hidden">
@@ -81,7 +88,7 @@
                         <span class="text-lg font-bold text-brand-emerald bg-teal-50 px-3 py-1 rounded-full border border-teal-200">卓越 (Level A)</span>
                     </div>
                     <p class="text-xs text-slate-500 mt-6 leading-relaxed">
-                        该等级对应学生在词汇应用、面部亲和力及肢体配合度方面均展现出优秀的示范性效果，能将肢体动作融入语言场景中。
+                        该等级表明学生在词词结合描述、面部情绪共鸣及情境肢体交互（如指认衣物动作）等方面表现突出，口语展现形式极具活力与感染力。
                     </p>
                 </div>
                 <div class="border-t border-slate-100 pt-5 mt-6 grid grid-cols-3 gap-2 text-center text-xs">
@@ -106,7 +113,7 @@
                     <h3 class="text-lg font-bold text-slate-800 flex items-center">
                         <i class="fa-solid fa-chart-line text-brand-mint mr-2"></i> 核心表达维度诊断
                     </h3>
-                    <span class="text-xs text-slate-400">基于多模态对齐算法</span>
+                    <span class="text-xs text-slate-400">基于多模态时序对齐算法</span>
                 </div>
                 <div class="space-y-4">
                     <!-- 表达自信度 -->
@@ -114,7 +121,7 @@
                         <div class="flex justify-between items-center text-sm mb-1.5">
                             <span class="font-semibold text-slate-700 flex items-center"><i class="fa-solid fa-face-laugh-beam text-brand-coral mr-2 w-4"></i>表达自信度 (面部亲和力)</span>
                             <div class="flex items-center space-x-3">
-                                <span class="text-xs text-slate-400">极具感染力</span>
+                                <span class="text-xs text-slate-400">亲和感染力强</span>
                                 <div class="flex text-amber-400 text-xs">
                                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                 </div>
@@ -129,7 +136,7 @@
                         <div class="flex justify-between items-center text-sm mb-1.5">
                             <span class="font-semibold text-slate-700 flex items-center"><i class="fa-solid fa-person-walking-arrow-right text-teal-600 mr-2 w-4"></i>互动能力 (肢体协调)</span>
                             <div class="flex items-center space-x-3">
-                                <span class="text-xs text-slate-400">主动演说动作</span>
+                                <span class="text-xs text-slate-400">主动演示手势</span>
                                 <div class="flex text-amber-400 text-xs">
                                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star-half-stroke"></i>
                                 </div>
@@ -142,9 +149,9 @@
                     <!-- 发音质量 -->
                     <div>
                         <div class="flex justify-between items-center text-sm mb-1.5">
-                            <span class="font-semibold text-slate-700 flex items-center"><i class="fa-solid fa-waveform-lines text-blue-600 mr-2 w-4"></i>发音清晰度 (音频质感)</span>
+                            <span class="font-semibold text-slate-700 flex items-center"><i class="fa-solid fa-waveform-lines text-blue-600 mr-2 w-4"></i>发音清晰度 (发音能量)</span>
                             <div class="flex items-center space-x-3">
-                                <span class="text-xs text-slate-400">声调饱满</span>
+                                <span class="text-xs text-slate-400">声音饱满清亮</span>
                                 <div class="flex text-amber-400 text-xs">
                                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
                                 </div>
@@ -157,9 +164,9 @@
                     <!-- 流利度 -->
                     <div>
                         <div class="flex justify-between items-center text-sm mb-1.5">
-                            <span class="font-semibold text-slate-700 flex items-center"><i class="fa-solid fa-gauge-high text-cyan-600 mr-2 w-4"></i>语言流利度 (发音节奏)</span>
+                            <span class="font-semibold text-slate-700 flex items-center"><i class="fa-solid fa-gauge-high text-cyan-600 mr-2 w-4"></i>语言流利度 (发音连贯性)</span>
                             <div class="flex items-center space-x-3">
-                                <span class="text-xs text-slate-400">节奏自然</span>
+                                <span class="text-xs text-slate-400">节奏自然通畅</span>
                                 <div class="flex text-amber-400 text-xs">
                                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
                                 </div>
@@ -174,7 +181,7 @@
                         <div class="flex justify-between items-center text-sm mb-1.5">
                             <span class="font-semibold text-slate-700 flex items-center"><i class="fa-solid fa-shapes text-indigo-600 mr-2 w-4"></i>情境词汇掌握 (表达丰富度)</span>
                             <div class="flex items-center space-x-3">
-                                <span class="text-xs text-slate-400">主题名词匹配度高</span>
+                                <span class="text-xs text-slate-400">名词指认准确度高</span>
                                 <div class="flex text-amber-400 text-xs">
                                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
                                 </div>
@@ -188,47 +195,75 @@
             </div>
         </section>
 
-        <!-- ================= 第2部分：AI 个性化建议 ================= -->
-        <section class="bg-gradient-to-br from-brand-slate to-slate-800 rounded-3xl p-6 text-white shadow-md relative overflow-hidden">
-            <div class="absolute right-0 bottom-0 w-96 h-96 bg-brand-emerald rounded-full opacity-10 blur-3xl"></div>
-            <div class="relative z-10 space-y-5">
-                <div class="flex items-center space-x-2">
-                    <span class="bg-teal-700 text-teal-100 text-[10px] uppercase px-2.5 py-1 rounded-md font-extrabold tracking-widest">AI Expert Review</span>
-                    <h3 class="text-lg font-bold">AI 个性化诊断评语</h3>
+        <!-- ================= 交互式：视频多模态回放与时序追踪 ================= -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- 视频回放卡片 -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-slate-800 flex items-center mb-3">
+                        <i class="fa-solid fa-circle-play text-brand-emerald mr-2"></i> 视频录制流分析 (test2.mp4)
+                    </h3>
+                    <div class="video-container aspect-video">
+                        <video id="dashboardVideo" src="test2.mp4" controls class="w-full h-full object-cover">
+                            您的浏览器不支持 video 标签。
+                        </video>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                        * 已将视频加载到播放器。点击下方“AI 肢体动作路径分析”中的任何时间点卡片，视频将<strong>自动跳转并在此帧暂停</strong>，便于核查孩子的面部表情与动作。
+                    </p>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                    <div class="bg-white/5 border border-white/10 p-5 rounded-2xl relative">
-                        <span class="absolute right-4 top-4 text-3xl text-brand-mint/20 font-serif font-black">“</span>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1 flex items-center">
-                            <i class="fa-solid fa-star-shooting text-amber-400 mr-1.5"></i> 一句话亮点
-                        </p>
-                        <p class="text-sm text-slate-200 leading-relaxed">
-                            孩子在自我表达中眼神极其专注（眼神交流始终保持在95%以上，极为出色），并伴随高频亲切的微笑（平均微笑分达74.6%）；最可贵的是，她能跟随着口中所讲的衣物单词（如 jacket, sweater, pants 等）进行自然、准确的身体指引与展示，表现出了极佳的多模态英语演说才华与舞台感！
-                        </p>
-                    </div>
+                <div class="border-t border-slate-100 pt-4 mt-4">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">视频控制面板说明</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">本地视频加载路径: <code>./test2.mp4</code>。支持高频点播与全屏分析。</p>
+                </div>
+            </div>
 
-                    <div class="bg-white/5 border border-white/10 p-5 rounded-2xl relative">
-                        <span class="absolute right-4 top-4 text-3xl text-brand-coral/20 font-serif font-black">”</span>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1 flex items-center">
-                            <i class="fa-solid fa-compass text-brand-coral mr-1.5"></i> 针对短板的进步建议
-                        </p>
-                        <p class="text-sm text-slate-200 leading-relaxed">
-                            微观时序诊断模型显示，在第12-13.5秒及24-25秒段，口语表达出现了短暂的空白（音量跌至-50dB以下），肢体语言也同步进入了较内敛的“双手合十（hands clasped）”或调整坐姿阶段。建议在下一阶段，着重学习“动作过渡词”，如：<code class="text-brand-mint bg-slate-900 px-1 py-0.5 rounded font-mono">"Now look at..."</code> 或 <code class="text-brand-mint bg-slate-900 px-1 py-0.5 rounded font-mono">"And next..."</code>。在调整体态或转场的同时保持发音输出，能更平稳地消除断档，使音画结合更加紧密。
-                        </p>
+            <!-- AI 个性化诊断与评语 -->
+            <div class="lg:col-span-2 bg-gradient-to-br from-brand-slate to-slate-800 rounded-2xl p-6 text-white shadow-md relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute right-0 bottom-0 w-80 h-80 bg-brand-emerald rounded-full opacity-10 blur-3xl"></div>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-teal-700 text-teal-100 text-[10px] uppercase px-2.5 py-1 rounded-md font-extrabold tracking-widest">AI Evaluation</span>
+                        <h3 class="text-base font-bold">AI 个性化诊断建议</h3>
                     </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-xl relative">
+                            <span class="absolute right-3 top-3 text-2xl text-brand-mint/20 font-serif font-black">“</span>
+                            <p class="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-1 flex items-center">
+                                <i class="fa-solid fa-star-shooting text-amber-400 mr-1.5"></i> 一句话亮点
+                            </p>
+                            <p class="text-xs text-slate-200 leading-relaxed">
+                                孩子在口语表达中眼神极其专注（眼神交流得分始终处于 95%），全程展现了很有亲和力的微笑（微笑均分达 74.6%）；在提及 jacket, sweater, pants 等名词时，配合了极其丰富生动的指向动作，展示了出色的多维语言呈现力！
+                            </p>
+                        </div>
+
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-xl relative">
+                            <span class="absolute right-3 top-3 text-2xl text-brand-coral/20 font-serif font-black">”</span>
+                            <p class="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-1 flex items-center">
+                                <i class="fa-solid fa-compass text-brand-coral mr-1.5"></i> 针对性成长建议
+                            </p>
+                            <p class="text-xs text-slate-200 leading-relaxed">
+                                诊断结果显示：在视频第12-13.5s和24-25s段有短暂的发音空白，且伴随双手紧握的局促状态。建议后续在句型过渡阶段引入动作过渡句引导词，如 <code>"Look at my..."</code> 或 <code>"And then..."</code>，在转场动作调整的同时保持声音输出，减少断档期。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                    <span class="text-slate-400">大地评估引擎多模态对齐得分已发布</span>
+                    <button onclick="scrollToPrint()" class="text-brand-mint font-bold hover:underline">去底端查看/生成PDF报告 <i class="fa-solid fa-arrow-down ml-0.5"></i></button>
                 </div>
             </div>
         </section>
 
-        <!-- ================= 第3部分：音画时序数据对齐 ================= -->
+        <!-- ================= 音画时序数据对齐 ================= -->
         <section class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between">
                 <div>
                     <h3 class="text-lg font-bold text-slate-800 flex items-center">
                         <i class="fa-solid fa-chart-line text-brand-emerald mr-2"></i> 30秒多模态行为全景图谱 (时序对齐)
                     </h3>
-                    <p class="text-xs text-slate-400 mt-1">对齐了30秒内语言气流能量(Volume)与面部情绪(Smile)、肢体能量(Gesture)的连续性数据</p>
+                    <p class="text-xs text-slate-400 mt-1">关联了 30s 内的语言气流能量值(Volume)与面部亲和微笑(Smile)、肢体能量(Gesture)的实时变化轨迹</p>
                 </div>
                 <div class="flex items-center space-x-4 mt-3 md:mt-0 text-xs font-semibold text-slate-500">
                     <span class="flex items-center"><span class="w-3 h-3 bg-teal-500 rounded-full mr-1"></span> 微笑指数 (%)</span>
@@ -242,50 +277,67 @@
                 <canvas id="deepTimelineChart"></canvas>
             </div>
 
-            <!-- 深度诊断解密：时序行为转译 -->
+            <!-- 肢体路径时序点击交互 -->
             <div class="border-t border-slate-100 pt-5">
-                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">AI 肢体动作路径分析</h4>
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex justify-between items-center">
+                    <span>AI 肢体动作路径分析 (点击时间卡片，视频将自动跳转至对应帧)</span>
+                    <span class="text-brand-emerald text-[10px]"><i class="fa-solid fa-hand-pointer animate-bounce"></i> 交互点播模式已激活</span>
+                </h4>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="text-xs font-mono text-slate-400 block">0.0s - 2.5s</span>
-                        <span class="text-sm font-bold text-slate-700 block mt-0.5">礼貌开场互动</span>
-                        <p class="text-[11px] text-slate-500 mt-1">双手抬起引介，面部微笑升至85%的高点，呈现大方、热情的欢迎礼仪。</p>
+                    <div onclick="seekVideo(0.0)" class="bg-slate-50 p-3 rounded-xl border border-slate-100 cursor-pointer hover:border-brand-emerald hover:bg-teal-50/30 transition group">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-slate-400 font-bold group-hover:text-brand-emerald">0.0s - 2.5s</span>
+                            <i class="fa-solid fa-play text-[10px] text-slate-300 group-hover:text-brand-emerald"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 block mt-0.5 group-hover:text-slate-900">礼貌开场引介</span>
+                        <p class="text-[11px] text-slate-500 mt-1">双手抬起做出礼貌开场，面部微笑同步拉升至85%高度。</p>
                     </div>
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="text-xs font-mono text-slate-400 block">7.0s - 11.5s</span>
-                        <span class="text-sm font-bold text-slate-700 block mt-0.5">上身服装叙述</span>
-                        <p class="text-[11px] text-slate-500 mt-1">密集对准 jacket / sweater 进行指示演绎。此时音量稳定在 -8dB，表达目的性极强。</p>
+                    <div onclick="seekVideo(7.0)" class="bg-slate-50 p-3 rounded-xl border border-slate-100 cursor-pointer hover:border-brand-emerald hover:bg-teal-50/30 transition group">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-slate-400 font-bold group-hover:text-brand-emerald">7.0s - 11.5s</span>
+                            <i class="fa-solid fa-play text-[10px] text-slate-300 group-hover:text-brand-emerald"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 block mt-0.5 group-hover:text-slate-900">上身服装指认</span>
+                        <p class="text-[11px] text-slate-500 mt-1">配合发音密集进行 jacket、sweater 的指向演示，能量均衡。</p>
                     </div>
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="text-xs font-mono text-slate-400 block">18.0s - 21.5s</span>
-                        <span class="text-sm font-bold text-slate-700 block mt-0.5">高难度肢体指认</span>
-                        <p class="text-[11px] text-slate-500 mt-1">拉伸腿部、具体指向 pants 和 socks 演示。肢体能量跃升至40%，展现绝佳的场景代入感。</p>
+                    <div onclick="seekVideo(18.0)" class="bg-slate-50 p-3 rounded-xl border border-slate-100 cursor-pointer hover:border-brand-emerald hover:bg-teal-50/30 transition group">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-slate-400 font-bold group-hover:text-brand-emerald">18.0s - 21.5s</span>
+                            <i class="fa-solid fa-play text-[10px] text-slate-300 group-hover:text-brand-emerald"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 block mt-0.5 group-hover:text-slate-900">拉伸腿部指裤</span>
+                        <p class="text-[11px] text-slate-500 mt-1">抬腿拉伸并具体指明 pants、socks 演示，肢体能量达到峰值。</p>
                     </div>
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="text-xs font-mono text-slate-400 block">28.0s - 29.5s</span>
-                        <span class="text-sm font-bold text-slate-700 block mt-0.5">温馨招手致谢</span>
-                        <p class="text-[11px] text-slate-500 mt-1">以生动的挥手动作收尾，微笑指数达到 90% 的峰值，形成极富好感的完结。完成度优异。</p>
+                    <div onclick="seekVideo(28.0)" class="bg-slate-50 p-3 rounded-xl border border-slate-100 cursor-pointer hover:border-brand-emerald hover:bg-teal-50/30 transition group">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-slate-400 font-bold group-hover:text-brand-emerald">28.0s - 29.5s</span>
+                            <i class="fa-solid fa-play text-[10px] text-slate-300 group-hover:text-brand-emerald"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 block mt-0.5 group-hover:text-slate-900">温馨挥手致谢</span>
+                        <p class="text-[11px] text-slate-500 mt-1">结尾进行招手致谢互动，面部微笑值达到 90% 的峰值。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ================= 第4部分：PDF 导出激活卡 ================= -->
+        <hr class="border-slate-200">
+
+        <!-- ================= PDF 导出激活卡 ================= -->
         <div id="print-guide" class="flex flex-col items-center justify-center p-8 bg-teal-50/50 rounded-2xl border border-dashed border-teal-200">
             <div class="bg-brand-emerald text-white p-3 rounded-full mb-3 shadow-sm">
                 <i class="fa-solid fa-file-pdf text-xl"></i>
             </div>
             <h4 class="text-base font-bold text-slate-700">生成离线保存的《个性化成长报告》</h4>
             <p class="text-xs text-slate-400 mt-1 mb-5 max-w-lg text-center leading-relaxed">
-                点击下方按钮，系统将自动对下方的卡片区域进行 A4 页面渲染，包含本次高频互动画面封面图、雷达图、历史等级趋势等。
+                点击下方按钮，系统将自动对下方的卡片区域进行 A4 标准页面排版渲染，自动加载本地 <code>test2.mp4</code> 作为封面插画，并转化为 PDF 文档。
             </p>
             <button onclick="exportToPDF()" class="bg-gradient-to-r from-brand-emerald to-teal-600 hover:from-emerald-800 hover:to-teal-700 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-md transition flex items-center space-x-2">
                 <i class="fa-solid fa-download"></i>
-                <span>立即生成 PDF 并保存本地</span>
+                <span>生成并下载成长报告 PDF</span>
             </button>
         </div>
 
-        <!-- ================= 第5部分：PDF 报告设计模板 (隐藏/仅用于A4导出排版) ================= -->
+        <!-- ================= PDF 报告设计模板 (仅用于A4导出排版) ================= -->
         <div class="py-4 overflow-x-auto">
             <div id="print-area" class="pdf-page-wrapper p-8 border border-slate-200 shadow-lg rounded-2xl">
                 <!-- 页眉 -->
@@ -301,24 +353,24 @@
                     </div>
                 </div>
 
-                <!-- 封面图及多模态数据分析概要 -->
+                <!-- 封面视频流及多模态数据概要 -->
                 <div class="grid grid-cols-12 gap-6 mb-6">
-                    <!-- 左侧：本次视频动态帧(封面) -->
+                    <!-- 左侧：本次视频动态帧/嵌入式播放卡 -->
                     <div class="col-span-7 flex flex-col justify-between">
                         <div class="relative rounded-xl overflow-hidden bg-slate-900 border border-slate-200 shadow-sm aspect-video">
-                            <!-- 模拟视频截图 -->
-                            <div class="absolute inset-0 bg-cover bg-center opacity-65" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=800');"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent"></div>
-                            <div class="absolute bottom-3 left-4 text-white">
-                                <span class="bg-brand-coral/90 text-white text-[9px] font-bold px-2 py-0.5 rounded mr-1.5">多模态截图</span>
-                                <span class="text-xs font-bold">第 18.5 秒 动作配合点</span>
-                                <p class="text-[10px] text-white/80 mt-0.5 font-light">"pointing to socks, leg movement" - 眼神专注度 95%</p>
+                            <!-- 在PDF报告中嵌入真实的本地视频视频源作为封面插画 -->
+                            <video id="printVideo" src="test2.mp4" class="w-full h-full object-cover">
+                                您的浏览器不支持 video 标签。
+                            </video>
+                            <div class="absolute bottom-3 left-4 text-white z-10 pointer-events-none">
+                                <span class="bg-brand-coral/90 text-white text-[9px] font-bold px-2 py-0.5 rounded mr-1.5">视频播放封面</span>
+                                <span class="text-xs font-bold text-shadow">test2.mp4 (第18.5秒动作匹配点)</span>
                             </div>
                         </div>
                         <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 mt-3">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">多模态融合评分说明</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">多模态融合评测说明</span>
                             <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                                系统基于 MediaPipe 的面部表情关键点与 Web Audio API 音频流进行每 0.5 秒的同步标定。结果显示，该名学生展现了优异的面部稳定度和极高的发言热情。
+                                系统基于 MediaPipe 的面部及肢体三维节点骨骼追踪，结合 Web Audio 声音分贝做交叉检验。学生在发音力度、坐姿轴线稳定性上体现出良好的规范性。
                             </p>
                         </div>
                     </div>
@@ -326,28 +378,28 @@
                     <!-- 右侧：多维对齐计算结果指标 -->
                     <div class="col-span-5 bg-teal-50/40 border border-teal-100 rounded-xl p-4 flex flex-col justify-between">
                         <h4 class="text-xs font-bold text-brand-emerald flex items-center mb-3">
-                            <i class="fa-solid fa-calculator mr-1.5"></i> 多模态交叉诊断结果
+                            <i class="fa-solid fa-calculator mr-1.5"></i> 多模态交叉诊断指标
                         </h4>
                         <div class="space-y-2.5 text-[11px]">
                             <div class="flex justify-between border-b border-teal-100/60 pb-1.5">
                                 <span class="text-slate-500">语言气流能量值</span>
-                                <span class="font-semibold text-slate-700">88.5% (声学能量均衡)</span>
+                                <span class="font-semibold text-slate-700">88.5% (语言饱满大方)</span>
                             </div>
                             <div class="flex justify-between border-b border-teal-100/60 pb-1.5">
                                 <span class="text-slate-500">眼神交流专注度</span>
-                                <span class="font-semibold text-slate-700">95.0% (视线聚焦优异)</span>
+                                <span class="font-semibold text-slate-700">95.0% (视线稳定聚焦)</span>
                             </div>
                             <div class="flex justify-between border-b border-teal-100/60 pb-1.5">
                                 <span class="text-slate-500">面部亲和力指数</span>
-                                <span class="font-semibold text-slate-700">74.6% (高频正面微笑)</span>
+                                <span class="font-semibold text-slate-700">74.6% (高频微笑表现)</span>
                             </div>
                             <div class="flex justify-between border-b border-teal-100/60 pb-1.5">
                                 <span class="text-slate-500">肢体动作配合度</span>
-                                <span class="font-semibold text-slate-700">极强 (包含11处指认交互)</span>
+                                <span class="font-semibold text-slate-700">极高 (含11次高匹配手势)</span>
                             </div>
                             <div class="flex justify-between pb-1">
-                                <span class="text-slate-500">坐姿与轴线稳定性</span>
-                                <span class="font-semibold text-slate-700">100% (挺拔不摇晃)</span>
+                                <span class="text-slate-500">躯干体态端正度</span>
+                                <span class="font-semibold text-slate-700">100% (身体姿态端正)</span>
                             </div>
                         </div>
                         <div class="mt-4 pt-3 border-t border-teal-100 flex items-center justify-between">
@@ -379,8 +431,8 @@
                         <i class="fa-solid fa-seedling mr-1.5"></i> 专属多模态口语成长学习计划
                     </h4>
                     <p class="text-[11px] text-slate-300 leading-relaxed">
-                        1. <strong>语流连贯度：</strong> 鉴于本次评估中出现的两次微小的动作/发音错位空白，建议加入“话语连接器”卡片训练，确保在转场指向时，能流利运用 <em>“Look at this!”</em>，<em>“Now let me show you my...”</em> 等简单高连贯句式过渡，消除静音期。<br>
-                        2. <strong>词汇描述拓展：</strong> 学生已完美掌握名词指认。下一阶段，建议引导在名词前增加简单的修饰词，例如 <em>“yellow sweater”</em>, <em>“warm jacket”</em>，这将使词汇丰富度更上一个台阶。
+                        1. <strong>语连连贯度：</strong> 针对视频中两处因肢体动作重组或转场产生的发音空白期，建议引入动作衔接短句（如 <em>“Now look at my jacket”</em> 或 <em>“Next I will show you...”</em>），在手势展示的同时保持口语输出，消除断档。<br>
+                        2. <strong>词汇描述拓展：</strong> 学生的名词指认能力非常棒。后续建议引导在描述名词时，增加修饰词（如 <em>“red sweater”</em>，<em>“long pants”</em>），帮助学生顺利过渡到更复杂的语流环境。
                     </p>
                 </div>
 
@@ -396,11 +448,11 @@
 
     <!-- 页脚版权 -->
     <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-400">
-        <p>© 2026 大地英语. 多模态口语评估系统. 报告由系统算法自动生成并脱敏，保护隐私安全。</p>
+        <p>© 2026 大地英语. 多模态口语评估系统. 报告由算法脱敏计算生成，保护孩子隐私安全。</p>
     </footer>
 
     <script>
-        // ================= 数据集配置 (来自于 CSV 分析转换) =================
+        // ================= 数据集配置 (来自于两份 CSV 的交叉统计) =================
         const labels = Array.from({length: 30}, (_, i) => (i * 1.0).toFixed(1) + 's');
         
         // 微笑数值
@@ -417,7 +469,7 @@
         const gestureEnergyList = [60, 60, 50, 50, 40, 40, 20, 20, 30, 30, 10, 10, 10, 10, 20, 20, 30, 30, 40, 40, 30, 30, 30, 30, 20, 20, 10, 10, 10, 10];
 
         // 核心数据雷达值 (发音、流利度、词汇量、表达自信度、互动能力)
-        const radarDimensions = ['发音质量', '语言流利度', '情境词汇量', '表达自信度', '多维互动力'];
+        const radarDimensions = ['发音清晰度', '语言流利度', '情境词汇量', '表达自信度', '多维互动力'];
         const radarDataScores = [88, 85, 80, 95, 92];
 
         // 历史趋势
@@ -441,7 +493,7 @@
                         yAxisID: 'y'
                     },
                     {
-                        label: '发音能量 (%)',
+                        label: '语言能量 (%)',
                         data: volumeNormalized,
                         borderColor: '#3b82f6',
                         backgroundColor: 'rgba(59, 130, 246, 0.02)',
@@ -480,7 +532,17 @@
             }
         });
 
-        // ================= 2. PDF版雷达图和折线图初始化 =================
+        // ================= 2. 视频控制辅助函数 =================
+        function seekVideo(seconds) {
+            const video = document.getElementById('dashboardVideo');
+            if (video) {
+                video.currentTime = seconds;
+                video.pause(); // 跳转至对应关键点帧时，自动暂停以便静态分析
+                video.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ================= 3. PDF版雷达图和折线图初始化 =================
         let pdfRadarInstance;
         let pdfTrendInstance;
 
@@ -552,22 +614,33 @@
                     }
                 }
             });
+
+            // 预先让PDF中的小视频在第18.5秒位置静止，形成封面插图效果
+            const printVideo = document.getElementById('printVideo');
+            if (printVideo) {
+                printVideo.currentTime = 18.5;
+                printVideo.pause();
+            }
         }
 
-        // 初始化页面时即渲染 PDF 区域的图表
         window.onload = function() {
             initPDFCharts();
         };
 
-        // ================= 3. 操作事件：下载 PDF =================
+        // ================= 4. 操作事件：定位与下载 PDF =================
         function scrollToPrint() {
             document.getElementById('print-guide').scrollIntoView({ behavior: 'smooth' });
         }
 
         function exportToPDF() {
             const element = document.getElementById('print-area');
+            const printVideo = document.getElementById('printVideo');
             
-            // 配置 html2pdf.js 参数，确保图表在 canvas 中高质量输出
+            // 在导出PDF时临时去除视频控件，防止在导出的PDF中产生杂乱的控制条渲染
+            if (printVideo) {
+                printVideo.removeAttribute('controls');
+            }
+
             const opt = {
                 margin:       12,
                 filename:     '大地英语多模态口语成长诊断报告_test2.pdf',
@@ -576,8 +649,12 @@
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // 执行生成
-            html2pdf().set(opt).from(element).save();
+            html2pdf().set(opt).from(element).save().then(() => {
+                // 生成结束后，若视频有配置控制条，可在后续还原
+                if (printVideo) {
+                    printVideo.currentTime = 18.5;
+                }
+            });
         }
     </script>
 </body>
